@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="web.dao.StockInfoMapper" >
+    <cache  eviction="LRU" flushInterval="60000" size="1024" readOnly="true"/>
+    <resultMap id="StockInfoMap" type="web.pojo.before.StockInfo" >
+        <id column="stockid" property="stockid" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="LONGVARCHAR" />
+        <result column="industry" property="industry" jdbcType="LONGVARCHAR" />
+        <result column="industryid" property="industryid" jdbcType="BIGINT"/>
+        <result column="fullName" property="fullName" jdbcType="LONGVARCHAR" />
+        <result column="listDate" property="listDate" jdbcType="LONGVARCHAR" />
+        <result column="status" property="status" jdbcType="LONGVARCHAR" />
+        <result column="description" property="description" jdbcType="LONGVARCHAR" />
+    </resultMap>
+    <select id="getStockInfo" resultMap="StockInfoMap" parameterType="java.lang.String">
+        SELECT * FROM sw_stock_info
+        WHERE stockid = #{0,jdbcType=VARCHAR}
+    </select>
+
+    <resultMap id="StockSeasonMap" type="web.pojo.before.StockSeason">
+        <id column="stockid" property="stockid" jdbcType="VARCHAR"/>
+        <result column="摊薄每股收益" property="tbmgly" jdbcType="DOUBLE"/>
+        <result column="加权每股收益" property="jqmgly" jdbcType="DOUBLE"/>
+        <result column="每股收益_调整后" property="mgsy_tzh" jdbcType="DOUBLE"/>
+        <result column="扣除非经常性损益后的每股收益" property="kcfjcxsyhdmgsy" jdbcType="DOUBLE"/>
+        <result column="每股净资产_调整前" property="mgjzc_tzq" jdbcType="DOUBLE"/>
+        <result column="每股净资产_调整后" property="mgjzc_tzh" jdbcType="DOUBLE"/>
+        <result column="每股经营性现金流" property="mgjyxxjl" jdbcType="DOUBLE"/>
+        <result column="每股资本公积金" property="mgzbgjj" jdbcType="DOUBLE"/>
+        <result column="每股未分配利润" property="mgwfplr" jdbcType="DOUBLE"/>
+        <result column="调整后的每股净资产" property="tzhdmgjzc" jdbcType="DOUBLE"/>
+        <result column="总资产利润率" property="zzclrl" jdbcType="DOUBLE"/>
+        <result column="主营业务利润率" property="zyywlrl" jdbcType="DOUBLE"/>
+        <result column="总资产净利润率" property="zzcjlrl" jdbcType="DOUBLE"/>
+        <result column="成本费用利润率" property="cbfylrl" jdbcType="DOUBLE"/>
+        <result column="营业利润率" property="yylrl" jdbcType="DOUBLE"/>
+        <result column="主营业务成本率" property="zyywcbl" jdbcType="DOUBLE"/>
+        <result column="销售净利率" property="xsjll" jdbcType="DOUBLE"/>
+        <result column="股本报酬率" property="gbbcl" jdbcType="DOUBLE"/>
+        <result column="净资产报酬率" property="jzcbcl" jdbcType="DOUBLE"/>
+        <result column="资产报酬率" property="zcbcl" jdbcType="DOUBLE"/>
+        <result column="销售毛利率" property="ssmll" jdbcType="DOUBLE"/>
+        <result column="三项费用比重" property="sxfybz" jdbcType="DOUBLE"/>
+        <result column="非主营比重" property="fzybz" jdbcType="DOUBLE"/>
+        <result column="主营利润比重" property="zylrbz" jdbcType="DOUBLE"/>
+        <result column="股息发放率" property="gxffl" jdbcType="DOUBLE"/>
+        <result column="投资收益率" property="tzsyl" jdbcType="DOUBLE"/>
+        <result column="主营业务利润" property="zyywlr" jdbcType="DOUBLE"/>
+        <result column="净资产收益率" property="jzcsyl" jdbcType="DOUBLE"/>
+        <result column="加权净资产收益率" property="jqjzcsyl" jdbcType="DOUBLE"/>
+        <result column="扣除非经常性损益后的净利润" property="kcfjcxsyhdjlr" jdbcType="DOUBLE"/>
+        <result column="主营业务收入增长率" property="zyywsrzzl" jdbcType="DOUBLE"/>
+        <result column="净利润增长率" property="jlrzzl" jdbcType="DOUBLE"/>
+        <result column="净资产增长率" property="jzczzl" jdbcType="DOUBLE"/>
+        <result column="总资产增长率" property="zzczzl" jdbcType="DOUBLE"/>
+    </resultMap>
+    <select id="getStockSeason" resultMap="StockSeasonMap" parameterType="java.lang.String">
+        SELECT * FROM season
+        WHERE stockid = #{0,jdbcType=VARCHAR}
+    </select>
+</mapper>

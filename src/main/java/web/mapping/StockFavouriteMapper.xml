@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="web.dao.StockFavouriteMapper" >
+
+    <resultMap id="FavouriteMap" type="web.pojo.before.FavouriteStock">
+        <id column="stockid" property="stockid" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="LONGVARCHAR"/>
+        <result column="count" property="count" jdbcType="BIGINT"/>
+        <result column="industry" property="industry" jdbcType="LONGVARCHAR"/>
+        <result column="rank" property="rank" jdbcType="BIGINT"/>
+        <result column="date" property="date" jdbcType="VARCHAR"/>
+        <result column="open" property="open" jdbcType="DOUBLE"/>
+        <result column="close" property="close" jdbcType="DOUBLE"/>
+        <result column="high" property="high" jdbcType="DOUBLE"/>
+        <result column="low" property="low" jdbcType="DOUBLE"/>
+        <result column="ma5" property="ma5" jdbcType="DOUBLE"/>
+        <result column="ma10" property="ma10" jdbcType="DOUBLE"/>
+        <result column="ma20" property="ma20" jdbcType="DOUBLE"/>
+        <result column="ma30" property="ma30" jdbcType="DOUBLE"/>
+        <result column="industryid" property="industryid" jdbcType="BIGINT"/>
+    </resultMap>
+    <select id="getFavourite" resultMap="FavouriteMap" parameterType="Map">
+        SELECT stock_2016.stockid , stock_2016.date ,stock_2016.open , stock_2016.close, stock_2016.high , stock_2016.low ,
+          stock_2016.ma5 , stock_2016.ma10 , stock_2016.ma20 , stock_2016.ma30 , sw_stock_info.name , stock_evaluate.rank ,
+          stock_evaluate.count , sw_industry.industry , sw_industry.industryid  FROM  stock_2016 ,stock_evaluate ,sw_industry ,sw_stock_info
+          WHERE (stock_2016.stockid =  stock_evaluate.stockid) AND (stock_2016.stockid = sw_stock_info.stockid) AND (stock_evaluate.industryid = sw_industry.industryid) AND
+          (stock_2016.date BETWEEN #{startdate,jdbcType=VARCHAR} and #{enddate,jdbcType=VARCHAR})
+        AND stock_2016.stockid in<foreach collection="idlist" item="item" index="index" open="(" close=")" separator=",">
+        #{item}
+        </foreach>
+
+
+    </select>
+</mapper>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@DefaultTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applet.presentation.UI.action.SystemInitializeController">
+   <children>
+      <StackPane fx:id="maskRoot" prefHeight="800.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <SplitPane dividerPositions="0.7662771285475793" prefHeight="800.0" prefWidth="1200.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="798.0" prefWidth="776.0">
+                     <children>
+                        <Label layoutX="112.0" layoutY="189.0" text="STOCKS ANALYSIS SYSTEM" textFill="WHITE" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+                           <font>
+                              <Font size="43.0" />
+                           </font>
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
+                        </Label>
+                        <TableView fx:id="tableView" layoutX="199.0" layoutY="447.0" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="320.0">
+                          <columns>
+                            <TableColumn fx:id="IDColumn" minWidth="80.0" text="股票代码" />
+                            <TableColumn fx:id="nameColumn" minWidth="60.0" prefWidth="60.0" text="股票名称" />
+                              <TableColumn fx:id="openColumn" minWidth="55.0" prefWidth="55.0" text="开盘价" />
+                              <TableColumn fx:id="highColumn" minWidth="55.0" prefWidth="55.0" text="最高价" />
+                              <TableColumn fx:id="lowColumn" minWidth="55.0" prefWidth="55.0" text="最低价" />
+                              <TableColumn fx:id="closeColumn" minWidth="55.0" prefWidth="55.0" text="收盘价" />
+                              <TableColumn fx:id="volumeColumn" minWidth="80.0" text="成交量" />
+                              <TableColumn fx:id="adjPriceColumn" minWidth="60.0" prefWidth="60.0" text="后复权价" />
+                              <TableColumn fx:id="turnoverColumn" minWidth="60.0" prefWidth="60.0" text="换手率" />
+                              <TableColumn fx:id="peTtmColumn" minWidth="60.0" prefWidth="60.0" text="市盈率" />
+                              <TableColumn fx:id="pbColumn" minWidth="75.0" prefWidth="75.0" text="市净率" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF20;">
+                     <children>
+                        <Button fx:id="click" layoutX="35.0" layoutY="637.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changeScene" prefWidth="120.0" style="-fx-cursor: hand;" styleClass="start-button" text="&gt; Start" AnchorPane.bottomAnchor="116.0" AnchorPane.leftAnchor="35.0">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="35.0" layoutY="690.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#exit" prefWidth="120.0" style="-fx-cursor: hand;" styleClass="exit-button" text="&gt; Exit" AnchorPane.bottomAnchor="63.0" AnchorPane.leftAnchor="35.0">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="35.0" layoutY="584.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#updateStatistics" prefWidth="120.0" style="-fx-cursor: hand;" styleClass="start-button" text="Update" AnchorPane.bottomAnchor="169.0" AnchorPane.leftAnchor="35.0">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

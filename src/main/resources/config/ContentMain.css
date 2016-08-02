@@ -1,0 +1,217 @@
+.root {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.tab-pane {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.labelG{
+    -fx-text-fill:#7173ac;
+}
+
+.split-pane:vertical > .split-pane-divider {
+    -fx-border-color: #FFFFFF00;
+    -fx-background-color: #FFFFFF00;
+    -fx-border-insets: 0 0 0 0;
+    -fx-height: 0;
+    -fx-background-size: 0;
+}
+
+.scroll-pane > .viewport{
+    -fx-background-color: rgb(30, 29, 49);
+    /*-fx-fill: #FFFFFF00;*/
+    /*-fx-stroke: #106ece;*/
+}
+
+.chart-plot-background {
+    -fx-background-color: #FFFFFF00;
+}
+
+.tab-header-area {
+    -fx-pref-height: 45px;
+    -fx-padding: 0px 0px 0px 250px;
+    -fx-cursor:hand;
+}
+
+.tab-header-area > .headers-region {
+    -fx-background-color: rgb(40, 40, 64);
+    -fx-border-width: 0 0 0 0;
+}
+
+.tab-header-area > .tab-header-background {
+    -fx-background-color: rgb(40, 40, 64);
+    -fx-border-width: 0 0 0 0;
+}
+
+/*.tab-header-area > .tab > .viewport{*/
+    /*-fx-background-color: rgb(30, 29, 49);*/
+/*}*/
+.tab {
+    -fx-background-color: rgb(40, 40, 64);
+    -fx-border-color: transparent;
+    -fx-border-width: 5 0 0 0;
+    -fx-pref-height: 45px;
+    -fx-min-width:90px;
+    -fx-text-fill:#7173ac;
+        -fx-alignment: center-left;
+}
+
+.tab:selected {
+    -fx-background-color: rgb(40, 40, 64);
+    -fx-border-color: rgb(107,149,254);
+    -fx-border-width: 5 0 0 0;
+    -fx-font-size:16px;
+    -fx-text-fill:rgb(107,149,254);
+}
+
+.tab .tab-label{
+       -fx-alignment: center-left;
+    -fx-text-fill:#7173ac;
+}
+
+.tab:selected .tab-label{
+    -fx-text-fill:rgb(107,149,254);
+}
+
+
+/*.tab-label:default {*/
+/*-fx-text-fill: rgb(108, 108, 108);*/
+/*}*/
+/*.myFav-tab {
+
+}*/
+
+
+.tab-label {
+    -fx-text-fill: white;
+    -fx-border-width: 0 0 0 0;
+}
+
+.control-button-tab {
+    -fx-border-width: 0 0 0 0;
+}
+
+.fav-togglebutton {
+    -fx-background-image: url("/image_resource/fav/unfavor.png");
+    -fx-background-insets: 5 5 5 5;
+    -fx-background-size: stretch;
+    -fx-border-width: 0 0 0 0;
+    -fx-base: #FFFFFF00;
+    -fx-background-color: #FFFFFF00;
+}
+
+.fav-togglebutton:selected {
+    -fx-background-image: url("/image_resource/fav/favor.png");
+    -fx-background-insets: 5 5 5 5;
+    -fx-background-size: stretch;
+    -fx-border-width: 0 0 0 0;
+    -fx-base: #FFFFFF00;
+    -fx-background-color: #FFFFFF00;
+}
+
+.add-togglebutton {
+    -fx-background-image: url("/image_resource/add/add.png");
+    -fx-background-insets: 5 5 5 5;
+    -fx-background-size: stretch;
+    -fx-border-width: 0 0 0 0;
+    -fx-base: #FFFFFF00;
+    -fx-background-color: #FFFFFF00;
+}
+
+.add-togglebutton:hover {
+    -fx-background-image: url("/image_resource/add/add_hover.png");
+    -fx-background-insets: 5 5 5 5;
+    -fx-background-size: stretch;
+    -fx-border-width: 0 0 0 0;
+    -fx-base: #FFFFFF00;
+    -fx-background-color: #FFFFFF00;
+}
+
+.chart-series-line {
+    -fx-stroke: rgb(100,138,236);
+}
+
+.chart-line-symbol {
+    -fx-stroke: rgb(100,138,236);
+    -fx-background-color: rgb(100,138,236);
+}
+
+.chart-bar {
+    -fx-background-color: rgb(241,145,73);
+}
+
+.xAxis {
+    -fx-border-width: 1 0 0 0;
+    -fx-border-color: rgb(80,80,108);
+    -fx-tick-label-fill: #7173ac;
+}
+
+.yAxis {
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: rgb(80,80,108);
+    -fx-tick-label-fill: #7173ac;
+}
+
+.yAxis2 {
+    -fx-border-width: 0 0 0 1;
+    -fx-border-color: rgb(80,80,108);
+    -fx-tick-label-fill: #7173ac;
+}
+
+.axis-tick-mark {
+    -fx-stroke: rgb(51,51,79);
+}
+
+.axis-minor-tick-mark {
+    -fx-stroke: rgb(51,51,79);
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: rgb(71,71,99);
+}
+
+.buttonF{
+    -fx-padding:5px 15px 5px 15px;
+    -fx-font-size:14px;
+    -fx-background-color:rgb(107,149,254);
+    -fx-text-fill:rgb(255,255,255);
+    -fx-cursor:hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(107,149,254,0.5), 0, 5, 0, 2);
+}
+
+.buttonF:hover{
+    -fx-background-color:rgba(107,149,254,0.5);
+}
+
+.buttonF:pressed {
+    -fx-background-color:rgba(107,149,254,0.4);
+    -fx-text-fill:rgb(150,150,150);
+    -fx-effect: dropshadow(three-pass-box,rgba(107,149,254,0.4), 0, 5, 0, 2);
+}
+
+.buttonT,.buttonSelect{
+    -fx-border-radius:0px;
+    -fx-font-size:14px;
+    -fx-text-fill:rgb(113,115,172);
+    -fx-background-color:rgb(48,48,73);
+    -fx-cursor:hand;
+    }
+.buttonT{
+    -fx-effect: dropshadow(three-pass-box, rgba(37,37,55,1), 0, 5, 0, 2);
+}
+.buttonG{
+    -fx-effect: dropshadow(three-pass-box, rgba(35,35,40,1), 0, 5, 0, 2);
+
+}
+.buttonT:selected{
+    -fx-translateY:2px;
+    -fx-background-color:rgb(37,37,55);
+}
+.buttonSelect:selected{
+    -fx-background-color:rgb(40,40,67);
+    -fx-effect: innershadow(three-pass-box,rgba(0,0,0,0.3), 0 , 5 , 0 , 3 );
+}
+

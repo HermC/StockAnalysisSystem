@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>自选-Ascending</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/favor.css">
+
+    <script type="text/javascript" rel="script" src="../js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" rel="script" src="../js/favor.js"></script>
+    <script type="text/javascript" rel="script" src="../js/header.js"></script>
+    <script>
+        var stockList = [{
+            "id":"sh600000",
+            "name":"浦发银行"
+        },{
+            "id":"sh600001",
+            "name":"浦财银行"
+        },{
+            "id":"sh600002",
+            "name":"浦宝银行"
+        },{
+            "id":"sh600003",
+            "name":"浦进银行"
+        },{
+            "id":"sh600004",
+            "name":"浦长银行"
+        },{
+            "id":"sh600005",
+            "name":"浦命银行"
+        }];
+    </script>
+</head>
+<body>
+<img id="full_background" src="../img/background/background2.png">
+<div id="header">
+    <div class="header-wrapper">
+        <div class="logo"><span>A</span>scending</div>
+        <div class="input-wrapper" style="display: none">
+            <div class="search-icon"></div>
+            <input id="search_input" type="text" placeholder="输入股票id或名字">
+        </div>
+
+        <ul class="menu">
+            <li id="search_toggle" class="search-icon">
+            </li>
+            <li class="menu-item">推荐</li>
+            <li class="menu-item">行业</li>
+            <li class="menu-item">对比</li>
+            <li class="menu-item">收藏</li>
+        </ul>
+    </div>
+    <div class="full" style="display: none">
+        <div class="search_result-wrapper">
+            <div class="header-wrapper">
+                <div class="search_result">
+                    <h5>搜索结果：</h5>
+                    <h6><span>浦发银行</span> sh600000</h6>
+                    <h6><span>浦发银行银行和</span> sh600000</h6>
+                    <h6><span>浦发银行</span> sh600000</h6>
+                    <h6><span>浦发银行</span> sh600000</h6>
+                    <h6><span>浦发银行</span> sh600000</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-content">
+    <p class="stock_content_title"><img src="../img/logo_s.png">自选股列表</p>
+
+    <div class="self_items">
+        <div class="self_item">
+            <div class="self_item_title">
+
+                    <div class="self_item_info">
+                        <img class="industry_logo" src="../img/finance.png">
+                        <div class="self_item_info_2">
+                            <p class="self_item_name">浦发银行<span class="stock_id">sh600000</span></p>
+                            <p class="self_item_title_industry">行 业：<span>金融业</span></p>
+                        </div>
+                    </div>
+
+
+                <div class="rank">
+                    <h6>行业排名</h6>
+                    <div>
+                        <hr class="hr_rank">
+                        <h5 class="stock-rank">01</h5>
+                        <h5 class="industry-total">34</h5>
+                    </div>
+                </div>
+
+                <div id="self_item_graph1" class="self_item_graph">
+
+                </div>
+
+                <div class="self_item_operation">
+                    <img class="favor" src="../img/favor.png">
+                    <img class="add" src="../img/add.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="self_item">
+            <div class="self_item_title">
+
+                <div class="self_item_info">
+                    <img class="industry_logo" src="../img/finance.png">
+                    <div class="self_item_info_2">
+                        <p class="self_item_name">浦发银行<span class="stock_id">sh600000</span></p>
+                        <p class="self_item_title_industry">行 业：<span>金融业</span></p>
+                    </div>
+                </div>
+
+
+                <div class="rank">
+                    <h6>行业排名</h6>
+                    <div>
+                        <hr class="hr_rank">
+                        <h5 class="stock-rank">01</h5>
+                        <h5 class="industry-total">34</h5>
+                    </div>
+                </div>
+
+                <div id="self_item_graph1" class="self_item_graph">
+
+                </div>
+
+                <div class="self_item_operation">
+                    <img class="favor" src="../img/favor.png">
+                    <img class="add" src="../img/add.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="self_item">
+            <div class="self_item_title">
+
+                <div class="self_item_info">
+                    <img class="industry_logo" src="../img/finance.png">
+                    <div class="self_item_info_2">
+                        <p class="self_item_name">浦发银行<span class="stock_id">sh600000</span></p>
+                        <p class="self_item_title_industry">行 业：<span>金融业</span></p>
+                    </div>
+                </div>
+
+
+                <div class="rank">
+                    <h6>行业排名</h6>
+                    <div>
+                        <hr class="hr_rank">
+                        <h5 class="stock-rank">01</h5>
+                        <h5 class="industry-total">34</h5>
+                    </div>
+                </div>
+
+                <div id="self_item_graph1" class="self_item_graph">
+
+                </div>
+
+                <div class="self_item_operation">
+                    <img class="favor" src="../img/favor.png">
+                    <img class="add" src="../img/add.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="self_item">
+            <div class="self_item_title">
+
+                <div class="self_item_info">
+                    <img class="industry_logo" src="../img/finance.png">
+                    <div class="self_item_info_2">
+                        <p class="self_item_name">浦发银行<span class="stock_id">sh600000</span></p>
+                        <p class="self_item_title_industry">行 业：<span>金融业</span></p>
+                    </div>
+                </div>
+
+
+                <div class="rank">
+                    <h6>行业排名</h6>
+                    <div>
+                        <hr class="hr_rank">
+                        <h5 class="stock-rank">01</h5>
+                        <h5 class="industry-total">34</h5>
+                    </div>
+                </div>
+
+                <div id="self_item_graph1" class="self_item_graph">
+
+                </div>
+
+                <div class="self_item_operation">
+                    <img class="favor" src="../img/favor.png">
+                    <img class="add" src="../img/add.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="self_item">
+            <div class="self_item_title">
+
+                <div class="self_item_info">
+                    <img class="industry_logo" src="../img/finance.png">
+                    <div class="self_item_info_2">
+                        <p class="self_item_name">浦发银行<span class="stock_id">sh600000</span></p>
+                        <p class="self_item_title_industry">行 业：<span>金融业</span></p>
+                    </div>
+                </div>
+
+
+                <div class="rank">
+                    <h6>行业排名</h6>
+                    <div>
+                        <hr class="hr_rank">
+                        <h5 class="stock-rank">01</h5>
+                        <h5 class="industry-total">34</h5>
+                    </div>
+                </div>
+
+                <div id="self_item_graph1" class="self_item_graph">
+
+                </div>
+
+                <div class="self_item_operation">
+                    <img class="favor" src="../img/favor.png">
+                    <img class="add" src="../img/add.png">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

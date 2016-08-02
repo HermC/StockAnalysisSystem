@@ -1,0 +1,63 @@
+.split-pane:vertical > .split-pane-divider {
+    -fx-border-color: #FFFFFF00;
+    -fx-background-color: #FFFFFF00;
+    -fx-border-insets: 0 0 0 0;
+    -fx-height: 0;
+    -fx-background-size: 0;
+}
+
+.split-pane:horizontal > .split-pane-divider {
+    -fx-border-color: #FFFFFF00;
+    -fx-background-color: #FFFFFF00;
+    -fx-border-insets: 0 0 0 0;
+    -fx-height: 0;
+    -fx-background-size: 0;
+}
+
+.scroll-pane > .viewport{
+    -fx-background-color: rgb(30, 29, 49);
+    /*-fx-fill: #FFFFFF00;*/
+    /*-fx-stroke: #106ece;*/
+}
+
+.chart-plot-background {
+    -fx-background-color: #FFFFFF00;
+}
+
+.tab-header-area {
+    -fx-pref-height: 60px;
+    -fx-padding: 0px 0px 0px 10px;
+}
+
+.tab-header-area > .headers-region {
+    -fx-background-color: rgb(30, 29, 49);
+    -fx-border-width: 0 0 0 0;
+    /*-fx-background-color: white;*/
+}
+
+.tab-header-area > .tab-header-background {
+    -fx-background-color: rgb(23, 22, 37);
+    -fx-border-width: 0 0 0 0;
+}
+
+.tab {
+    -fx-background-color: rgb(25, 24, 44);
+    /*-fx-border-color: green;*/
+    -fx-border-width: 0 0 0 0;
+    -fx-pref-height: 50px;
+}
+
+.tab:selected {
+    -fx-background-color: rgb(30, 29, 49);
+    -fx-border-color: rgb(170,169,199);
+    -fx-border-width: 0 0 0 0;
+}
+
+/*.tab-label:default {*/
+/*-fx-text-fill: rgb(108, 108, 108);*/
+/*}*/
+
+.tab-label {
+    -fx-text-fill: white;
+    -fx-border-width: 0 0 0 0;
+}

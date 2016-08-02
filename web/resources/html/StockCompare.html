@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>股票对比-Ascending</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/stockCompare.css">
+    <link rel="stylesheet" type="text/css" href="../plugin/perfect-scrollbar/dist/css/perfect-scrollbar.min.css">
+
+    <script type="text/javascript" rel="script" src="../js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" rel="script" src="../js/jquery.cookie.js"></script>
+    <script type="text/javascript" rel="script" src="../js/amcharts/amcharts.js"></script>
+    <script type="text/javascript" rel="script" src="../js/amcharts/serial.js"></script>
+    <script type="text/javascript" rel="script" src="../js/amcharts/radar.js"></script>
+    <script type="text/javascript" rel="script" src="../js/amcharts/themes/dark.js"></script>
+    <script type="text/javascript" rel="script" src="../js/scrollmagic/scrollmagic/minified/ScrollMagic.min.js"></script>
+    <script type="text/javascript" rel="script" src="../plugin/perfect-scrollbar/dist/js/perfect-scrollbar.js"></script>
+    <script type="text/javascript" rel="script" src="../js/generatedata.js"></script>
+    <!--<script type="text/javascript" rel="script" src="../js/stockcompare.js"></script>-->
+    <script type="text/javascript" rel="script" src="../js/stockCompareZXZ.js"></script>
+    <script type="text/javascript" rel="script" src="../js/header.js"></script>
+</head>
+<body>
+<div id="header">
+    <div class="header-wrapper">
+        <div class="logo"><span>A</span>scending</div>
+        <div class="input-wrapper" style="display: none">
+            <div class="search-icon"></div>
+            <input id="search_input" type="text" placeholder="输入股票id或名字">
+        </div>
+
+        <ul class="menu">
+            <li id="search_toggle" class="search-icon">
+            </li>
+            <li class="menu-item">推荐</li>
+            <li class="menu-item">行业</li>
+            <li class="menu-item">对比</li>
+            <li class="menu-item">收藏</li>
+        </ul>
+    </div>
+    <div class="full" style="display: none">
+        <div class="search_result-wrapper">
+            <div class="header-wrapper">
+                <div class="search_result">
+                    <h5>搜索结果：</h5>
+                    <h6><span>浦发银行</span> sh600000</h6>
+                    <h6><span>浦发银行银行和</span> sh600000</h6>
+                    <h6><span>浦发银行</span> sh600000</h6>
+                    <h6><span>浦发银行</span> sh600000</h6>
+                    <h6><span>浦发银行</span> sh600000</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="main-content" class="main-content">
+    <div id="blanket_wrapper" class="stock_blanket">
+        <p class="stock_content_title"><img src="../img/logo_s.png">对比股票<img id="add" src="../img/add.png"></p>
+
+        <ul id="blanket" class="">
+            <li id="1" class="stock_blanket_item display">
+                <div class="see"></div>
+                <div class="stock_info">
+                    <h2>浦发银行</h2>
+                    <h3>sh600000</h3>
+                </div>
+                <img class="delete" src="../img/delete.png">
+            </li>
+
+            <li id="2" class="stock_blanket_item display">
+                <div class="see"></div>
+                <div class="stock_info">
+                    <h2>浦发银行</h2>
+                    <h3>sh600001</h3>
+                </div>
+                <img class="delete" src="../img/delete.png">
+            </li>
+
+            <li id="3" class="stock_blanket_item display">
+                <div class="see"></div>
+                <div class="stock_info">
+                    <h2>浦发银行浦发银行</h2>
+                    <h3>sh600002</h3>
+                </div>
+                <img class="delete" src="../img/delete.png">
+            </li>
+
+            <li id="4" class="stock_blanket_item display">
+                <div class="see"></div>
+                <div class="stock_info">
+                    <h2>浦发银行</h2>
+                    <h3>sh600003</h3>
+                </div>
+                <img class="delete" src="../img/delete.png">
+            </li>
+
+            <li class="stock_blanket_item">
+                <div class="see"></div>
+                <div class="stock_info">
+                    <h2>浦发银行</h2>
+                    <h3>sh600003</h3>
+                </div>
+                <img class="delete" src="../img/delete.png">
+            </li>
+
+            <li class="stock_blanket_item">
+                <div class="see"></div>
+                <div class="stock_info">
+                    <h2>浦发银行</h2>
+                    <h3>sh600003</h3>
+                </div>
+                <img class="delete" src="../img/delete.png">
+            </li>
+
+            <li class="stock_blanket_item">
+                <div class="see"></div>
+                <div class="stock_info">
+                    <h2>浦发银行</h2>
+                    <h3>sh600003</h3>
+                </div>
+                <img class="delete" src="../img/delete.png">
+            </li>
+
+            <li class="stock_blanket_item">
+                <div class="see"></div>
+                <div class="stock_info">
+                    <h2>浦发银行</h2>
+                    <h3>sh600003</h3>
+                </div>
+                <img class="delete" src="../img/delete.png">
+            </li>
+
+            <li class="stock_blanket_item">
+                <div class="see"></div>
+                <div class="stock_info">
+                    <h2>浦发银行</h2>
+                    <h3>sh600003</h3>
+                </div>
+                <img class="delete" src="../img/delete.png">
+            </li>
+
+            <li class="stock_blanket_item">
+                <div class="see"></div>
+                <div class="stock_info">
+                    <h2>浦发银行</h2>
+                    <h3>sh600003</h3>
+                </div>
+                <img class="delete" src="../img/delete.png">
+            </li>
+
+            <li class="stock_blanket_item">
+                <div class="see"></div>
+                <div class="stock_info">
+                    <h2>浦发银行</h2>
+                    <h3>sh600003</h3>
+                </div>
+                <img class="delete" src="../img/delete.png">
+            </li>
+
+            <li class="stock_blanket_item">
+                <div class="see"></div>
+                <div class="stock_info">
+                    <h2>浦发银行</h2>
+                    <h3>sh600003</h3>
+                </div>
+                <img class="delete" src="../img/delete.png">
+            </li>
+>>>>>>> 3989ee2d4882c4f8935cbb28699c8e9294075cf7
+        </ul>
+
+        <button id="clear">清空列表</button>
+    </div>
+
+    <div class="compare_main">
+        <p class="stock_content_title"><img src="../img/logo_s.png">评分对比</p>
+        <div id="compare_grade">
+
+        </div>
+
+        <p class="stock_content_title"><img src="../img/logo_s.png">走势对比</p>
+        <div id="compare_forecast">
+
+        </div>
+        <p class="stock_content_title"><img src="../img/logo_s.png">图表对比</p>
+        <div id="compare_graph">
+            <div class="basic_graph_wrapper_other">
+                <p class="stock_content_title"><img src="../img/logo_s.png">MACD</p>
+                <div id="macd_graph" class="graph_basic_other">
+
+                </div>
+            </div>
+
+            <div class="basic_graph_wrapper_other">
+                <p class="stock_content_title"><img src="../img/logo_s.png">RSI</p>
+                <div id="rsi_graph" class="graph_basic_other">
+
+                </div>
+            </div>
+
+            <div class="basic_graph_wrapper_other">
+                <p class="stock_content_title"><img src="../img/logo_s.png">KDJ</p>
+                <div id="kdj_graph" class="graph_basic_other">
+
+                </div>
+            </div>
+
+            <div class="basic_graph_wrapper_other">
+                <p class="stock_content_title"><img src="../img/logo_s.png">BOLL</p>
+                <div id="boll_graph" class="graph_basic_other">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>浦发银行(sh600000)</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/stockSingle.css">
+
+    <script type="text/javascript" rel="script" src="../js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" rel="script" src="../js/amstockchart/amcharts.js"></script>
+    <script type="text/javascript" rel="script" src="../js/amstockchart/serial.js"></script>
+    <script type="text/javascript" rel="script" src="../js/amcharts/radar.js"></script>
+    <script type="text/javascript" rel="script" src="../js/amstockchart/amstock.js"></script>
+    <script type="text/javascript" rel="script" src="../js/amstockchart/themes/dark.js"></script>
+    <script type="text/javascript" rel="script" src="../js/generatedata.js"></script>
+    <script type="text/javascript" rel="script" src="../js/stocksingle.js"></script>
+</head>
+
+<body>
+<img id="stock_title_background" src="../img/background/stock_title_1.png">
+<div id="header">
+    <div class="header-wrapper">
+        <div class="logo"><span>A</span>scending</div>
+        <ul class="menu">
+            <li>推荐</li>
+            <li>行业</li>
+            <li>对比</li>
+            <li>收藏</li>
+            <li><img src="../img/search.png"/></li>
+        </ul>
+    </div>
+</div>
+<div class="main-content">
+    <div class="info">
+        <div class="name">
+            <img src="../img/finance.png">
+            <div>
+                <h2>浦发银行<span>(sh600000)</span></h2>
+                <p>行业类型：金融</p>
+            </div>
+        </div>
+
+        <hr class="hr_vertical">
+
+        <div class="price">
+            <h1 id="dynamic_price">17.45<img src="../img/up.png"></h1>
+            <div>
+                <span id="dynamic_devia_val">0.10</span>
+                <span id="dynamic_devia_per">+0.53%</span>
+            </div>
+        </div>
+
+        <hr class="hr_vertical">
+
+        <div class="rank">
+            <h6>行业排名</h6>
+            <div>
+                <hr class="hr_rank">
+                <h5 class="stock-rank">01</h5>
+                <h5 class="industry-total">34</h5>
+            </div>
+        </div>
+
+        <hr class="hr_vertical">
+
+        <div class="operation">
+            <img id="favor" src="../img/favor.png">
+            <img id="add" src="../img/add.png">
+        </div>
+    </div>
+
+    <div class="info num">
+        <div class="num-static">
+            <div id="static_open" class="num-item">今开：17.27</div>
+            <div id="static__high" class="num-item">最高：17.27</div>
+            <div id="static__devVal" class="num-item">涨跌：17.27</div>
+            <div id="static__close" class="num-item">昨收：17.31</div>
+            <div id="static__low" class="num-item">最低：6.16</div>
+            <div id="static__amplitude" class="num-item">振幅：0.58%</div>
+        </div>
+        <div class="num-dynamic">
+
+            <div id="static__volume" class="num-item">成交数：0.62</div>
+            <div id="static__pb" class="num-item">市净率：0.62</div>
+            <div id="static__adj" class="num-item">后复权价：0.62</div>
+            <div id="static__turnover" class="num-item">换手率：1.09</div>
+            <div id="static__pe" class="num-item">市盈率：1.09</div>
+            <div id="static__amount" class="num-item">成交金额：1.09</div>
+        </div>
+    </div>
+
+    <div id="nav">
+        <span>·</span>
+        <p id="show_basic" class="nav-item active" onclick="showBasic()">基本图表</p>
+        <span>·</span>
+        <p id="show_evaluate" class="nav-item" onclick="showEvaluate()">分析评估</p>
+        <span>·</span>
+        <p id="show_forecast" class="nav-item" onclick="showForecast()">走势预测</p>
+        <span>·</span>
+        <p id="show_dynamic" class="nav-item" onclick="showDynamic()">实时分析</p>
+        <span>·</span>
+        <p id="show_company" class="nav-item" onclick="showCompany()">公司信息</p>
+        <span>·</span>
+    </div>
+
+    <div id="basic" class="stock_content">
+        <div class="basic_graph_wrapper_k">
+            <p class="stock_content_title"><img src="../img/logo_s.png">K线图 · 成交量 · 成交金额</p>
+            <div id="stock_graph">
+
+            </div>
+        </div>
+
+        <div class="basic_graph_wrapper_other">
+            <p class="stock_content_title"><img src="../img/logo_s.png">MACD</p>
+            <div id="macd_graph" class="graph_basic_other">
+
+            </div>
+        </div>
+
+        <div class="basic_graph_wrapper_other">
+            <p class="stock_content_title"><img src="../img/logo_s.png">RSI</p>
+            <div id="rsi_graph" class="graph_basic_other">
+
+            </div>
+        </div>
+
+        <div class="basic_graph_wrapper_other">
+            <p class="stock_content_title"><img src="../img/logo_s.png">KDJ</p>
+            <div id="kdj_graph" class="graph_basic_other">
+
+            </div>
+        </div>
+
+        <div class="basic_graph_wrapper_other">
+            <p class="stock_content_title"><img src="../img/logo_s.png">BOLL</p>
+            <div id="boll_graph" class="graph_basic_other">
+
+            </div>
+        </div>
+    </div>
+    <div id="evaluate" class="stock_content">
+        <div id="grade" class="stock_content_single">
+            <div class="stock_content_title"><img src="../img/logo_s.png"><p>股票评分</p></div>
+            <div id="grade_graph">
+                <div id="grade_radar">
+
+                </div>
+
+                <div id="grade_zx">
+                    <div id="grade_zx_pb" class="grade_zx_item">
+
+                    </div>
+                    <div id="grade_zx_pe" class="grade_zx_item">
+
+                    </div>
+                    <div id="grade_zx_upDown" class="grade_zx_item">
+
+                    </div>
+                    <div id="grade_zx_quantity_ratio" class="grade_zx_item">
+
+                    </div>
+                    <div id="grade_zx_weibi" class="grade_zx_item">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="bench_relative" class="stock_content_single">
+            <p class="stock_content_title"><img src="../img/logo_s.png">大盘相关性分析</p>
+        </div>
+
+    </div>
+
+    <div id="forecast" class="stock_content">
+        <div id="forecast_one" class="stock_content_single">
+            <p class="stock_content_title"><img src="../img/logo_s.png">走势预测<span>(未来三天收盘价)</span></p>
+            <div id="forecast_graph">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="dynamic" class="stock_content">
+
+        <div class="row_wrapper">
+            <div class="column_wrapper dynamic_graph_wrapper">
+                <p class="stock_content_title"><img src="../img/logo_s.png">实时交易</p>
+                <!--<div id="dynamic_five_level">-->
+
+                <!--</div>-->
+                <div id="dynamic_graph">
+
+                </div>
+            </div>
+
+            <div class="column_wrapper dynamic_number_wrapper">
+                <p class="stock_content_title"><img src="../img/logo_s.png">论股堂</p>
+                <div id="dynamic_number">
+                    <p class="dynamic_five_level_item">卖一：<span>15.74</span></p>
+                    <p class="dynamic_five_level_item">买一：<span>15.74</span></p>
+                    <p class="dynamic_five_level_item">卖二：<span>15.74</span></p>
+                    <p class="dynamic_five_level_item">买二：<span>15.74</span></p>
+                    <p class="dynamic_five_level_item">卖三：<span>15.74</span></p>
+                    <p class="dynamic_five_level_item">买三：<span>15.74</span></p>
+                    <p class="dynamic_five_level_item">卖四：<span>15.74</span></p>
+                    <p class="dynamic_five_level_item">买四：<span>15.74</span></p>
+                    <p class="dynamic_five_level_item">卖五：<span>15.74</span></p>
+                    <p class="dynamic_five_level_item">买五：<span>15.74</span></p>
+
+                    <hr/>
+
+                    <p id="dynamic_inner_count" class="dynamic_number_item">内盘：<span>1021手</span></p>
+                    <p id="dynamic_outer_count" class="dynamic_number_item">外盘：<span>32手</span></p>
+                    <p id="dynamic_quantity_ratio" class="dynamic_number_item">量比：<span>23</span></p>
+                    <p id="dynamic_committee" class="dynamic_number_item">委比：<span>12</span></p>
+                    <p id="dynamic_volume" class="dynamic_number_item">成交量：1111手</p>
+                    <p id="dynamic_amount" class="dynamic_number_item">成交额：<span>1亿</span></p>
+                    <p id="dynamic_up_stop" class="dynamic_number_item">涨停：<span>17.03</span></p>
+                    <p id="dynamic_down_stop" class="dynamic_number_item">跌停：<span>12</span></p>
+                    <p id="dynamic_value_per_stock" class="dynamic_number_item">每股净资产：<span>12</span></p>
+                    <p id="dynamic_profit_per" class="dynamic_number_item">每股收益：<span>12</span></p>
+                    <p id="dynamic_total_volume" class="dynamic_number_item">总股本：<span>1亿</span></p>
+                    <p id="dynamic_total_amount" class="dynamic_number_item">总市值：<span>32亿</span></p>
+                    <p id="dynamic_available_stock" class="dynamic_number_item">流通股本：<span>2亿</span></p>
+                    <p id="dynamic_avail_amount" class="dynamic_number_item">流通市值：<span>1亿</span></p>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div id="text_instruction" class="stock_content_single">
+            <p class="stock_content_title"><img src="../img/logo_s.png">实时数值分析</p>
+            <div class="text_instruction_item">
+                <div class="text_instruction_title">
+                    <span class="text_instruction_type">市净率</span>
+                    <span class="text_instruction_value">1.09</span>
+                </div>
+                <div class="text_instruction_content">
+                    市净率处于正常范围，风险较小，有投资价值
+                </div>
+            </div>
+
+            <div class="text_instruction_item">
+                <div class="text_instruction_title">
+                    <span class="text_instruction_type">委比</span>
+                    <span class="text_instruction_value">43.28</span>
+                </div>
+                <div class="text_instruction_content">
+                    买盘卖盘实力相当，不存在差值，经过委比分析，建议观望变化
+                </div>
+            </div>
+
+            <div class="text_instruction_item">
+                <div class="text_instruction_title">
+                    <span class="text_instruction_type">涨跌幅</span>
+                    <span class="text_instruction_value">0.58</span>
+                </div>
+                <div class="text_instruction_content">
+                    股价大幅上涨，如果经常出现这种涨幅可能是常庄股，可以跟，配合其他指标套利，若股票此时处于低位，可能是新庄家介入
+                </div>
+            </div>
+
+            <div class="text_instruction_item">
+                <div class="text_instruction_title">
+                    <span class="text_instruction_type">市盈率</span>
+                    <span class="text_instruction_value">6.16</span>
+                </div>
+                <div class="text_instruction_content">
+                    市盈率偏低，投资该股票的风险较小，若此前经历下跌周期，可能因为不被多数人看好，需谨慎对待
+                </div>
+            </div>
+
+            <div class="text_instruction_item">
+                <div class="text_instruction_title">
+                    <span class="text_instruction_type">内外盘</span>
+                    <span class="text_instruction_value">92.73</span>
+                </div>
+                <div class="text_instruction_content">
+                    外盘数量大于内盘，买方力量较强，下有托盘（大量买单），若此时有大量隐形内盘，需小心庄家出货，价增量跌，如果是连续两次，抓紧出货
+                </div>
+            </div>
+
+            <div class="text_instruction_item">
+                <div class="text_instruction_title">
+                    <span class="text_instruction_type">量比</span>
+                    <span class="text_instruction_value">0.76</span>
+                </div>
+                <div class="text_instruction_content">
+                    交易量处于正常水平，该股活跃度正常，可以参考其他指标进行分析
+                </div>
+            </div>
+
+            <div class="text_instruction_item">
+                <div class="text_instruction_title">
+                    <span class="text_instruction_type">换手率</span>
+                    <span class="text_instruction_value">0.06</span>
+                </div>
+                <div class="text_instruction_content">
+                    换手率饿较高,该股放量,需要仔细观察以下三种情况"<br/>
+                    1.该股在过去的一阶段交易,股价低靡,这种较高换手率若能维持,可能有新增资金介入,出现涨势甚至成为强势股的可能性很大";<br/>
+                    2.该股已经处在高位,而换手率成交量同时放大,应当谨慎对待,可能有资金撤出,之后会出现下跌行情可能性较大";<br/>
+                    3.注意异常情况,长时间放量可能是大买家对倒自救,应当警惕";<br/>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="company" class="stock_content">
+        <p class="stock_content_title"><img src="../img/logo_s.png">公司简介</p>
+        <h1>上市日期：2000-01-02</h1>
+        <h1>公司状态：上市</h1>
+        <h1>公司描述：招商局能源运输股份有限公司的主营业务为远洋游轮及散货船运输。其运输业包括游轮运输、散货船运输、液化天然气船运输，涵盖了能源运输的主要货。
+        招商局能源运输股份有限公司的主营业务为远洋游轮及散货船运输。其运输业包括游轮运输、散货船运输、液化天然气船运输，涵盖了能源运输的主要货种</h1>
+
+        <p class="stock_content_title"><img src="../img/logo_s.png">增长</p>
+        <div id="company_rise">
+
+        </div>
+
+        <p class="stock_content_title"><img src="../img/logo_s.png">盈利能力</p>
+        <div id="company_profit">
+
+        </div>
+
+        <p class="stock_content_title"><img src="../img/logo_s.png">财务状况</p>
+        <div id="company_financial">
+
+        </div>
+
+    </div>
+</div>
+
+<div id="footer">
+
+</div>
+</body>
+</html>

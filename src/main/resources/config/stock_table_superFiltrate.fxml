@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="1145.0" style="-fx-background-color: rgba(40,40,64);" stylesheets="@tableStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applet.presentation.UI.action.StockTableFiltrateController">
+   <children>
+      <Group layoutY="-52.0">
+         <children>
+            <HBox layoutX="870.0" layoutY="52.0" style="-fx-text-fill: #8e8d8d;">
+               <children>
+                  <Label layoutX="25.0" layoutY="19.0" prefHeight="25.0" prefWidth="60.0" text="最低：" textAlignment="JUSTIFY" textFill="#8e8d8d">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="low1" alignment="CENTER" layoutX="77.0" layoutY="14.0" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #1e202f; -fx-border-radius: 0; -fx-text-fill: #8e8d8d;">
+                     <effect>
+                        <InnerShadow color="#181a26" height="27.0" offsetY="2.0" radius="6.25" width="0.0" />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="30.0" styleClass="connection" text="—" textFill="#8e8d8d">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="low2" alignment="CENTER" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #1e202f; -fx-border-radius: 0; -fx-text-fill: #8e8d8d;">
+                     <effect>
+                        <InnerShadow color="#181a26" height="27.0" offsetY="2.0" radius="6.25" width="0.0" />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="25.0" layoutY="91.0" style="-fx-text-fill: #8e8d8d;">
+               <children>
+                  <Label layoutX="25.0" layoutY="19.0" prefHeight="25.0" prefWidth="60.0" text="成交量：" textAlignment="JUSTIFY" textFill="#8e8d8d">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="volume1" alignment="CENTER" layoutX="77.0" layoutY="14.0" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #1e202f; -fx-border-radius: 0; -fx-text-fill: #8e8d8d;">
+                     <effect>
+                        <InnerShadow color="#181a26" height="27.0" offsetY="2.0" radius="6.25" width="0.0" />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="30.0" styleClass="connection" text="—" textFill="#8e8d8d">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="volume2" alignment="CENTER" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #1e202f; -fx-border-radius: 0; -fx-text-fill: #8e8d8d;">
+                     <effect>
+                        <InnerShadow color="#181a26" height="27.0" offsetY="2.0" radius="6.25" width="0.0" />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="309.0" layoutY="52.0" style="-fx-text-fill: #8e8d8d;">
+               <children>
+                  <Label layoutX="25.0" layoutY="19.0" prefHeight="25.0" prefWidth="60.0" text="收盘：" textAlignment="JUSTIFY" textFill="#8e8d8d">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="close1" alignment="CENTER" layoutX="77.0" layoutY="14.0" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #1e202f; -fx-border-radius: 0; -fx-text-fill: #8e8d8d;">
+                     <effect>
+                        <InnerShadow color="#181a26" height="27.0" offsetY="2.0" radius="6.25" width="0.0" />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="30.0" styleClass="connection" text="—" textFill="#8e8d8d">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="close2" alignment="CENTER" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #1e202f; -fx-border-radius: 0; -fx-text-fill: #8e8d8d;">
+                     <effect>
+                        <InnerShadow color="#181a26" height="27.0" offsetY="2.0" radius="6.25" width="0.0" />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="25.0" layoutY="52.0" style="-fx-text-fill: #8e8d8d;">
+               <children>
+                  <Label layoutX="25.0" layoutY="19.0" prefHeight="25.0" prefWidth="60.0" text="开盘：" textAlignment="JUSTIFY" textFill="#8e8d8d">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="open1" alignment="CENTER" layoutX="77.0" layoutY="14.0" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #1e202f; -fx-border-radius: 0; -fx-text-fill: #8e8d8d;">
+                     <effect>
+                        <InnerShadow color="#181a26" height="27.0" offsetY="2.0" radius="6.25" width="0.0" />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="30.0" styleClass="connection" text="—" textFill="#8e8d8d">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="open2" alignment="CENTER" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #1e202f; -fx-border-radius: 0; -fx-text-fill: #8e8d8d;">
+                     <effect>
+                        <InnerShadow color="#181a26" height="27.0" offsetY="2.0" radius="6.25" width="0.0" />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="588.0" layoutY="52.0" style="-fx-text-fill: #8e8d8d;">
+               <children>
+                  <Label layoutX="25.0" layoutY="19.0" prefHeight="25.0" prefWidth="60.0" text="最高：" textAlignment="JUSTIFY" textFill="#8e8d8d">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="high1" alignment="CENTER" layoutX="77.0" layoutY="14.0" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #1e202f; -fx-border-radius: 0; -fx-text-fill: #8e8d8d;">
+                     <effect>
+                        <InnerShadow color="#181a26" height="27.0" offsetY="2.0" radius="6.25" width="0.0" />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="30.0" styleClass="connection" text="—" textFill="#8e8d8d">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="high2" alignment="CENTER" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #1e202f; -fx-border-radius: 0; -fx-text-fill: #8e8d8d;">
+                     <effect>
+                        <InnerShadow color="#181a26" height="27.0" offsetY="2.0" radius="6.25" width="0.0" />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="870.0" layoutY="91.0" style="-fx-text-fill: #8e8d8d;">
+               <children>
+                  <Label layoutX="25.0" layoutY="19.0" prefHeight="25.0" prefWidth="60.0" text="市净率：" textAlignment="JUSTIFY" textFill="#8e8d8d">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="pb1" alignment="CENTER" layoutX="77.0" layoutY="14.0" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #1e202f; -fx-border-radius: 0; -fx-text-fill: #8e8d8d;">
+                     <effect>
+                        <InnerShadow color="#181a26" height="27.0" offsetY="2.0" radius="6.25" width="0.0" />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="30.0" styleClass="connection" text="—" textFill="#8e8d8d">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="pb2" alignment="CENTER" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #1e202f; -fx-border-radius: 0; -fx-text-fill: #8e8d8d;">
+                     <effect>
+                        <InnerShadow color="#181a26" height="27.0" offsetY="2.0" radius="6.25" width="0.0" />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="588.0" layoutY="91.0" style="-fx-text-fill: #8e8d8d;">
+               <children>
+                  <Label layoutX="25.0" layoutY="19.0" prefHeight="25.0" prefWidth="60.0" text="市盈率：" textAlignment="JUSTIFY" textFill="#8e8d8d">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="pe_ttm1" alignment="CENTER" layoutX="77.0" layoutY="14.0" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #1e202f; -fx-border-radius: 0; -fx-text-fill: #8e8d8d;">
+                     <effect>
+                        <InnerShadow color="#181a26" height="27.0" offsetY="2.0" radius="6.25" width="0.0" />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="30.0" styleClass="connection" text="—" textFill="#8e8d8d">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="pe_ttm2" alignment="CENTER" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #1e202f; -fx-border-radius: 0; -fx-text-fill: #8e8d8d;">
+                     <effect>
+                        <InnerShadow color="#181a26" height="27.0" offsetY="2.0" radius="6.25" width="0.0" />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="309.0" layoutY="91.0" style="-fx-text-fill: #8e8d8d;">
+               <children>
+                  <Label layoutX="25.0" layoutY="19.0" prefHeight="25.0" prefWidth="60.0" text="换手率" textAlignment="JUSTIFY" textFill="#8e8d8d">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="turnover1" alignment="CENTER" layoutX="77.0" layoutY="14.0" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #1e202f; -fx-border-radius: 0; -fx-text-fill: #8e8d8d;">
+                     <effect>
+                        <InnerShadow color="#181a26" height="27.0" offsetY="2.0" radius="6.25" width="0.0" />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="30.0" styleClass="connection" text="—" textFill="#8e8d8d">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="turnover2" alignment="CENTER" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #1e202f; -fx-border-radius: 0; -fx-text-fill: #8e8d8d;">
+                     <effect>
+                        <InnerShadow color="#181a26" height="27.0" offsetY="2.0" radius="6.25" width="0.0" />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+         </children>
+      </Group>
+   </children>
+</AnchorPane>

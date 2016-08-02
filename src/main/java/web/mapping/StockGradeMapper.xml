@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="web.dao.StockGradeMapper" >
+
+    <resultMap id="StockGradeMap" type="web.vo.before.StockGradeVO" >
+        <id column="stockid" property="id" jdbcType="VARCHAR" />
+        <result column="industryid" property="industryid" jdbcType="BIGINT" />
+        <result column="weight" property="weight" jdbcType="BIGINT" />
+        <result column="score" property="score" jdbcType="DOUBLE" />
+        <result column="pb_index" property="pbAssess" jdbcType="DOUBLE" />
+        <result column="deviation_index" property="updownAssess" jdbcType="DOUBLE" />
+        <result column="pe_index" property="peAssess" jdbcType="DOUBLE" />
+        <result column="committee_index" property="weibiAssess" jdbcType="DOUBLE" />
+        <result column="volume_index" property="volumeAssess" jdbcType="DOUBLE" />
+        <result column="rank" property="rank" jdbcType="BIGINT" />
+        <result column="count" property="count" jdbcType="BIGINT"/>
+       </resultMap>
+    <select id="getStockGrade" resultMap="StockGradeMap" parameterType="java.lang.String">
+        SELECT * FROM stock_evaluate
+        WHERE stockid = #{0,jdbcType=VARCHAR}
+
+    </select>
+
+    <resultMap id="GradeStatistics" type="web.vo.before.GradeStatistics">
+        <id column="date" property="date" jdbcType="VARCHAR"/>
+        <result column="committee" property="committee" jdbcType="DOUBLE"/>
+        <result column="deviation_per" property="deviation" jdbcType="DOUBLE"/>
+        <result column="quantity_ratio" property="quantity" jdbcType="DOUBLE"/>
+        <result column="pb" property="pb" jdbcType="DOUBLE"/>
+        <result column="pe_ttm" property="pe" jdbcType="DOUBLE"/>
+        <result column="name" property="name" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <select id="getStatistic" resultMap="GradeStatistics" >
+
+        SELECT  short_ticks.date, short_ticks.committee,short_ticks.quantity_ratio,stock_2016.pb,  stock_2016.pe_ttm,   stock_2016.deviation_per,  sw_stock_info.name
+        FROM short_ticks, stock_2016,sw_stock_info
+        WHERE  (short_ticks.date BETWEEN #{1,jdbcType=VARCHAR} and #{2,jdbcType=VARCHAR}) and ( sw_stock_info.stockid = #{0,jdbcType=VARCHAR} )
+          and ( short_ticks.stockid = #{0,jdbcType=VARCHAR} ) AND  ( stock_2016.stockid = #{0,jdbcType=VARCHAR} )
+          and (short_ticks.date = stock_2016.date ) and (sw_stock_info.stockid = short_ticks.stockid)
+        ORDER BY `date` ASC
+    </select>
+
+    <resultMap id="GradeList" type="web.vo.before.StockGradeVO" >
+        <id column="stockid" property="id" jdbcType="VARCHAR" />
+        <result column="industryid" property="industryid" jdbcType="BIGINT" />
+        <result column="weight" property="weight" jdbcType="BIGINT" />
+        <result column="score" property="score" jdbcType="DOUBLE" />
+        <result column="pb_index" property="pbAssess" jdbcType="DOUBLE" />
+        <result column="deviation_index" property="updownAssess" jdbcType="DOUBLE" />
+        <result column="pe_index" property="peAssess" jdbcType="DOUBLE" />
+        <result column="committee_index" property="weibiAssess" jdbcType="DOUBLE" />
+        <result column="volume_index" property="volumeAssess" jdbcType="DOUBLE" />
+        <result column="rank" property="rank" jdbcType="BIGINT" />
+        <result column="count" property="count" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <select id="getStockGradeList" resultMap="GradeList">
+        SELECT stock_evaluate.stockid , stock_evaluate.industryid , stock_evaluate.weight , stock_evaluate.score ,
+         stock_evaluate.pb_index , stock_evaluate.deviation_index , stock_evaluate.pe_index , stock_evaluate.committee_index ,
+          stock_evaluate.volume_index , stock_evaluate.rank , stock_evaluate.count , sw_stock_info.name FROM stock_evaluate ,sw_stock_info
+        WHERE stock_evaluate.stockid = sw_stock_info.stockid
+    </select>
+</mapper>

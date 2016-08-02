@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" style="-fx-background-color: #FFFFFF00;" stylesheets="@CompareNavStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applet.presentation.UI.action.CompareNavController">
+   <children>
+      <ToggleButton fx:id="visibility" layoutX="8.0" layoutY="20.0" mnemonicParsing="false" onAction="#hideAndShow" prefHeight="16.0" prefWidth="27.0" selected="true" style="-fx-cursor: hand;" styleClass="show-togglebutton" text="ToggleButton" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="155.0" AnchorPane.topAnchor="20.0" />
+      <Label fx:id="name" layoutX="45.0" layoutY="9.0" text="股票名称" textFill="#6d95fe" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="71.0" AnchorPane.topAnchor="9.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="delete" layoutX="142.0" layoutY="17.0" mnemonicParsing="false" onAction="#deleteThis" prefHeight="25.0" prefWidth="25.0" styleClass="close-button">
+         <font>
+            <Font size="12.0" />
+         </font></Button>
+      <Label fx:id="code" layoutX="45.0" layoutY="29.0" text="sh000000" textFill="#6d95fe" />
+   </children>
+</AnchorPane>

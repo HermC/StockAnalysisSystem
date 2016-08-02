@@ -1,0 +1,81 @@
+.chart-plot-background {
+    -fx-background-color: #FFFFFF00;
+}
+
+.root-background:hover {
+    -fx-background-color: rgb(25,25,39);
+    -fx-animated: true;
+}
+
+.fav-togglebutton {
+    -fx-background-image: url("/image_resource/fav/unfavor.png");
+    -fx-background-insets: 5 5 5 5;
+    -fx-background-size: stretch;
+    -fx-border-width: 0 0 0 0;
+    -fx-base: #FFFFFF00;
+    -fx-background-color: #FFFFFF00;
+}
+
+.fav-togglebutton:hover {
+    -fx-background-image: url("/image_resource/fav/favor_hover.png");
+    -fx-background-insets: 5 5 5 5;
+    -fx-background-size: stretch;
+    -fx-border-width: 0 0 0 0;
+    -fx-base: #FFFFFF00;
+    -fx-background-color: #FFFFFF00;
+}
+
+.fav-togglebutton:selected {
+    -fx-background-image: url("/image_resource/fav/favor.png");
+    -fx-background-insets: 5 5 5 5;
+    -fx-background-size: stretch;
+    -fx-border-width: 0 0 0 0;
+    -fx-base: #FFFFFF00;
+    -fx-background-color: #FFFFFF00;
+}
+
+.add-togglebutton {
+    -fx-background-image: url("/image_resource/add/add.png");
+    -fx-background-insets: 5 5 5 5;
+    -fx-background-size: stretch;
+    -fx-border-width: 0 0 0 0;
+    -fx-base: #FFFFFF00;
+    -fx-background-color: #FFFFFF00;
+}
+
+.add-togglebutton:hover {
+    -fx-background-image: url("/image_resource/add/add_hover.png");
+    -fx-background-insets: 5 5 5 5;
+    -fx-background-size: stretch;
+    -fx-border-width: 0 0 0 0;
+    -fx-base: #FFFFFF00;
+    -fx-background-color: #FFFFFF00;
+}
+
+.chart-series-line {
+    -fx-stroke: rgb(60,60,98);
+}
+
+.chart-line-symbol {
+    -fx-stroke: rgb(199,122,130);
+    -fx-background-color: rgb(199,122,130);
+}
+
+.xAxis {
+    -fx-border-width: 1 0 0 0;
+    -fx-border-color: rgb(80,80,108);
+}
+
+.yAxis {
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: rgb(80,80,108);
+    -fx-tick-label-fill: rgb(120,120,148);
+}
+
+.chart-vertical-zero-line {
+    -fx-stroke: rgb(60,60,98);
+}
+
+.chart-horizontal-zero-line {
+    -fx-stroke: rgb(60,60,98);
+}

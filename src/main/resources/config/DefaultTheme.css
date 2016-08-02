@@ -1,0 +1,89 @@
+.root {
+    -fx-background-image: url("/image_resource/background/background_welcome.png");
+    -fx-background-size: stretch;
+}
+
+.stack-pane {
+    -fx-background-image: url("/image_resource/background/background_welcome.png");
+    -fx-background-color: #FFFFFF00;
+    -fx-background-size: stretch;
+}
+
+.anchor-pane {
+    -fx-background-image: url("/image_resource/background/background_welcome.png");
+    -fx-background-color: #FFFFFF00;
+    -fx-background-size: stretch;
+}
+
+.split-pane {
+    -fx-background-color: #FFFFFF00;
+}
+
+.split-pane:horizontal > .split-pane-divider {
+    -fx-border-color: #FFFFFF00;
+    -fx-background-color: #FFFFFF00;
+}
+
+.table-view {
+    -fx-base: #FFFFFF;
+    -fx-control-inner-background: #11111150;
+    -fx-background-color: #FFFFFF00;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #11111170;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: #FFFFFF00;
+    -fx-border-color: #FFFFFF00;
+    -fx-border-insets: 0 0 0 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
+}
+
+.table-view .label {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.label {
+    -fx-text-fill: white;
+}
+
+.start-button {
+    -fx-background-color: rgba(114,155,134,0.6);
+    -fx-text-fill: rgb(255,255,255);
+}
+
+.start-button:hover {
+    -fx-background-color: rgba(114,155,134,0.8);
+    -fx-text-fill: rgb(255,255,255);
+}
+
+.exit-button {
+    -fx-background-color: rgba(255,255,255,0.2);
+    -fx-text-fill: rgb(255,255,255);
+}
+
+.exit-button:hover {
+    -fx-background-color: rgba(255,255,255,0.4);
+    -fx-text-fill: rgb(255,255,255);
+}

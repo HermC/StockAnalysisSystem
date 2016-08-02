@@ -1,0 +1,211 @@
+body{
+    color:#ddd;
+}
+.main-content{
+    display: flex;
+    flex-direction: column;
+}
+.industry_rank{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.industry_rank_wrapper{
+    /*width:100%;*/
+}
+.industry_rank_value{
+    margin-bottom:30px;
+}
+.industry_rank table{
+    display: block;
+}
+table{
+    border-spacing: 5px 5px;
+}
+tr{
+    height:25px;
+    margin-top:40px;
+    cursor:pointer;
+}
+#pointer_wrapper{
+    position: absolute;
+    top:166px;
+    left:-18px;
+}
+#pointer{
+    margin-top:10px;
+    margin-bottom:30px;
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-left: 10px solid #ffde00;
+    border-bottom: 10px solid transparent;
+    /*opacity: 0;*/
+    position:absolute;
+}
+#industry_rank_total td{
+    height:40px;
+}
+#industry_rank_total tr:hover{
+    background: #3a4f60;
+}
+#industry_rank_total tr:nth-child(1):hover{
+    background: none;
+}
+.industry_rank th,.industry_rank td{
+}
+.industry_rank_total tr{
+    /*margin:5px 0 5px 0;*/
+    /*padding:5px 0 5px 0;*/
+}
+/*#industry_rank_total th,#industry_rank_total td,#stock_rank_total th,#stock_rank_total td{*/
+#industry_rank_total td,#stock_rank_total td{
+    padding-right:30px;
+    padding-top:5px;
+    padding-bottom: 5px;
+}
+#stock_rank_total{
+    display:block;
+    position: relative;
+}
+#stock_rank_total td span{
+    font-size:12px;
+    display: block;
+}
+.column_rank{
+    width:45px;
+    padding-right:0;
+}
+.column_name{
+    width:100px;
+    padding-right: 20px;
+}
+.column_name_id{
+    width:150px;
+}
+.column_last{
+    padding-right: 0;
+}
+.column_grade{
+    width:70px;
+}
+th:nth-child(last){
+    padding-right: 0;
+}
+.stock_content_title button{
+    font-size: 16px;
+    background: none;
+    border:none;
+    outline: 0;
+    cursor: pointer;
+    color: #ffde00;
+    position: absolute;
+    right:15px;
+    bottom:8px;
+}
+.column_toggle{
+    width:60px;
+}
+.column_hide{
+    display:none;
+}
+.rotate1{
+    transform: rotate(180deg);
+}
+
+#stockListWrapper{
+    width:270px;
+    max-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: absolute;
+    top:99px;
+    right:0;
+}
+#table_wrapper{
+    position: relative;
+    display:block;
+    height:80vh;
+    overflow-y: scroll;
+}
+.industry_rank_grade_wrapper{
+    width:70%;
+}
+
+
+
+@media (max-width:1024px){
+
+    #pointer_wrapper{
+        position: absolute;
+        left: 15px;
+        top: 166px;
+    }
+    .industry_rank_grade_wrapper{
+        width:100%;
+        padding:0 40px;
+    }
+    .column_rank{
+        width:7%;
+    }
+
+    .column_grade{
+        width:13%;
+    }
+    #stockListWrapper{
+        width:auto;
+        padding-left:20px;
+        /*box-sizing: border-box;*/
+        position:absolute;
+        right:0;
+        height:100%;
+        background:rgba(2,26,47,0.8);
+        /*border-top:rgba(2,26,47,0.8) 5px solid;*/
+    }
+    .column_toggle{
+        display: auto;
+    }
+}
+
+@media (max-width:700px){
+    /*最小的时候要展示的东西*/
+    .industry_rank_grade_wrapper{
+        width:100%;
+        padding:0 20px;
+    }
+    #pointer_wrapper{
+        position: absolute;
+        left: 7px;
+        top: 166px;
+    }
+    #stock_rank_total,#industry_rank_total{
+        font-size:12px;
+    }
+    th{
+        padding-left:0;
+        padding-right:0;
+    }
+    .column_name_id{
+        width:100px;
+    }
+    .column_last{
+        width:50px;
+    }
+    /*#industry_rank_total th:nth-child(1){*/
+        /*width:0;*/
+    /*}*/
+    /*.column_name{*/
+    /*width:200px;*/
+    /*}*/
+    th.column_grade{
+        width:5%;
+    }
+    #industry_rank_total td, #stock_rank_total td{
+        padding:5px 6px 5px 0;
+    }
+    #stockListWrapper{
+        height:100%;
+        background:rgba(2,26,47,0.9);
+    }
+}

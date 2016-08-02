@@ -1,0 +1,23 @@
+.show-togglebutton {
+    -fx-background-color: #FFFFFF00;
+    -fx-background-image: url("/image_resource/show/unshow.png");
+    -fx-background-repeat: stretch;
+}
+
+.show-togglebutton:selected {
+    -fx-background-color: #FFFFFF00;
+    -fx-background-image: url("/image_resource/show/show.png");
+    -fx-background-repeat: stretch;
+}
+
+.close-button {
+    -fx-background-color: #FFFFFF00;
+    -fx-background-image: url("/image_resource/close/close_default.png");
+    -fx-background-repeat: stretch;
+}
+
+.close-button:hover {
+    -fx-background-color: #FFFFFF00;
+    -fx-background-image: url("/image_resource/close/close_hover.png");
+    -fx-background-repeat: stretch;
+}

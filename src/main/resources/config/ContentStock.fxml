@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane fx:id="parent" prefHeight="698.0" prefWidth="1198.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applet.presentation.UI.action.ContentStockController">
+   <children>
+      <SplitPane dividerPositions="0.14798850574712644" orientation="VERTICAL" prefHeight="698.0" prefWidth="1198.0" style="-fx-background-color: rgb(23,22,37);" stylesheets="@ContentMain.css">
+         <items>
+            <AnchorPane maxHeight="40.0" minHeight="40.0" prefHeight="40.0">
+               <children>
+                  <AnchorPane maxHeight="37.0" minHeight="37.0" minWidth="700.0" prefHeight="37.0" style="-fx-background-color: rgb(30,29,49);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <Label fx:id="stockCode" layoutX="30.0" layoutY="10.0" text="stockCode" textFill="#7173ac" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="0.0" />
+                        <Label fx:id="stockName" layoutX="102.0" layoutY="6.0" text="stockName" textFill="#7173ac" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="102.0" AnchorPane.topAnchor="0.0" />
+                        <ToggleButton fx:id="toAdd" layoutX="1137.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addCompareStock" prefHeight="24.0" prefWidth="23.0" styleClass="add-togglebutton" text="ToggleButton" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="6.0" />
+                        <ToggleButton fx:id="toFav" layoutX="1102.0" layoutY="5.0" mnemonicParsing="false" onAction="#operateFav" prefHeight="25.0" prefWidth="27.0" styleClass="fav-togglebutton" text="" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="5.0" />
+                        <ToggleButton fx:id="toKChart" layoutX="282.0" layoutY="5.0" mnemonicParsing="false" onAction="#initKChart" prefWidth="70.0" selected="true" styleClass="buttonT" text="K线图">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="paneChoose" />
+                           </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton fx:id="toEvaluate" layoutX="452.0" layoutY="5.0" mnemonicParsing="false" onAction="#initEvaluate" prefWidth="70.0" styleClass="buttonT" text="统计" toggleGroup="$paneChoose" />
+                        <ToggleButton fx:id="toTable" layoutX="352.0" layoutY="5.0" mnemonicParsing="false" onAction="#initTable" prefWidth="100.0" styleClass="buttonT" text="详情表格" toggleGroup="$paneChoose" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="changePane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+         </items>
+      </SplitPane>
+   </children>
+</StackPane>

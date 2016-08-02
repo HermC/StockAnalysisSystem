@@ -1,0 +1,12 @@
+.chart-series-line {
+    -fx-stroke: rgb(60,60,98);
+}
+
+/*.chart-line-symbol series{*/
+    /*-fx-stroke: rgb(199,122,130);*/
+    /*-fx-background-color: rgb(199,122,130);*/
+/*}*/
+
+.axis {
+    -fx-stroke: rgb(60,60,98);
+}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<StackPane fx:id="parent" fx:controller="applet.presentation.UI.action.ContentMainController" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: rgb(23,22,37);" stylesheets="@ContentMain.css">
+         <children>
+            <TabPane fx:id="contentMain" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: rgb(23,22,37);" tabClosingPolicy="ALL_TABS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <tabs>
+                  <Tab closable="false" onSelectionChanged="#resetFavStocks" styleClass="myFav-tab" text="我的收藏">
+                     <content>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgb(23,22,37);">
+                           <content>
+                              <FlowPane fx:id="contentFav" hgap="20.0" vgap="20.0">
+                                 <padding>
+                                    <Insets bottom="20.0" left="30.0" top="20.0" />
+                                 </padding>
+                              </FlowPane>
+                           </content>
+                        </ScrollPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
+            <HBox layoutX="921.0" layoutY="9.0" AnchorPane.rightAnchor="30.0">
+               <children>
+                  <Label layoutX="921.0" layoutY="11.0" prefHeight="31.0" prefWidth="45.0" text="搜索" textFill="#7173ac" AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="11.0">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="searchText" onKeyTyped="#showSearchStocks" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="9.0" />
+               </children>
+            </HBox>
+            <Label layoutX="12.0" layoutY="9.0" text="STOCKANYQUANT" textFill="#6b95fe">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+   </children>
+</StackPane>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:controller="applet.presentation.UI.action.BenchmarkInfoController" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="270.0" style="-fx-background-color: rgb(40,39,59); -fx-cursor: hand;" stylesheets="@InfoStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane onMouseClicked="#showDetailedInfo" fx:id="root" prefHeight="360.0" prefWidth="270.0" styleClass="root-background">
+         <children>
+            <Label fx:id="name" layoutX="25.0" layoutY="4.0" prefHeight="27.0" prefWidth="72.0" text="股票名称" textFill="#7173ac" AnchorPane.bottomAnchor="309.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="173.0" AnchorPane.topAnchor="4.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="code" layoutX="99.0" layoutY="11.0" prefHeight="15.0" prefWidth="72.0" text="股票代码" textFill="#7173ac" AnchorPane.bottomAnchor="312.0" AnchorPane.leftAnchor="99.0" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="11.0" />
+            <GridPane layoutX="26.0" layoutY="221.0" prefHeight="129.0" prefWidth="243.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="221.0">
+               <children>
+                  <Label text="开盘:" textFill="#8e9cfa" />
+                  <Label fx:id="open" text="暂无数据" textFill="#8e9cfa" GridPane.columnIndex="1" />
+                  <Label text="最低:" textFill="#8e9cfa" GridPane.rowIndex="1" />
+                  <Label text="涨跌:" textFill="#8e9cfa" GridPane.rowIndex="2" />
+                  <Label text="总手:" textFill="#8e9cfa" GridPane.rowIndex="3" />
+                  <Label fx:id="low" text="暂无数据" textFill="#8e9cfa" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="increaseAct" text="暂无数据" textFill="#8e9cfa" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="volume" text="暂无数据" textFill="#8e9cfa" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="收盘:" textFill="#8e9cfa" GridPane.columnIndex="2" />
+                  <Label text="最高:" textFill="#8e9cfa" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label text="涨幅:" textFill="#8e9cfa" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label fx:id="close" text="暂无数据" textFill="#8e9cfa" GridPane.columnIndex="3" />
+                  <Label fx:id="high" text="暂无数据" textFill="#8e9cfa" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Label fx:id="increase" text="暂无数据" textFill="#8e9cfa" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.0" minWidth="10.0" prefWidth="78.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="82.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <Label layoutX="26.0" layoutY="204.0" text="昨日数据 ⬇" textFill="#7173ac" />
+            <Label layoutX="26.0" layoutY="187.0" text="五日收盘 ⬆" textFill="#7173ac" />
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

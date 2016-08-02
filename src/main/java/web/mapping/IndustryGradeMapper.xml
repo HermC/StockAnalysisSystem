@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="web.dao.IndustryGradeMapper" >
+
+    <resultMap id="StockGradeMap" type="web.vo.before.StockGradeVO" >
+        <id column="stockid" property="id" jdbcType="VARCHAR" />
+        <result column="industryid" property="industryid" jdbcType="BIGINT" />
+        <result column="weight" property="weight" jdbcType="BIGINT" />
+        <result column="score" property="score" jdbcType="DOUBLE" />
+        <result column="pb_index" property="pbAssess" jdbcType="DOUBLE" />
+        <result column="deviation_index" property="updownAssess" jdbcType="DOUBLE" />
+        <result column="pe_index" property="peAssess" jdbcType="DOUBLE" />
+        <result column="committee_index" property="weibiAssess" jdbcType="DOUBLE" />
+        <result column="volume_index" property="volumeAssess" jdbcType="DOUBLE" />
+        <result column="rank" property="rank" jdbcType="DOUBLE" />
+        <result column="name" property="name" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <select id="getStockGrade" resultMap="StockGradeMap" parameterType="java.lang.String">
+        SELECT stock_evaluate.stockid ,stock_evaluate.industryid ,stock_evaluate.weight ,stock_evaluate.score ,stock_evaluate.pb_index ,stock_evaluate.deviation_index ,
+         stock_evaluate.pe_index , stock_evaluate.committee_INDEX , stock_evaluate.volume_index , stock_evaluate.rank , sw_stock_info.name FROM stock_evaluate ,sw_stock_info
+        WHERE (stock_evaluate.industryid = #{0,jdbcType=BIGINT} ) AND (stock_evaluate.stockid = sw_stock_info.stockid)
+        ORDER BY `rank` ASC
+    </select>
+
+    <resultMap id="IndustryGradeMap" type="web.pojo.before.Industry" >
+
+        <id column="industryid" property="id" jdbcType="BIGINT" />
+
+        <result column="industry" property="industryText" jdbcType="LONGVARCHAR" />
+        <result column="score" property="score" jdbcType="DOUBLE" />
+        <result column="pb_index" property="pbAssess" jdbcType="DOUBLE" />
+        <result column="deviation_index" property="updownAssess" jdbcType="DOUBLE" />
+        <result column="pe_index" property="peAssess" jdbcType="DOUBLE" />
+        <result column="committee_index" property="weibiAssess" jdbcType="DOUBLE" />
+        <result column="volume_index" property="volumeAssess" jdbcType="DOUBLE" />
+        <result column="rank" property="rank" jdbcType="DOUBLE" />
+    </resultMap>
+
+    <select id="getIndustryAssess"     resultMap="IndustryGradeMap" >
+
+        SELECT * FROM sw_industry
+        ORDER BY `rank` ASC
+    </select>
+
+    <resultMap id="IndustryInnerTurnMap" type="web.pojo.before.IndustryInnerRank">
+        <id column="stockid" property="stockid" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="LONGVARCHAR"/>
+        <result column="turnover" property="turnoverRate" jdbcType="DOUBLE"/>
+    </resultMap>
+
+    <select id="getTurnoverRateRank" resultMap="IndustryInnerTurnMap">
+        SELECT stock_2016.stockid, stock_2016.turnover, sw_stock_info.name  FROM stock_2016 ,sw_stock_info
+        WHERE (stock_2016.stockid = sw_stock_info.stockid) AND (sw_stock_info.industryid = #{0,jdbcType=BIGINT} )
+        AND(stock_2016.date =(SELECT MAX(stock_2016.date)FROM stock_2016 ))
+        ORDER BY stock_2016.turnover DESC limit 0,10
+    </select>
+
+
+    <resultMap id="IndustryInnerDeviationMap" type="web.pojo.before.IndustryInnerRank">
+        <id column="stockid" property="stockid" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="LONGVARCHAR"/>
+        <result column="deviation_per" property="deviation" jdbcType="DOUBLE"/>
+    </resultMap>
+    <select id="getDeviationRank" resultMap="IndustryInnerDeviationMap">
+        SELECT stock_2016.stockid, stock_2016.deviation_per, sw_stock_info.name  FROM stock_2016 ,sw_stock_info
+        WHERE (stock_2016.stockid = sw_stock_info.stockid) AND (sw_stock_info.industryid = #{0,jdbcType=BIGINT} )
+        AND(stock_2016.date =(SELECT MAX(stock_2016.date)FROM stock_2016 ))
+        ORDER BY stock_2016.deviation_per DESC limit 0,10
+    </select>
+
+
+
+    <resultMap id="IndustryInnerPriceMap" type="web.pojo.before.IndustryInnerRank">
+        <id column="stockid" property="stockid" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="LONGVARCHAR"/>
+        <result column="close" property="price" jdbcType="DOUBLE"/>
+    </resultMap>
+    <select id="getPriceRank" resultMap="IndustryInnerPriceMap">
+         SELECT stock_2016.stockid, stock_2016.close, sw_stock_info.name  FROM stock_2016 ,sw_stock_info
+        WHERE (stock_2016.stockid = sw_stock_info.stockid) AND (sw_stock_info.industryid = #{0,jdbcType=BIGINT} )
+        AND(stock_2016.date = (SELECT MAX(stock_2016.date)FROM stock_2016 ))
+        ORDER BY stock_2016.close DESC limit 0, 10
+    </select>
+
+</mapper>

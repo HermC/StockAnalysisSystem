@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="web.dao.StockDataMapper" >
+    <cache  eviction="LRU" flushInterval="60000" size="1024" readOnly="true"/>
+
+    <resultMap id="TablesInfoMap" type="web.pojo.before.TabTablesData" >
+        <id column="date" property="date" jdbcType="VARCHAR" />
+        <result column="open" property="open" jdbcType="DOUBLE" />
+        <result column="close" property="close" jdbcType="DOUBLE" />
+        <result column="high" property="high" jdbcType="DOUBLE" />
+        <result column="low" property="low" jdbcType="DOUBLE" />
+        <result column="volume" property="volume" jdbcType="BIGINT" />
+        <result column="amount" property="amount" jdbcType="DOUBLE" />
+        <result column="ma5" property="ma5" jdbcType="DOUBLE" />
+        <result column="ma10" property="ma10" jdbcType="DOUBLE" />
+        <result column="ma20" property="ma20" jdbcType="DOUBLE" />
+        <result column="ma30" property="ma30" jdbcType="DOUBLE" />
+        <result column="macd" property="macd" jdbcType="DOUBLE" />
+        <result column="dif" property="dif" jdbcType="DOUBLE" />
+        <result column="dea" property="dea" jdbcType="DOUBLE" />
+        <result column="atr" property="atr" jdbcType="DOUBLE" />
+        <result column="slowJ" property="slowJ" jdbcType="DOUBLE" />
+        <result column="slowD" property="slowD" jdbcType="DOUBLE" />
+        <result column="slowK" property="slowK" jdbcType="DOUBLE" />
+        <result column="rsi6" property="rsi6" jdbcType="DOUBLE"/>
+        <result column="rsi12" property="rsi12" jdbcType="DOUBLE"/>
+        <result column="rsi24" property="rsi24" jdbcType="DOUBLE"/>
+        <result column="boll_upper" property="boll_upper" jdbcType="DOUBLE" />
+        <result column="boll_middle" property="boll_middle" jdbcType="DOUBLE" />
+        <result column="boll_low" property="boll_low" jdbcType="DOUBLE" />
+        <result column="amplitude" property="amplitude" jdbcType="DOUBLE"/>
+        <result column="deviation_val" property="deviation_val" jdbcType="DOUBLE"/>
+        <result column="deviation_per" property="deviation_per" jdbcType="DOUBLE"/>
+    </resultMap>
+    <select id="getTabTablesData" resultMap="TablesInfoMap" parameterType="java.lang.String">
+        (SELECT * FROM stock_2015
+        WHERE stockid = #{0,jdbcType=VARCHAR}
+        and (date BETWEEN #{1,jdbcType=VARCHAR} and #{2,jdbcType=VARCHAR})
+        GROUP BY `date` )
+        UNION( SELECT * FROM stock_2016
+        WHERE stockid = #{0,jdbcType=VARCHAR}
+        and (date BETWEEN #{1,jdbcType=VARCHAR} and #{2,jdbcType=VARCHAR})
+        GROUP BY `date` )
+
+    </select>
+
+    <resultMap id="BenchTablesInfoMap" type="web.pojo.before.TabTablesData" >
+        <id column="date" property="date" jdbcType="VARCHAR" />
+        <result column="open" property="open" jdbcType="DOUBLE" />
+        <result column="close" property="close" jdbcType="DOUBLE" />
+        <result column="high" property="high" jdbcType="DOUBLE" />
+        <result column="low" property="low" jdbcType="DOUBLE" />
+        <result column="volume" property="volume" jdbcType="BIGINT" />
+        <result column="amount" property="amount" jdbcType="DOUBLE" />
+        <result column="ma5" property="ma5" jdbcType="DOUBLE" />
+        <result column="ma10" property="ma10" jdbcType="DOUBLE" />
+        <result column="ma20" property="ma20" jdbcType="DOUBLE" />
+        <result column="ma30" property="ma30" jdbcType="DOUBLE" />
+        <result column="macd" property="macd" jdbcType="DOUBLE" />
+        <result column="dif" property="dif" jdbcType="DOUBLE" />
+        <result column="dea" property="dea" jdbcType="DOUBLE" />
+        <result column="atr" property="atr" jdbcType="DOUBLE" />
+        <result column="slowJ" property="slowJ" jdbcType="DOUBLE" />
+        <result column="slowD" property="slowD" jdbcType="DOUBLE" />
+        <result column="slowK" property="slowK" jdbcType="DOUBLE" />
+        <result column="rsi6" property="rsi6" jdbcType="DOUBLE"/>
+        <result column="rsi12" property="rsi12" jdbcType="DOUBLE"/>
+        <result column="rsi24" property="rsi24" jdbcType="DOUBLE"/>
+        <result column="boll_upper" property="boll_upper" jdbcType="DOUBLE" />
+        <result column="boll_middle" property="boll_middle" jdbcType="DOUBLE" />
+        <result column="boll_low" property="boll_low" jdbcType="DOUBLE" />
+        <result column="deviation_val" property="deviation_val" jdbcType="DOUBLE"/>
+        <result column="deviation_per" property="deviation_per" jdbcType="DOUBLE"/>
+    </resultMap>
+    <select id="getBenchTabtable" resultMap="BenchTablesInfoMap" parameterType="java.lang.String">
+        (SELECT * FROM bench
+        WHERE stockid = #{0,jdbcType=VARCHAR} AND
+        (date BETWEEN #{1,jdbcType=VARCHAR} and #{2,jdbcType=VARCHAR})
+        GROUP BY date ASC)
+        UNION( SELECT * FROM bench
+        WHERE stockid = #{0,jdbcType=VARCHAR} AND
+        (date BETWEEN #{1,jdbcType=VARCHAR} and #{2,jdbcType=VARCHAR})
+        GROUP BY  date ASC)
+
+    </select>
+
+
+    <resultMap id="CandleDataMap" type="web.pojo.before.CandleData" >
+        <id column="date" property="date" jdbcType="VARCHAR" />
+        <result column="open" property="open" jdbcType="DOUBLE" />
+        <result column="close" property="close" jdbcType="DOUBLE" />
+        <result column="high" property="high" jdbcType="DOUBLE" />
+        <result column="low" property="low" jdbcType="DOUBLE" />
+        <result column="ma5" property="ma5" jdbcType="DOUBLE" />
+        <result column="ma10" property="ma10" jdbcType="DOUBLE" />
+        <result column="ma20" property="ma20" jdbcType="DOUBLE" />
+        <result column="ma30" property="ma30" jdbcType="DOUBLE" />
+    </resultMap>
+    <select id="getCandleData" resultMap="CandleDataMap" parameterType="java.lang.String">
+        (SELECT * FROM stock_2015
+        WHERE stockid = #{0,jdbcType=VARCHAR}
+        and (date BETWEEN #{1,jdbcType=VARCHAR} and #{2,jdbcType=VARCHAR})
+        GROUP BY `date` ASC)
+        UNION
+        (SELECT * FROM stock_2016
+        WHERE stockid = #{0,jdbcType=VARCHAR}
+        and (date BETWEEN #{1,jdbcType=VARCHAR} and #{2,jdbcType=VARCHAR})
+        GROUP BY `date` ASC)
+
+    </select>
+
+
+
+
+    <select id="getUpDown" resultType="java.lang.Double">
+        SELECT deviation_per FROM stock_2016
+        WHERE stockid = #{0,jdbcType=VARCHAR}
+        and date &gt;= #{1,jdbcType=VARCHAR}
+        ORDER BY date ASC
+        limit 0,#{1}
+    </select>
+    
+    <resultMap id="ForecastDataMap" type="web.pojo.before.ForecastData">
+        <id column="stockid" property="stockid" jdbcType="VARCHAR" />
+        <result column="date" property="date" jdbcType="VARCHAR" />
+        <result column="price_middle" property="price_middle" jdbcType="DOUBLE" />
+        <result column="price_high" property="price_high" jdbcType="DOUBLE" />
+        <result column="price_low" property="price_low" jdbcType="DOUBLE" />
+    </resultMap>
+    <select id="getForecastData" resultMap="ForecastDataMap" parameterType="java.lang.String">
+        SELECT * FROM svm_forecast
+        WHERE stockid = #{0,jdbcType=VARCHAR} and (date BETWEEN #{1,jdbcType=VARCHAR} and #{2,jdbcType=VARCHAR})
+        GROUP BY date
+    </select>
+
+    <resultMap id="StockRelativeDataMap" type="web.pojo.before.StockRelativeData">
+        <id column="stockid" property="stockid" jdbcType="VARCHAR"/>
+        <result column="benchid" property="benchid" jdbcType="VARCHAR"/>
+        <result column="open_mean" property="open_mean" jdbcType="DOUBLE"/>
+        <result column="open_var" property="open_var" jdbcType="DOUBLE"/>
+        <result column="open_skewness" property="open_skewness" jdbcType="DOUBLE"/>
+        <result column="open_kurtosis" property="open_kurtosis" jdbcType="DOUBLE"/>
+        <result column="open_corrcoef" property="open_corrcoef" jdbcType="DOUBLE"/>
+        <result column="volume_mean" property="volume_mean" jdbcType="DOUBLE"/>
+        <result column="volume_var" property="volume_var" jdbcType="DOUBLE"/>
+        <result column="volume_skewness" property="volume_skewness" jdbcType="DOUBLE"/>
+        <result column="volume_kurtosis" property="volume_kurtosis" jdbcType="DOUBLE"/>
+        <result column="volume_corrcoef" property="volume_corrcoef" jdbcType="DOUBLE"/>
+        <result column="devai_mean" property="deval_mean" jdbcType="DOUBLE"/>
+        <result column="devai_var" property="deval_var" jdbcType="DOUBLE"/>
+        <result column="devai_skewness" property="deval_skewness" jdbcType="DOUBLE"/>
+        <result column="devai_kurtosis" property="deval_kurtosis" jdbcType="DOUBLE"/>
+        <result column="devai_corrcoef" property="deval_corrcoef" jdbcType="DOUBLE"/>
+        <result column="corrcoef" property="corrcoef" jdbcType="DOUBLE"/>
+        <result column="beta" property="beta" jdbcType="DOUBLE"/>
+    </resultMap>
+    <select id="getRelativeData" resultMap="StockRelativeDataMap" parameterType="java.lang.String">
+        SELECT * FROM relative
+        WHERE stockid = #{0,jdbcType=VARCHAR}
+    </select>
+
+    <resultMap id="BpForecastMap" type="web.pojo.before.PytradeDataPo">
+        <id column="stockid" property="stockid" jdbcType="VARCHAR"/>
+        <result column="price" property="price0" jdbcType="DOUBLE"/>
+        <result column="price1" property="price1" jdbcType="DOUBLE"/>
+        <result column="price2" property="price2" jdbcType="DOUBLE"/>
+        <result column="price3" property="price3" jdbcType="DOUBLE"/>
+        <result column="price4" property="price4" jdbcType="DOUBLE"/>
+        <result column="price5" property="price5" jdbcType="DOUBLE"/>
+        <result column="price6" property="price6" jdbcType="DOUBLE"/>
+        <result column="price7" property="price7" jdbcType="DOUBLE"/>
+        <result column="price8" property="price8" jdbcType="DOUBLE"/>
+        <result column="price9" property="price9" jdbcType="DOUBLE"/>
+        <result column="price10" property="price10" jdbcType="DOUBLE"/>
+        <result column="price11" property="price11" jdbcType="DOUBLE"/>
+        <result column="price12" property="price12" jdbcType="DOUBLE"/>
+        <result column="price13" property="price13" jdbcType="DOUBLE"/>
+        <result column="price14" property="price14" jdbcType="DOUBLE"/>
+    </resultMap>
+    <select id="getPyTrade" resultMap="BpForecastMap" parameterType="java.lang.String">
+        SELECT * FROM bp_predict
+        WHERE `stockid` = #{0,jdbcType=VARCHAR}
+    </select>
+
+    <resultMap id="BpPredictListMap" type="web.pojo.before.PyTradeData" >
+
+        <result column="date" property="date" jdbcType="VARCHAR"/>
+        <result column="price" property="close" jdbcType="DOUBLE"/>
+    </resultMap>
+    <select id="getPyTradeList" resultMap="BpPredictListMap" parameterType="java.lang.String">
+        SELECT * FROM future
+        WHERE `stockid` = #{0,jdbcType=VARCHAR}
+        GROUP BY `date` ASC
+    </select>
+
+    <resultMap id="ForecastBpMap" type="web.pojo.before.ForecastData">
+        <id column="stockid" property="stockid" jdbcType="VARCHAR" />
+        <result column="date" property="date" jdbcType="VARCHAR" />
+        <result column="price_middle" property="price_middle" jdbcType="DOUBLE" />
+        <result column="price_high" property="price_high" jdbcType="DOUBLE" />
+        <result column="price_low" property="price_low" jdbcType="DOUBLE" />
+    </resultMap>
+    <select id="getPyTradeForecast" resultMap="ForecastBpMap" parameterType="java.lang.String">
+        SELECT * FROM bp_forecast
+        WHERE `stockid` = #{0,jdbcType=VARCHAR} AND (date BETWEEN #{1,jdbcType=VARCHAR} and #{2,jdbcType=VARCHAR} )
+        GROUP BY `date` ASC
+    </select>
+
+    <resultMap id="StopMap" type="web.pojo.before.SingleInfo">
+        <id column="stockid" property="id" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+   <select id="getStopRecommend" resultMap="StopMap" >
+       SELECT recommend.stockid , sw_stock_info.name FROM recommend , sw_stock_info
+       WHERE (recommend.stockid = sw_stock_info.stockid ) AND (recommend.isStop = 1 )
+   </select>
+
+    <resultMap id="KDJMap" type="web.pojo.before.SingleInfo">
+        <id column="stockid" property="id" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <select id="getKDJRecommend" resultMap="KDJMap" >
+        SELECT recommend.stockid , sw_stock_info.name FROM recommend , sw_stock_info
+        WHERE (recommend.stockid = sw_stock_info.stockid ) AND (recommend.isKDJ = 1 )
+    </select>
+
+    <resultMap id="RSIMap" type="web.pojo.before.SingleInfo">
+        <id column="stockid" property="id" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <select id="getRSIRecommend" resultMap="RSIMap" >
+        SELECT recommend.stockid , sw_stock_info.name FROM recommend , sw_stock_info
+        WHERE (recommend.stockid = sw_stock_info.stockid ) AND (recommend.isRSI = 1 )
+    </select>
+
+    <resultMap id="BOLLMap" type="web.pojo.before.SingleInfo">
+        <id column="stockid" property="id" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <select id="getBOLLRecommend" resultMap="BOLLMap" >
+        SELECT recommend.stockid , sw_stock_info.name FROM recommend , sw_stock_info
+        WHERE (recommend.stockid = sw_stock_info.stockid ) AND (recommend.isBOLL = 1 )
+    </select>
+
+
+</mapper>
+

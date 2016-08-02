@@ -1,0 +1,135 @@
+#main-content{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+.stock_content_title a{
+    margin-left:auto;
+    font-size:12px;
+    color:#fff;
+}
+.recommand_rank{
+    -webkit-box-flex:1;
+    -webkit-flex-grow:1;
+        -ms-flex-positive:1;
+            flex-grow:1;
+    padding-left:40px;
+    /*width:70%;*/
+    /*background-color:rgba(255,0,0,0.5) ;*/
+}
+.recommand_noRank{
+    /*width:30%;*/
+    /*background-color:rgba(0,255,0,0.5);*/
+}
+table{
+    border-spacing: 5px 5px;
+}
+tr{
+    height:25px;
+    margin-top:40px;
+    cursor:pointer;
+}
+#stock_rank_total td{
+    /*padding-right:30px;*/
+    padding-top:5px;
+    padding-bottom: 5px;
+}
+#stock_rank_total{
+    display:block;
+    position: relative;
+    width:100%;
+}
+#stock_rank_total th.column_grade{
+    text-align: right;
+}
+#stock_rank_total td.text_right{
+    text-align: right;
+}
+#stock_rank_total td span{
+    font-size:12px;
+    /*display: block;*/
+}
+.column_name_id{
+    width:20%;
+}
+.column_name_id span{
+    display: block;
+}
+.column_grade{
+    width:14%;
+}
+.recommand_noRank h3{
+    text-align: center;
+    font-size:14px;
+    color:#aaa;
+}
+.recommand_noRank a{
+    color:#bac7d4;
+}
+.recommand_noRank h5{
+    padding:4px 0 4px 5px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+.recommand_noRank h5 p{
+    width:80px;
+}
+.recommand_noRank h6{
+    min-width:200px;
+    padding:2px 0 2px 5px;
+    font-size:12px;
+    color:#ccc;
+}
+.recommand_noRank h5 span{
+    /*margin-right:35px;*/
+}
+
+@media all and (max-width: 1024px){
+    #main-content{
+        padding-left:20px;
+        padding-right: 20px;
+        box-sizing: border-box;
+    }
+}
+
+@media all and (max-width: 700px){
+    #main-content{
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+                flex-direction: column;
+    }
+    .recommand_rank{
+        padding-left: 0;
+    }
+    #stock_rank_total{
+        font-size:12px;
+    }
+    .column_grade{
+        width:auto;
+    }
+    .recommand_noRank{
+        font-size:14px;
+    }
+}

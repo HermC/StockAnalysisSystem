@@ -1,0 +1,27 @@
+.default-color0.chart-series-line {
+    -fx-stroke: rgb(164,111,163);
+}
+
+.default-color1.chart-series-line {
+    -fx-stroke: rgb(226,220,126);
+}
+
+.default-color2.chart-series-line {
+    -fx-stroke: rgb(138,178,123);
+}
+
+.chart-bar {
+    -fx-background-color: rgba(241,145,73,0.5);
+}
+
+.default-color0.chart-line-symbol {
+    -fx-stroke: rgb(164,111,163);
+}
+
+.default-color1.chart-line-symbol {
+    -fx-stroke: rgb(226,220,126);
+}
+
+.default-color2.chart-line-symbol {
+    -fx-stroke: rgb(138,178,123);
+}

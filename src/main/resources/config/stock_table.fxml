@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1145.0" style="-fx-background-color: rgba(40,40,64);" stylesheets="@tableStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applet.presentation.UI.action.StockTableTotalController">
+   <children>
+      <Group>
+         <children>
+            <HBox layoutX="25.0" layoutY="14.0" style="-fx-text-fill: #8e8d8d;">
+               <children>
+                  <Label layoutX="25.0" layoutY="19.0" prefHeight="25.0" prefWidth="60.0" text="时间：" textAlignment="JUSTIFY" textFill="#8e8d8d">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="date1" prefHeight="25.0" prefWidth="130.0" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="30.0" styleClass="connection" text="—" textFill="#8e8d8d">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="date2" prefHeight="25.0" prefWidth="130.0" />
+               </children>
+            </HBox>
+            <Button fx:id="filtrate" layoutX="393.0" layoutY="14.0" mnemonicParsing="false" onAction="#handelFiltrate" prefHeight="25.0" text="筛选" />
+            <Button fx:id="toggleFiltrate" layoutX="1040.0" layoutY="14.0" mnemonicParsing="false" text="高级筛选" />
+         </children>
+      </Group>
+      <AnchorPane fx:id="masterDetailRoot" layoutY="56.0" maxHeight="300.0" prefHeight="300.0" prefWidth="1145.0" AnchorPane.bottomAnchor="0.0">
+      </AnchorPane>
+   </children>
+</AnchorPane>

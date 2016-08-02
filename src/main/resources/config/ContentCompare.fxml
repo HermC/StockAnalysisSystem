@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.2382943143812709" prefHeight="698.0" prefWidth="1198.0" style="-fx-background-color: rgb(23,22,37);" stylesheets="@ContentCompareStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applet.presentation.UI.action.CompareController">
+  <items>
+    <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="696.0" prefWidth="286.0">
+         <children>
+            <VBox fx:id="stockNav" layoutX="44.0" layoutY="61.0" prefHeight="259.0" prefWidth="213.0" spacing="5.0" style="-fx-background-color: rgb(30, 29, 49);" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="61.0">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></VBox>
+            <Label layoutX="44.0" layoutY="18.0" text="&gt; 股票对比" textFill="#8fa1ff">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <TabPane layoutX="75.0" layoutY="163.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+              <tabs>
+                <Tab styleClass="compareTab" text="Radar">
+                  <content>
+                    <AnchorPane fx:id="radarPane" style="-fx-background-color: rgb(30,29,49);">
+                           <children>
+                              <VBox fx:id="tips" layoutX="722.0" layoutY="61.0" prefHeight="200.0" prefWidth="100.0" />
+                              <Label layoutX="722.0" layoutY="33.0" text="图例" textFill="WHITE">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                              </Label>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                <Tab styleClass="compareTab" text="future">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: rgb(30, 29, 49);">
+                           <children>
+                              <Label layoutX="238.0" layoutY="291.0" text="敬请期待" textFill="WHITE">
+                                 <font>
+                                    <Font size="28.0" />
+                                 </font>
+                              </Label>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab styleClass="compareTab" text="profit">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: rgb(30, 29, 49);">
+                           <children>
+                              <Label layoutX="238.0" layoutY="291.0" text="敬请期待" textFill="WHITE">
+                                 <font>
+                                    <Font size="28.0" />
+                                 </font>
+                              </Label>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children></AnchorPane>
+  </items>
+</SplitPane>

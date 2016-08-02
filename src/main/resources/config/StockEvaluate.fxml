@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<StackPane fx:controller="applet.presentation.UI.action.StockEvaluateController" fx:id="root" prefHeight="698.0" prefWidth="1198.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="698.0" prefWidth="1198.0" style="-fx-background-color: rgb(23,22,37);" stylesheets="@StockEvaluateStyle.css">
+         <children>
+            <AnchorPane fx:id="radarPane" layoutX="32.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="450.0" style="-fx-background-color: rgb(30,29,49);" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="15.0">
+               <children>
+                  <Label layoutX="19.0" layoutY="14.0" text="多方面评估" textFill="#46467f" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="488.0" layoutY="14.0" prefHeight="300.0" prefWidth="688.0" style="-fx-background-color: rgb(30,29,49);" AnchorPane.leftAnchor="492.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="15.0">
+               <children>
+                  <Label layoutX="24.0" layoutY="33.0" text="指数平滑异同平均线" textFill="#46467f" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane fx:id="macdPane" layoutY="43.0" prefHeight="257.0" prefWidth="676.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="43.0" />
+                  <Label layoutX="388.0" layoutY="19.0" text="ATR" textFill="WHITE" AnchorPane.rightAnchor="262.0" AnchorPane.topAnchor="19.0" />
+                  <Label layoutX="449.0" layoutY="19.0" text="DEA" textFill="WHITE" AnchorPane.rightAnchor="201.0" AnchorPane.topAnchor="19.0" />
+                  <Label layoutX="509.0" layoutY="19.0" text="DIF" textFill="WHITE" AnchorPane.rightAnchor="146.0" AnchorPane.topAnchor="19.0" />
+                  <Label layoutX="366.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: rgb(164,111,163);" text="    " textFill="WHITE" AnchorPane.rightAnchor="295.0" AnchorPane.topAnchor="19.0" />
+                  <Label layoutX="428.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: rgb(226,220,126);" text="    " textFill="WHITE" AnchorPane.rightAnchor="233.0" AnchorPane.topAnchor="19.0" />
+                  <Label layoutX="488.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: rgb(138,178,123);" text="    " textFill="WHITE" AnchorPane.rightAnchor="173.0" AnchorPane.topAnchor="19.0" />
+                  <Label layoutX="539.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: rgba(241,145,73,0.5);" text="    " textFill="WHITE" AnchorPane.rightAnchor="122.0" AnchorPane.topAnchor="19.0" />
+                  <Label layoutX="561.0" layoutY="19.0" text="MACD" textFill="WHITE" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="19.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="futurePane" layoutX="33.0" layoutY="322.0" prefHeight="249.0" prefWidth="200.0" style="-fx-background-color: rgb(30,29,49);" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="327.0">
+               <children>
+                  <Label layoutX="46.0" layoutY="27.0" text="走势预估" textFill="#46467f" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="517.0" layoutY="147.0" text="敬请期待" textFill="WHITE">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
