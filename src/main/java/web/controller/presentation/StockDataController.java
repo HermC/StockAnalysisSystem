@@ -87,7 +87,7 @@ public class StockDataController {
         StockGradeVO stockGradeVO = gradeService.getCurrentInfo(stockId);
         StockRelativeData stockRelativeData = relativeService.getRelativeData(stockId);
         ArrayList<TabTablesData> benchmarkDatas = tabTableDataService.getTablesInfo("399300", LocalDate.now().minusDays(20), LocalDate.now());
-//        ArrayList<PyTradeData> pyTradeDatas = forecastDataService.getPyTradeList(stockId);
+
         DetailStrategyVO detailStrategy = detailStrategyService.getDetailStrategy(stockId);
         ArrayList<StockSeason> stockSeason = stockInfoService.getStockSeason(stockId);
 

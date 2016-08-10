@@ -1,7 +1,9 @@
 package web;
 
 import org.junit.Test;
+import web.Tools.Realtime;
 import web.Tools.TotalNews;
+import web.pojo.before.BenchCurrent;
 
 /**
  * Created by Hermit on 16/5/24.
@@ -31,9 +33,9 @@ public class CurrentTest {
 //            System.out.println(stockCurrent.high_attri);
 //            System.out.println(stockCurrent.out2);
 //
-//            BenchCurrent benchCurrent = Realtime.getBenchCurrent("sz399001");
-//            System.out.println(benchCurrent.amount);
-//            System.out.println(benchCurrent.neutral_num);
+            BenchCurrent benchCurrent = Realtime.getBenchCurrent("sh000300");
+            System.out.println(benchCurrent.amount);
+            System.out.println(benchCurrent.neutral_num);
 //            List<Hotspot> result = TotalNews.getHotspot();
 //            System.out.println(result.get(1).url);
 //            System.out.println(result.get(0).hotStockName);

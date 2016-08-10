@@ -20,7 +20,7 @@ public class TabTableDataImpl implements TabTableDataService {
 
     @Override
     public ArrayList<TabTablesData> getTablesInfo(String id, LocalDate begin, LocalDate end) {
-    if (id.equals("hs300") || id.equals("sz399001") || id.equals("sh000001"))
+    if (id.equals("399300") || id.equals("399001") || id.equals("000001"))
             return stockDataMapper.getBenchTabtable(id, begin.toString(),end.toString());
         else
             return stockDataMapper.getTabTablesData(id, begin.toString(),end.toString());

@@ -26,7 +26,7 @@ public class TabTableDataImplServiceTest {
     public void testTabTable(){
         LocalDate end = LocalDate.now();
         LocalDate start = end.minusDays(15);
-        ArrayList<TabTablesData> tabTablesDatas = tabTableDataService.getTablesInfo("sh600000",start,end);
+        ArrayList<TabTablesData> tabTablesDatas = tabTableDataService.getTablesInfo("399300",start,end);
         for(TabTablesData tabTablesData:tabTablesDatas){
             System.out.println(JSON.toJSON(tabTablesData));
         }
