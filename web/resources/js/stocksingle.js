@@ -431,7 +431,7 @@ AmCharts.ready(function() {
     initKdjChart();
     initBollChart();
 
-    initGradeChart()
+    initGradeChart();
     initDynamicChart();
     initBpForecastChart();
     initForecastChart();
@@ -1500,8 +1500,8 @@ function initGradeHistoryChart() {
     peGraph.valueField = "pe";
     peGraph.useDataSetColors = false;
     peGraph.lineColor = "#ffff66";
-    peGraph.valueAxis = peValueAxis;
     peGraph.balloonText = "市盈率: <b>[[value]]</b>";
+    peGraph.valueAxis = peValueAxis;
     peChart.addStockGraph(peGraph);
 
     ///

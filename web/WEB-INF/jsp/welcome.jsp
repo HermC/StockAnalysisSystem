@@ -161,7 +161,7 @@
 
 <div id="goto_wrapper">
     <a href="index.do"><button id="goto_index">前往Ascending</button></a>
-    <a target="_blank" href="http://114.55.35.12/141250174_cseiii_AnyQuant/StocksAnalysisSystem.git">
+    <a target="_blank" href="https://github.com/HermC/StockAnalysisSystem.git">
         <button id="go_git">前往git主页</button>
     </a>
 </div>

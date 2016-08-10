@@ -47,87 +47,177 @@
 </head>
 <body>
 <img id="full_background" src="resources/img/background/background1.png">
-<jsp:include page="header.jsp" flush="true"/>
-<div class="main-content">
 
-    <ul id="pointer_wrapper">
-        <li id="pointer"></li>
-    </ul>
+<c:choose>
+    <c:when test="${userInfo!=null}">
+        <jsp:include page="usernav.jsp" flush="true"/>
+        <div id="main-page">
+            <div class="main-content">
 
-    <div class="industry_rank">
-        <div class="industry_rank_grade_wrapper">
-            <p class="stock_content_title"><img src="resources/img/logo_s.png">行业评分榜</p>
-            <table id="industry_rank_total"  class="industry_rank_total">
-                <tr>
-                    <th class="column_rank">排名</th>
-                    <th class="column_name">行业</th>
-                    <th class="column_grade">总分</th>
+                <ul id="pointer_wrapper">
+                    <li id="pointer"></li>
+                </ul>
 
-                    <th class="column_grade column_toggle">市盈率</th>
-                    <th class="column_grade column_toggle">市净率</th>
-                    <th class="column_grade column_toggle">涨跌幅</th>
-                    <th class="column_grade column_toggle">量比</th>
-                    <th class="column_grade column_toggle">委托盘</th>
-                </tr>
+                <div class="industry_rank">
+                    <div class="industry_rank_grade_wrapper">
+                        <p class="stock_content_title"><img src="resources/img/logo_s.png">行业评分榜</p>
+                        <table id="industry_rank_total"  class="industry_rank_total">
+                            <tr>
+                                <th class="column_rank">排名</th>
+                                <th class="column_name">行业</th>
+                                <th class="column_grade">总分</th>
 
-                <c:forEach items="${industries}" var="industry" varStatus="s">
-                <tr>
-                    <td>${industry.rank}</td>
-                    <td class="column_name">${industry.industryText}</td>
-                    <td>${industry.score}</td>
-                    <td class="column_toggle">${industry.peAssess}</td>
-                    <td class="column_toggle">${industry.pbAssess}</td>
-                    <td class="column_toggle">${industry.updownAssess}</td>
-                    <td class="column_toggle">${industry.volumeAssess}</td>
-                    <td class="column_toggle">${industry.weibiAssess}</td>
-                </tr>
-                </c:forEach>
-                <%--<tr>--%>
-                    <%--<td>2</td>--%>
-                    <%--<td>金融业</td>--%>
-                    <%--<td>98</td>--%>
-                    <%--<td class="column_toggle">23</td>--%>
-                    <%--<td class="column_toggle">23</td>--%>
-                    <%--<td class="column_toggle">23</td>--%>
-                    <%--<td class="column_toggle">23</td>--%>
-                    <%--<td class="column_toggle">23</td>--%>
-                <%--</tr>--%>
+                                <th class="column_grade column_toggle">市盈率</th>
+                                <th class="column_grade column_toggle">市净率</th>
+                                <th class="column_grade column_toggle">涨跌幅</th>
+                                <th class="column_grade column_toggle">量比</th>
+                                <th class="column_grade column_toggle">委托盘</th>
+                            </tr>
 
-            </table>
-        </div>
+                            <c:forEach items="${industries}" var="industry" varStatus="s">
+                                <tr>
+                                    <td>${industry.rank}</td>
+                                    <td class="column_name">${industry.industryText}</td>
+                                    <td>${industry.score}</td>
+                                    <td class="column_toggle">${industry.peAssess}</td>
+                                    <td class="column_toggle">${industry.pbAssess}</td>
+                                    <td class="column_toggle">${industry.updownAssess}</td>
+                                    <td class="column_toggle">${industry.volumeAssess}</td>
+                                    <td class="column_toggle">${industry.weibiAssess}</td>
+                                </tr>
+                            </c:forEach>
+                                <%--<tr>--%>
+                                <%--<td>2</td>--%>
+                                <%--<td>金融业</td>--%>
+                                <%--<td>98</td>--%>
+                                <%--<td class="column_toggle">23</td>--%>
+                                <%--<td class="column_toggle">23</td>--%>
+                                <%--<td class="column_toggle">23</td>--%>
+                                <%--<td class="column_toggle">23</td>--%>
+                                <%--<td class="column_toggle">23</td>--%>
+                                <%--</tr>--%>
 
-        <div id="stockListWrapper" class="stock_rank_grade_wrapper">
-            <p class="stock_content_title"><img src="resources/img/logo_s.png">行业股票评分榜<button id="more">&lt;&lt;</button></p>
+                        </table>
+                    </div>
 
-            <div id="table_wrapper">
-                <table id="stock_rank_total"  class="industry_rank_total">
-                    <tr>
-                        <th class="column_rank">排名</th>
-                        <th class="column_name_id">股票</th>
-                        <th class="column_last">总分</th>
+                    <div id="stockListWrapper" class="stock_rank_grade_wrapper">
+                        <p class="stock_content_title"><img src="resources/img/logo_s.png">行业股票评分榜<button id="more">&lt;&lt;</button></p>
 
-                        <th class="column_grade column_toggle column_hide">市盈率</th>
-                        <th class="column_grade column_toggle column_hide">市净率</th>
-                        <th class="column_grade column_toggle column_hide">涨跌幅</th>
-                        <th class="column_grade column_toggle column_hide">量比</th>
-                        <th class="column_grade column_toggle column_hide">委托盘</th>
-                    </tr>
-                    <%--<tr>--%>
-                        <%--<td>1</td>--%>
-                        <%--<td>浦发银行<span>sh600000</span></td>--%>
-                        <%--<td>96</td>--%>
-                        <%--<td class="column_toggle column_hide">23</td>--%>
-                        <%--<td class="column_toggle column_hide">23</td>--%>
-                        <%--<td class="column_toggle column_hide">23</td>--%>
-                        <%--<td class="column_toggle column_hide">23</td>--%>
-                        <%--<td class="column_toggle column_hide">23</td>--%>
-                    <%--</tr>--%>
-                </table>
+                        <div id="table_wrapper">
+                            <table id="stock_rank_total"  class="industry_rank_total">
+                                <tr>
+                                    <th class="column_rank">排名</th>
+                                    <th class="column_name_id">股票</th>
+                                    <th class="column_last">总分</th>
+
+                                    <th class="column_grade column_toggle column_hide">市盈率</th>
+                                    <th class="column_grade column_toggle column_hide">市净率</th>
+                                    <th class="column_grade column_toggle column_hide">涨跌幅</th>
+                                    <th class="column_grade column_toggle column_hide">量比</th>
+                                    <th class="column_grade column_toggle column_hide">委托盘</th>
+                                </tr>
+                                    <%--<tr>--%>
+                                    <%--<td>1</td>--%>
+                                    <%--<td>浦发银行<span>sh600000</span></td>--%>
+                                    <%--<td>96</td>--%>
+                                    <%--<td class="column_toggle column_hide">23</td>--%>
+                                    <%--<td class="column_toggle column_hide">23</td>--%>
+                                    <%--<td class="column_toggle column_hide">23</td>--%>
+                                    <%--<td class="column_toggle column_hide">23</td>--%>
+                                    <%--<td class="column_toggle column_hide">23</td>--%>
+                                    <%--</tr>--%>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
+    </c:when>
+    <c:otherwise>
+        <jsp:include page="header.jsp" flush="true"/>
+        <div class="main-content">
 
-    </div>
-</div>
+            <ul id="pointer_wrapper">
+                <li id="pointer"></li>
+            </ul>
+
+            <div class="industry_rank">
+                <div class="industry_rank_grade_wrapper">
+                    <p class="stock_content_title"><img src="resources/img/logo_s.png">行业评分榜</p>
+                    <table id="industry_rank_total"  class="industry_rank_total">
+                        <tr>
+                            <th class="column_rank">排名</th>
+                            <th class="column_name">行业</th>
+                            <th class="column_grade">总分</th>
+
+                            <th class="column_grade column_toggle">市盈率</th>
+                            <th class="column_grade column_toggle">市净率</th>
+                            <th class="column_grade column_toggle">涨跌幅</th>
+                            <th class="column_grade column_toggle">量比</th>
+                            <th class="column_grade column_toggle">委托盘</th>
+                        </tr>
+
+                        <c:forEach items="${industries}" var="industry" varStatus="s">
+                            <tr>
+                                <td>${industry.rank}</td>
+                                <td class="column_name">${industry.industryText}</td>
+                                <td>${industry.score}</td>
+                                <td class="column_toggle">${industry.peAssess}</td>
+                                <td class="column_toggle">${industry.pbAssess}</td>
+                                <td class="column_toggle">${industry.updownAssess}</td>
+                                <td class="column_toggle">${industry.volumeAssess}</td>
+                                <td class="column_toggle">${industry.weibiAssess}</td>
+                            </tr>
+                        </c:forEach>
+                            <%--<tr>--%>
+                            <%--<td>2</td>--%>
+                            <%--<td>金融业</td>--%>
+                            <%--<td>98</td>--%>
+                            <%--<td class="column_toggle">23</td>--%>
+                            <%--<td class="column_toggle">23</td>--%>
+                            <%--<td class="column_toggle">23</td>--%>
+                            <%--<td class="column_toggle">23</td>--%>
+                            <%--<td class="column_toggle">23</td>--%>
+                            <%--</tr>--%>
+
+                    </table>
+                </div>
+
+                <div id="stockListWrapper" class="stock_rank_grade_wrapper">
+                    <p class="stock_content_title"><img src="resources/img/logo_s.png">行业股票评分榜<button id="more">&lt;&lt;</button></p>
+
+                    <div id="table_wrapper">
+                        <table id="stock_rank_total"  class="industry_rank_total">
+                            <tr>
+                                <th class="column_rank">排名</th>
+                                <th class="column_name_id">股票</th>
+                                <th class="column_last">总分</th>
+
+                                <th class="column_grade column_toggle column_hide">市盈率</th>
+                                <th class="column_grade column_toggle column_hide">市净率</th>
+                                <th class="column_grade column_toggle column_hide">涨跌幅</th>
+                                <th class="column_grade column_toggle column_hide">量比</th>
+                                <th class="column_grade column_toggle column_hide">委托盘</th>
+                            </tr>
+                                <%--<tr>--%>
+                                <%--<td>1</td>--%>
+                                <%--<td>浦发银行<span>sh600000</span></td>--%>
+                                <%--<td>96</td>--%>
+                                <%--<td class="column_toggle column_hide">23</td>--%>
+                                <%--<td class="column_toggle column_hide">23</td>--%>
+                                <%--<td class="column_toggle column_hide">23</td>--%>
+                                <%--<td class="column_toggle column_hide">23</td>--%>
+                                <%--<td class="column_toggle column_hide">23</td>--%>
+                                <%--</tr>--%>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </c:otherwise>
+</c:choose>
 <%@ include file="footer.jsp"%>
 </body>
 </html>
