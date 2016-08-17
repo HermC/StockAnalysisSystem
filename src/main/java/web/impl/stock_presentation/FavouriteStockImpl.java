@@ -1,7 +1,7 @@
 package web.impl.stock_presentation;
 
 import org.springframework.stereotype.Service;
-import web.dao.StockFavouriteMapper;
+import web.dao.stock_presentation.StockFavouriteMapper;
 import web.pojo.before.FavouriteStock;
 import web.service.stock_presentation.FavouriteStockService;
 

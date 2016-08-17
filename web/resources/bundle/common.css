@@ -18,6 +18,9 @@ body{
 h1,h2,h3,h4,h5,h6{
     font-weight: lighter;
 }
+a {
+    cursor: pointer;
+}
 #header{
     width:100%;
     height:60px;
@@ -422,6 +425,14 @@ a:hover{
     position: relative;
 }
 
+.user-info a {
+    color: #535353;
+}
+
+.user-info a:hover {
+    color: #989898;
+}
+
 .user-img-container {
     width: 100px;
     height: 100px;
@@ -449,4 +460,97 @@ a:hover{
 .rotation{
     -webkit-transition: 1s;
     -webkit-transform: rotate(180deg);
+}
+
+#user_login_wrapper {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+#login_form_wrapper {
+    margin: 50px auto auto auto;
+    width: 300px;
+    background-color: white;
+    color: #111111;
+}
+
+.input-labels {
+    /*padding: 10px 30px 0px 30px;*/
+    margin: 10px 0px 0px 0px;
+}
+
+#login_form_wrapper label {
+    /*display: block;*/
+    padding: 10px 0px 0px 30px;
+    /*margin: 10px 0px 0px 0px;*/
+    font-size: 16px;
+    font-family: "Microsoft YaHei";
+}
+
+.input-alert {
+    color: red;
+}
+
+#login_form_wrapper input[type="text"], input[type="password"] {
+    border: solid 1px #e5e5e5;
+    margin: 5px 30px 20px 30px;
+    padding: 9px;
+    display: block;
+    font-size: 16px;
+    width: 76%;
+}
+
+#login_form_wrapper input[type="text"]:focus, input[type="password"]:focus{
+    background-color: ghostwhite;
+}
+
+.login-bottom-item:hover {
+    color: #ffde00;
+    background: none;
+    transition: 0.4s;
+}
+
+.login-bottom-item:disabled {
+    color: gray;
+    border-color: gray;
+    background: none;
+}
+
+.input-item {
+    height: 90px;
+}
+
+.login-title {
+    background-color: #0b2a44;
+    padding: 20px 30px 20px 30px;
+    margin-bottom: 30px;
+    font-size: 25px;
+    color: #ffde00;
+}
+
+.login-bottom {
+    background-color: #0b2a44;
+    border-top: 1px solid #dddddd;
+    margin-top: 20px;
+    padding: 20px 20px 20px 20px;
+    clear: both;
+    color: #ffffff;
+    display: flex;
+    flex-flow: row;
+}
+
+.login-bottom-item {
+    border: 1px solid #cccccc;
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 0px 9px;
+    margin: 15px 10px 10px 10px;
+    text-align: center;
+    width: 150px;
+    cursor: pointer;
+    background-color: #ddbc00;
+    border-color: #ddbc00;
+    color: white;
+    /*float: right;*/
 }

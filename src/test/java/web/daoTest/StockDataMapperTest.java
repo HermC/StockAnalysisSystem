@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import web.dao.StockDataMapper;
+import web.dao.stock_presentation.StockDataMapper;
 import web.pojo.before.StockRelativeData;
 import web.pojo.before.TabTablesData;
 

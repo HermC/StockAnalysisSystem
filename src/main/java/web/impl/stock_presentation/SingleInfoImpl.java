@@ -1,7 +1,7 @@
 package web.impl.stock_presentation;
 
 import org.springframework.stereotype.Service;
-import web.dao.SingleInfoMapper;
+import web.dao.stock_presentation.SingleInfoMapper;
 import web.pojo.before.SingleInfo;
 import web.service.stock_presentation.SingleInfoService;
 

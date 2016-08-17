@@ -1,4 +1,4 @@
-package web.dao;
+package web.dao.stock_presentation;
 
 import org.springframework.stereotype.Repository;
 import web.pojo.before.StockCurrent;

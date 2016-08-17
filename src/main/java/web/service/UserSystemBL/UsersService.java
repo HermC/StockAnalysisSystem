@@ -12,7 +12,7 @@ import web.pojo.enumPo.UpdateState;
 
 //用户管理  增删改查
 
-public interface UserService {
+public interface UsersService {
 
     public LoginState login(String userID, String password );
 

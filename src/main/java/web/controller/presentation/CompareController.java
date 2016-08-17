@@ -71,6 +71,51 @@ public class CompareController {
         }
     }
 
+    @RequestMapping(value = "compare_desktop.do")
+    public @ResponseBody Map<String, Object>
+    getDesktopCompareData(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("success", true);
+
+        ArrayList<SingleInfo> stockList = singleInfoService.getSingleInfo();
+        map.put("stockList", JSON.toJSON(stockList));
+
+        Cookie[] cookies = request.getCookies();
+        if(cookies==null){
+            ArrayList<SingleInfo> tmp = new ArrayList<>();
+            map.put("stocks", JSON.toJSON(tmp));
+            return map;
+        }
+        String s = null;
+        for(int i=0;i<cookies.length;i++){
+            if(cookies[i].getName().equals("compareStock")){
+                s = cookies[i].getValue();
+            }
+        }
+        if(s==null){
+            ArrayList<SingleInfo> tmp = new ArrayList<>();
+            map.put("stocks", JSON.toJSON(tmp));
+            return map;
+        }else{
+            String[] stockid = s.split("%2C");
+            ArrayList<SingleInfo> result = new ArrayList<>();
+            ArrayList<SingleInfo> stocks = singleInfoService.getSingleInfo();
+
+            for(int i=0;i<stockid.length;i++){
+                for(SingleInfo stock: stocks){
+                    if(stockid[i].equals(stock.id)){
+                        result.add(stock);
+                        break;
+                    }
+                }
+            }
+
+            map.put("stocks", JSON.toJSON(result));
+
+            return map;
+        }
+    }
+
     @RequestMapping(value = "compare/compareData.do")
     public @ResponseBody
     Map<String, Object>

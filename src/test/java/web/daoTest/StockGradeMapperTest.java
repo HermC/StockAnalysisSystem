@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import web.dao.StockGradeMapper;
+import web.dao.stock_presentation.StockGradeMapper;
 import web.service.stock_presentation.GradeService;
 import web.vo.before.StockGradeVO;
 

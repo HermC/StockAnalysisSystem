@@ -2,7 +2,7 @@ package web.impl.stock_presentation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import web.dao.StockDataMapper;
+import web.dao.stock_presentation.StockDataMapper;
 import web.pojo.before.TabTablesData;
 import web.service.stock_presentation.TabTableInstructionService;
 import web.vo.before.TabTableInsVO;

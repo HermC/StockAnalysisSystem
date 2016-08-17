@@ -14,10 +14,12 @@
 <base href="<%=basePath%>">
 <div id="main-nav">
     <div class="user-info">
-        <div class="user-img-container">
-            <img id="user-img" src="resources/img/user/default.jpg"/>
-        </div>
-        <div id="user-name">finominon</div>
+        <a target="_blank" href="user.do">
+            <div class="user-img-container">
+                <img id="user-img" src="resources/img/user/default.jpg"/>
+            </div>
+            <div id="user-name" class="user-nickname">finominon</div>
+        </a>
     </div>
 
     <div class="main-nav-container">

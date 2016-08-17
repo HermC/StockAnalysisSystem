@@ -1,7 +1,7 @@
 package web.impl.stock_presentation;
 
 import org.springframework.stereotype.Service;
-import web.dao.DailyRangeMapper;
+import web.dao.stock_presentation.DailyRangeMapper;
 import web.pojo.before.StockRange;
 import web.service.stock_presentation.RangeService;
 

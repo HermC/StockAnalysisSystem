@@ -340,9 +340,9 @@
                                 <div id="detail_strategy_dawnStar" class="detail_strategy_graph">
 
                                 </div>
-                                <p class="tips">Tips: ${detailStrategy.DawnStarIns}<br>
-                                    详细分析: ${detailStrategy.DawnStarDetail}<br>
-                                    图形特点: ${detailStrategy.DawnStarGraph}
+                                <p class="tips"><b>Tips:</b> ${detailStrategy.DawnStarIns}<br>
+                                    <b>详细分析:</b> ${detailStrategy.DawnStarDetail}<br>
+                                    <b>图形特点:</b> ${detailStrategy.DawnStarGraph}
                                 </p>
                             </div>
                         </c:if>

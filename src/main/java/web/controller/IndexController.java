@@ -75,10 +75,36 @@ public class IndexController {
         return "index";
     }
 
+    @RequestMapping(value = "index_desktop.do")
+    public @ResponseBody Map<String, Object>
+    getDesktopIndexData(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("success", true);
+
+        ArrayList<SingleInfo> stockList = singleInfoService.getSingleInfo();
+        map.put("stockList", JSON.toJSON(stockList));
+        map.put("intraday", Realtime.getRealTicks("sh000001"));
+
+        List<News> stockNews = TotalNews.getStockNews();
+        List<News> financeNews = TotalNews.getFinanceNews();
+        List<News> companyNews = TotalNews.getCompanyNews();
+
+        List<Hotspot> hotspots = TotalNews.getHotspot();
+        ArrayList<SingleInfo> stop = recommendService.getStopRecommend();
+
+        map.put("stockNews", JSON.toJSON(stockNews));
+        map.put("financeNews", JSON.toJSON(financeNews));
+        map.put("companyNews", JSON.toJSON(companyNews));
+        map.put("hotspots", JSON.toJSON(hotspots));
+        map.put("stopRecommend", JSON.toJSON(stop));
+        map.put("industryRank", JSON.toJSON(TotalNews.getIndustryUp()));
+        map.put("stockRank", JSON.toJSON(TotalNews.getStockUp()));
+
+        return map;
+    }
+
     @RequestMapping(value = "welcome.do")
     public String toWelcome(HttpServletRequest request, Model model) {
-
-
         return "welcome";
     }
 }

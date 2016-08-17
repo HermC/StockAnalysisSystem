@@ -86,7 +86,7 @@ function requestDynamicData() {
 
     $.ajax({
         type: 'GET',
-        url: "bench/active.do?id=sh000001",
+        url: "bench/active.do?id=399001",
         dataType: 'json',
         success: function(data) {
             updateDynamicData(data.data);

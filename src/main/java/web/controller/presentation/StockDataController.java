@@ -1,6 +1,7 @@
 package web.controller.presentation;
 
 import com.alibaba.fastjson.JSON;
+import org.omg.CORBA.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import web.vo.before.TabTableInsVO;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -114,6 +116,74 @@ public class StockDataController {
 
         return "stocksingle";
     }
+
+    @RequestMapping(value = "stock_desktop.do")
+    public @ResponseBody Map<String, Object>
+    getDesktopStockData(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<>();
+
+        String stockId = request.getParameter("id");
+//        HttpSession session = request.getSession();
+//        String stockId = (String) session.getAttribute("passedId");
+//
+//        if(stockId==null){
+//            stockId = "sh600000";
+//        }
+
+        System.out.println(request.getSession().getId());
+
+        ArrayList<TabTablesData> tabTablesDatas = tabTableDataService.getTablesInfo(stockId, LocalDate.now().minusYears(1),LocalDate.now());
+        ArrayList<TabTablesData> last6Days = new ArrayList<>();
+        for(int i=tabTablesDatas.size()-10;i<tabTablesDatas.size();i++){
+            last6Days.add(tabTablesDatas.get(i));
+        }
+        ArrayList<TabTableInsVO> tableInsVOs = tabTableInstructionService.getTablesInfo(last6Days);
+        StockInfo stockInfo = stockInfoService.getStockInfo(stockId);
+        ArrayList<ForecastData> forecastData = forecastDataService.getForecastData(stockId);
+        ArrayList<ForecastData> bpForecastData = forecastDataService.getPyTradeForecast(stockId);
+        StockGradeVO stockGradeVO = gradeService.getCurrentInfo(stockId);
+        StockRelativeData stockRelativeData = relativeService.getRelativeData(stockId);
+        ArrayList<TabTablesData> benchmarkDatas = tabTableDataService.getTablesInfo("399300", LocalDate.now().minusDays(20), LocalDate.now());
+        DetailStrategyVO detailStrategy = detailStrategyService.getDetailStrategy(stockId);
+        ArrayList<StockSeason> stockSeason = stockInfoService.getStockSeason(stockId);
+        List<News> newsArrayList = Realtime.getRealNews(stockId);
+        List<Report> reportArrayList = Realtime.getRealReport(stockId);
+        ArrayList<SingleInfo> stockList = singleInfoService.getSingleInfo();
+
+        map.put("success", "true");
+        map.put("allinfo", tabTablesDatas);
+        map.put("specialPredict", tableInsVOs);
+        map.put("stockInfo", stockInfo);
+        map.put("forecastInfo", forecastData);
+        map.put("intraday", Realtime.getRealTicks(stockId));
+        map.put("grade", stockGradeVO);
+        map.put("relative", stockRelativeData);
+        map.put("benchmark", benchmarkDatas);
+        map.put("bpForecast", bpForecastData);
+//        map.put("pyTrade", pyTradeDatas);
+        map.put("news", newsArrayList);
+        map.put("reports", reportArrayList);
+        map.put("detailStrategy", detailStrategy);
+        map.put("season", stockSeason);
+        map.put("currentSeason", stockSeason.get(stockSeason.size()-1));
+        map.put("stockList", stockList);
+
+        return map;
+    }
+//
+//    @RequestMapping(value = "stock_request.do")
+//    public @ResponseBody Map<String, Object>
+//    stockRequest(HttpServletRequest request, HttpServletResponse response) {
+//        String stockid = request.getParameter("id");
+//        HttpSession session = request.getSession();
+//
+//        session.setAttribute("passedId", stockid);
+//
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("success", true);
+//
+//        return map;
+//    }
 
     @RequestMapping(value = "bench.do")
     public String toBench(HttpServletRequest request, Model model) {

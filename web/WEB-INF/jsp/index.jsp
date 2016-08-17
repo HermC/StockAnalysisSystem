@@ -29,7 +29,7 @@
     var stockList = ${stockList};
     var intraday = ${intraday};
 
-    console.log(${industryRank});
+    <%--console.log(${industryRank});--%>
   </script>
 
   <!-- Insert this line above script imports  -->

@@ -2,7 +2,7 @@ package web.impl.stock_presentation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import web.dao.StockInfoMapper;
+import web.dao.stock_presentation.StockInfoMapper;
 import web.pojo.before.StockInfo;
 import web.pojo.before.StockSeason;
 import web.service.stock_presentation.StockInfoService;

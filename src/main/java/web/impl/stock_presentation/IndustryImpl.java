@@ -2,7 +2,7 @@ package web.impl.stock_presentation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import web.dao.IndustryGradeMapper;
+import web.dao.stock_presentation.IndustryGradeMapper;
 import web.pojo.before.Industry;
 import web.service.stock_presentation.IndustryService;
 

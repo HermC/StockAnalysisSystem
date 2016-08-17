@@ -3,6 +3,7 @@ function initialHeader(){
     toggleSearch();
     inputListener();
     menu();
+    login();
 }
 
 function menu(){
@@ -42,6 +43,110 @@ function toggleSearch(){
             $(".input-wrapper").hide();
             $(".full").hide();
         }
+    });
+}
+
+function login() {
+    $(".login").on("click", function() {
+        $(".header-wrapper").hide();
+        $("#user_login_wrapper").show();
+    });
+    $("#login_register").on("click", function() {
+        $("#login_form").hide();
+        $("#register_form").show();
+    });
+    $("#register_back").on("click", function() {
+        $("#register_form").hide();
+        $("#login_form").show();
+    });
+    $("#user_login_wrapper").bind("click", function(e) {
+        if(e.target == this){
+            $(".header-wrapper").show();
+            $(this).hide();
+        }
+    });
+    $("#login_form input").bind("focus", function() {
+        $("#error_user_info").html("");
+        $("#error_password_info").html("");
+    });
+    $("#register_form input").bind("focus", function() {
+        $("#repeat_username_info").html("");
+        $("#different_password_info").html("");
+    });
+    $("#login_submit").on("click", function() {
+        var form = document.login_form;
+
+        var username = form.username.value;
+        var password = form.password.value;
+
+        if(username==undefined||username==null||username==""){
+            $("#error_user_info").html("用户名不能为空");
+            return;
+        }
+
+        if(password==undefined||password==null||password==""){
+            $("#error_password_info").html("密码不能为空")
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8888/login.do",
+            data: $("#login_form").serialize(),
+            dataType: "json",
+            beforeSend: function() {
+                $("#login_submit").attr("disabled", true);
+            },
+            success: function(data) {
+                var state = data.state;
+            },
+            error: function() {
+
+            },
+            complete: function() {
+                $("#login_submit").attr("disabled", false);
+            }
+        });
+    });
+    $("#register_submit").on("click", function() {
+        var form = document.register_form;
+
+        var username = form.username.value;
+        var password = form.password.value;
+        var confirm_password = form.confirm_password.value;
+
+        if(username==undefined||username==null||username==""){
+            $("#repeat_username_info").html("用户名不能为空");
+            return;
+        }
+
+        if(password==undefined||password==null||password==""){
+            $("#different_password_info").html("密码不能为空");
+            return;
+        }
+
+        if(confirm_password!=password){
+            $("#different_password_info").html("两次输入的密码不同");
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8888/register.do",
+            data: $("#register_form").serialize(),
+            dataType: "json",
+            beforeSend: function() {
+                $("#register_form").attr("disabled", true);
+            },
+            success: function(data) {
+                var stat = data.state;
+            },
+            error: function() {
+
+            },
+            complete: function() {
+                $("#register_form").attr("disabled", false);
+            }
+        });
     });
 }
 

@@ -1,5 +1,6 @@
 package web.Tools;
 
+import com.alibaba.fastjson.JSON;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
@@ -16,7 +17,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by NJU on 2016/5/25.
@@ -240,8 +243,8 @@ public class Realtime {
         return benchCurrent;
     }
 
-    public static JSONArray getRealTicks(String id) {
-        List data = new ArrayList<>();
+    public static Object getRealTicks(String id) {
+        List<Map<String, Object>> data = new ArrayList<>();
         JSONArray dataarray = new JSONArray();
 
         String url = "http://gupiao.baidu.com/api/stocks/stocktimeline?from=pc&os_ver=1&cuid=xxx&vv=100&format=json&stock_code=" + id;
@@ -253,11 +256,25 @@ public class Realtime {
             String lines=reader.readLine();
             JSONObject record = new JSONObject(lines);
             dataarray =record.getJSONArray("timeLine");
+            for(int i=0;i<dataarray.length();i++){
+                JSONObject t = dataarray.getJSONObject(i);
+                Map<String, Object> map = new HashMap<>();
+                map.put("date", t.get("date"));
+                map.put("volume", t.get("volume"));
+                map.put("amount", t.get("amount"));
+                map.put("preClose", t.get("preClose"));
+                map.put("price", t.get("price"));
+                map.put("avgPrice", t.get("avgPrice"));
+                map.put("netChangeRatio", t.get("netChangeRatio"));
+                map.put("time", t.get("time"));
+                map.put("ccl", t.get("ccl"));
+                data.add(map);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return dataarray;
+        return JSON.toJSON(data);
     }
 
 

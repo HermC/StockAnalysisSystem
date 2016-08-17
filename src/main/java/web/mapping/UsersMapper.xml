@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="web.dao.UserSystem.UsersMapper" >
+
+    <resultMap id="Usermap" type="web.pojo.after.UserPo">
+        <id column="userid" property="UserId" jdbcType="BIGINT"/>
+        <result column="password" property="Password" jdbcType="LONGVARCHAR"/>
+        <result column="nickname" property="UserName" jdbcType="LONGVARCHAR"/>
+        <result column="intro" property="Summary" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <select id="login" resultMap="Usermap" parameterType="java.lang.String">
+        SELECT * FROM user WHERE userid = #{0,jdbcType = VARCHAR}
+
+    </select>
+
+</mapper>

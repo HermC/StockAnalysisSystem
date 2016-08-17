@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import web.dao.StockFavouriteMapper;
+import web.dao.stock_presentation.StockFavouriteMapper;
 import web.pojo.before.FavouriteStock;
 
 import javax.annotation.Resource;

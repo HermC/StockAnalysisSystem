@@ -1,6 +1,7 @@
 package web.impl.stock_presentation;
 
 import org.springframework.stereotype.Service;
+import web.dao.stock_presentation.StockDataMapper;
 import web.pojo.before.PyTradeData;
 import web.pojo.before.ForecastData;
 import web.pojo.before.PytradeDataPo;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 public class ForecastDataImpl implements ForecastDataService {
 
     @Resource
-    private web.dao.StockDataMapper stockDataMapper;
+    private StockDataMapper stockDataMapper;
 
     @Override
     public ArrayList<ForecastData> getForecastData(String id) {

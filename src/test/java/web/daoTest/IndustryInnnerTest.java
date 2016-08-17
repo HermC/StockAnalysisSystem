@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import web.dao.IndustryGradeMapper;
+import web.dao.stock_presentation.IndustryGradeMapper;
 
 import javax.annotation.Resource;
 

@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import web.dao.StockDataMapper;
+import web.dao.stock_presentation.StockDataMapper;
 import web.pojo.before.TabTablesData;
 import web.service.stock_presentation.TabTableInstructionService;
 import web.vo.before.TabTableInsVO;

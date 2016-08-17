@@ -2,7 +2,7 @@ package web.impl.stock_presentation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import web.dao.StockGradeMapper;
+import web.dao.stock_presentation.StockGradeMapper;
 import web.service.stock_presentation.ForecastDataService;
 import web.service.stock_presentation.StockComparisionService;
 import web.service.stock_presentation.TabTableDataService;

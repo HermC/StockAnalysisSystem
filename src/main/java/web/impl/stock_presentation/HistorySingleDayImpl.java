@@ -1,7 +1,7 @@
 package web.impl.stock_presentation;
 
 import org.springframework.stereotype.Service;
-import web.dao.StockCurrentMapper;
+import web.dao.stock_presentation.StockCurrentMapper;
 import web.pojo.before.StockCurrent;
 import web.service.stock_presentation.HistorySingleDayService;
 
