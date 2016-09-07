@@ -1,0 +1,69 @@
+#main-page {
+    /*padding-top: 30px;*/
+    /*padding-bottom: 30px;*/
+    width: auto;
+    height: auto;
+    min-height: 100vh;
+    background-color: #eeeeee;
+    border-left: 1px solid #eeeeee;
+    position: relative;
+    color: #535353;
+    /*box-sizing: border-box;*/
+}
+
+a {
+    color: #535353;
+}
+
+#main-page h1 {
+    padding-left: 5px;
+    border-left: 3px solid #535353;
+    font-size: 24px;
+}
+
+.simulator-info-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+#back_to_list:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.data-bar {
+    display: flex;
+}
+
+.data-bar-item {
+    margin-top: 20px;
+    padding: 5px 20px;
+    border-left: 1px solid #dedede;
+    box-sizing: border-box;
+}
+
+.data-value {
+    font-size: 28px;
+    text-align: center;
+}
+
+.data-name {
+    font-size: 15px;
+    text-align: center;
+}
+
+.overview {
+    /*height: 100px;*/
+    padding: 10px;
+    /*background-color: black;*/
+    box-sizing: border-box;
+}
+
+.splitter-pane {
+    /*height: 100px;*/
+    padding: 10px;
+    box-sizing: border-box;
+}

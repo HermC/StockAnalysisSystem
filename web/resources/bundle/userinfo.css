@@ -1,6 +1,24 @@
 #main-page {
-    padding-top: 50px;
+    padding-top: 30px;
+    /*padding-bottom: 30px;*/
     width: auto;
+    height: 100%;
+    min-height: 100vh;
+    background-color: #eeeeee;
+    border-left: 1px solid #eeeeee;
+    position: relative;
+    color: #535353;
+    /*box-sizing: border-box;*/
+}
+
+label {
+    font-weight: lighter;
+}
+
+#main-page h1 {
+    padding-left: 5px;
+    border-left: 3px solid #535353;
+    font-size: 24px;
 }
 
 .user-body {
@@ -92,14 +110,14 @@
     flex: 0 0 25%;
 }
 
-.edit-container input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"] {
     border: solid 1px #e5e5e5;
     margin: 5px 0 5px 0;
     padding: 9px;
     font-size: 16px;
 }
 
-.edit-container input[type="text"]:focus, input[type="password"]:focus{
+input[type="text"]:focus, input[type="password"]:focus{
     background-color: ghostwhite;
 }
 
@@ -124,8 +142,13 @@
 
 .info-container tr, .info-container th {
     font-size:1em;
-    border:1px solid #535353;
+    /*border:1px solid #535353;*/
     padding:3px 7px 2px 7px;
+}
+
+.table-item:hover {
+    background-color: #ededed;
+    cursor: pointer;
 }
 
 .info-container th {
@@ -140,4 +163,60 @@
 .info-container tr.alt td {
     color: #000000;
     background-color: #ededed;
+}
+
+.table-header {
+    border-top: 1px solid #535353;
+    border-bottom: 1px solid #535353;
+}
+
+.association-outer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    /*padding-top: 70px;*/
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.association-info-wrapper {
+    width: 50%;
+    /*height: 100px;*/
+    padding: 20px 20px 20px 20px;
+    margin: 80px auto auto auto;
+    background-color: white;
+    font-size: 18px;
+    color: #535353;
+}
+
+#association_memeber_wrapper {
+    height: 300px;
+    max-height: 300px;
+    overflow: auto;
+}
+
+.new-association-wrapper {
+    margin-top: 10px;
+    padding-top: 10px;
+    width: 300px;
+    border-top: 1px solid #535353;
+    /*border-bottom: 1px solid #535353;*/
+}
+
+.new-association-wrapper input[type="text"]{
+    padding: 5px 8px;
+    font-size: 14px;
+}
+
+span.select2-selection.select2-selection--single, span.select2-selection.select2-selection--multiple{
+    color: #535353;
+    border-radius: 0;
+    border: 1px solid #e5e5e5;
+    outline: none;
+}
+
+.select2-results li {
+    color: #535353;
 }

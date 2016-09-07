@@ -514,6 +514,7 @@ a:hover{
     color: gray;
     border-color: gray;
     background: none;
+    cursor: auto;
 }
 
 .input-item {
@@ -553,4 +554,85 @@ a:hover{
     border-color: #ddbc00;
     color: white;
     /*float: right;*/
+}
+
+.edit-button {
+    padding: 6px 12px 6px 12px;
+    font-size: 15px;
+    border: 1px solid;
+    background: none;
+    color: #535353;
+    height: 35px;
+    overflow: hidden;
+}
+
+.edit-button:hover {
+    transition: 0.4s;
+    background-color: #535353;
+    color: white;
+}
+
+.edit-button:disabled {
+    color: #a9a9a9;
+    background: none;
+}
+
+.column {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.column-item {
+    flex: 1;
+    align-items: center;
+}
+
+.u1of4 {
+    flex: 0 0 25%;
+}
+
+.u1of10 {
+    flex: 0 0 10%;
+}
+
+.u1of20 {
+    flex: 0 0 5%;
+}
+
+#strategy_back:hover {
+    color: black;
+    cursor: pointer;
+}
+
+select {
+    /*width: auto;*/
+    border: solid 1px #aaaaaa;
+    padding: 6px 20px 6px 5px;
+
+    border-radius: 0;
+
+    /*background-color: white;*/
+    background: url("../img/arrow.png") no-repeat scroll right center transparent;
+    background-origin: padding-box;
+
+    box-shadow: 0px 0px 0px #535353;
+
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+}
+
+select:focus {
+    outline: none;
+    /*background: #efefef;*/
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+.display-none {
+    display: none;
 }

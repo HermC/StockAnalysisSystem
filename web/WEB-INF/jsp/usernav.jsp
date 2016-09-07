@@ -13,12 +13,15 @@
 <html lang="en">
 <base href="<%=basePath%>">
 <div id="main-nav">
+    <script>
+        console.log(${userInfo});
+    </script>
     <div class="user-info">
         <a target="_blank" href="user.do">
             <div class="user-img-container">
                 <img id="user-img" src="resources/img/user/default.jpg"/>
             </div>
-            <div id="user-name" class="user-nickname">finominon</div>
+            <div id="user-name" class="user-nickname">${userInfo.UserName}</div>
         </a>
     </div>
 
@@ -43,15 +46,15 @@
         </a>
         <br>
         <br>
-        <a class="main-nav-item">
+        <a class="main-nav-item" href="user/stockpool.do" target="_blank">
             <span class="main-nav-point"></span>
-            <p class="main-nav-target">自选股</p>
+            <p class="main-nav-target">股票池</p>
         </a>
-        <a class="main-nav-item">
+        <a class="main-nav-item" href="user/strategy-list.do" target="_blank">
             <span class="main-nav-point"></span>
             <p class="main-nav-target">策略</p>
         </a>
-        <a class="main-nav-item">
+        <a class="main-nav-item" href="user/simulator-list.do" target="_blank">
             <span class="main-nav-point"></span>
             <p class="main-nav-target">模拟交易</p>
         </a>

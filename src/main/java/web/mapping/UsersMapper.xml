@@ -13,4 +13,58 @@
 
     </select>
 
+    <insert id="newUser" parameterType="web.pojo.after.UserPo"  >
+        insert into user(password,nickname,intro)
+        values(#{Password},#{UserName},#{Summary})
+    </insert>
+
+    <update id="updateUserPassword" parameterType="java.lang.String">
+        UPDATE user SET password = #{1,jdbcType=VARCHAR}
+        WHERE userid = #{0,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateUserHead" parameterType="java.lang.String">
+
+    </update>
+
+    <update id="updateUserSummary" parameterType="java.lang.String">
+        UPDATE user SET intro = #{1,jdbcType=VARCHAR}
+        WHERE userid = #{0,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateUserName" parameterType="java.lang.String">
+        UPDATE user SET nickname = #{1,jdbcType=VARCHAR}
+        WHERE userid = #{0,jdbcType=VARCHAR}
+    </update>
+
+    <resultMap id="Usersmap" type="web.pojo.after.UserPo">
+        <id column="userid" property="UserId" jdbcType="BIGINT"/>
+        <result column="password" property="Password" jdbcType="LONGVARCHAR"/>
+        <result column="nickname" property="UserName" jdbcType="LONGVARCHAR"/>
+        <result column="intro" property="Summary" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <select id="getUserByNameAndPassword" resultMap="Usersmap" parameterType="web.pojo.after.UserPo">
+        SELECT * FROM user WHERE password = #{Password} AND nickname = #{UserName}
+
+    </select>
+
+    <resultMap id="Useridmap" type="web.pojo.after.UserPo">
+        <id column="userid" property="UserId" jdbcType="BIGINT"/>
+        <result column="password" property="Password" jdbcType="LONGVARCHAR"/>
+        <result column="nickname" property="UserName" jdbcType="LONGVARCHAR"/>
+        <result column="intro" property="Summary" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <select id="getUserByID" resultMap="Useridmap" parameterType="java.lang.String">
+        SELECT * FROM user WHERE userid = #{0,jdbcType=VARCHAR}
+    </select>
+
+    <resultMap id="Useridmaps" type="web.pojo.after.UserPo">
+        <id column="userid" property="UserId" jdbcType="BIGINT"/>
+        <result column="nickname" property="UserName" jdbcType="LONGVARCHAR"/>
+        <result column="intro" property="Summary" jdbcType="LONGVARCHAR"/>
+        <result column="earn" property="maxearn" jdbcType="DOUBLE"/>
+    </resultMap>
+    <select id="getAllUser" resultMap="Useridmaps">
+        SELECT * from `user`
+    </select>
 </mapper>

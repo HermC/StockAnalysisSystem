@@ -1,0 +1,103 @@
+#main-page {
+    /*padding-top: 30px;*/
+    /*padding-bottom: 30px;*/
+    width: auto;
+    height: auto;
+    min-height: 100vh;
+    background-color: #eeeeee;
+    border-left: 1px solid #eeeeee;
+    position: relative;
+    color: #535353;
+    /*box-sizing: border-box;*/
+}
+
+label {
+    font-weight: lighter;
+}
+
+#main-page h1 {
+    padding-left: 5px;
+    border-left: 3px solid #535353;
+    font-size: 24px;
+}
+
+.simulator-list-container {
+    margin: 0px auto auto auto;
+    padding: 40px 21px 30px 20px;
+    width: 80%;
+    /*height: 100px;*/
+    background-color: white;
+    position: relative;
+    top: 30px;
+}
+
+.selector-wrapper {
+    width: 180px;
+    display: flex;
+    /*justify-content: space-between;*/
+}
+
+.selector-item {
+    padding: 2px;
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+}
+
+.selected {
+    color: white;
+    background-color: #535353;
+    box-sizing: border-box;
+}
+
+.simulator-header {
+    border-top: 1px solid #535353;
+    border-bottom: 1px solid #535353;
+}
+
+.simulator-list {
+    max-height: 200px;
+    overflow: auto;
+}
+
+.delete-simulator:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.add-new-simulator-wrapper {
+    margin-top: 10px;
+    padding-top: 5px;
+    border-top: 1px solid #535353;
+    border-bottom: 1px solid #535353;
+    /*height: 100px;*/
+}
+
+.add-new-simulator-wrapper h3{
+    font-size: 18px;
+    float: left;
+}
+
+.config-wrapper {
+    width: 300px;
+    /*height: 100px;*/
+    margin-left: 50px;
+}
+
+.config-item {
+margin-bottom: 4px;
+}
+
+input[type="text"] {
+    padding: 5px;
+}
+
+a {
+    color: #535353;
+}
+
+a:hover {
+    color: lightblue;
+    text-decoration: none;
+    cursor: pointer;
+}

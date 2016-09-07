@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="web.dao.UserSystem.StockPoolMapper" >
+
+    <insert id="addpool" parameterType="java.lang.String" >
+        INSERT INTO stockpool (uid,poolname)
+        VALUES (#{0,jdbcType=VARCHAR},#{1,jdbcType=VARCHAR})
+    </insert>
+    
+    <select id="getpoolidByname" parameterType="java.lang.String" resultType="java.lang.String">
+       SELECT `poolid` FROM `stockpool` WHERE `uid` = #{0,jdbcType=VARCHAR} AND
+        poolname = #{1,jdbcType=VARCHAR}
+    </select>
+
+    <update id="addStocklist" parameterType="java.lang.String">
+        CREATE TABLE ${listname} (`stockid` VARCHAR(100) not null, primary KEY (`stockid`))
+    </update>
+
+    <!--<insert id="addintoStocklist" parameterType="Map">-->
+        <!--INSERT INTO #{listname} (`stockid`)-->
+        <!--VALUES <foreach collection="idlist" item="item" index="index" open="(" close=")" separator=",">-->
+        <!--#{item}-->
+    <!--</foreach>-->
+    <!--</insert>-->
+    <insert id="addintoStocklist" parameterType="String">
+        INSERT INTO ${listname} (stockid)
+        VALUES (#{id})
+    </insert>
+
+    <delete id="deletePool" parameterType="String" >
+        DELETE FROM stockpool WHERE uid = #{uid} AND poolid = #{poolid}
+
+    </delete>
+
+    <update id="droptable" parameterType="java.lang.String">
+        drop table ${listname}
+    </update>
+
+    <insert id="addtopool" parameterType="String">
+        INSERT INTO ${listname}(`stockid`)
+        VALUES (#{stockid})
+    </insert>
+
+    <delete id="deletefrompool" parameterType="String">
+        DELETE FROM ${listname} WHERE stockid = #{stockid}
+    </delete>
+
+    <resultMap id="stockpoolmap" type="web.pojo.after.StockPool">
+        <id column="uid" property="userid" jdbcType="VARCHAR"/>
+        <result column="poolid" property="poolId" jdbcType="VARCHAR"/>
+        <result column="poolname" property="poolName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="getAllPool" parameterType="String" resultMap="stockpoolmap">
+        SELECT uid , poolid , poolname FROM stockpool WHERE uid = #{0,jdbcType=VARCHAR}
+    </select>
+
+    <resultMap id="stockinfomap" type="web.pojo.after.SingleStockPo">
+        <id column="stockid" property="stockid" jdbcType="VARCHAR"/>
+        <result column="name" property="stockname" jdbcType="VARCHAR"/>
+        <result column="close" property="close" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="getStockinfo" resultMap="stockinfomap">
+       SELECT sw_stock_info.stockid ,sw_stock_info.name,stock_2016.close  ,max(stock_2016.date)FROM sw_stock_info , stock_2016
+        WHERE (sw_stock_info.stockid IN (SELECT `stockid` FROM ${listname})) AND (sw_stock_info.stockid = stock_2016.stockid) group by stock_2016.stockid;
+    </select>
+
+    <resultMap id="virtualtrademap" type="web.pojo.after.VirtualTradePo">
+        <id column="userid" property="userid" jdbcType="VARCHAR"/>
+        <result column="vid" property="tradeid" jdbcType="BIGINT" javaType="String"/>
+        <result column="vname" property="tradename" jdbcType="VARCHAR"/>
+        <result column="starttime" property="startdate" jdbcType="VARCHAR"/>
+        <result column="endtime" property="enddate" jdbcType="VARCHAR"/>
+        <result column="state" property="state" jdbcType="VARCHAR"/>
+        <result column="earn" property="earning" jdbcType="DOUBLE"/>
+        <result column="drawdown" property="MaxDrawdown" jdbcType="DOUBLE"/>
+        <result column="startfund" property="startfund" jdbcType="DOUBLE"/>
+        <result column="rightfund" property="rightfund" jdbcType="DOUBLE"/>
+        <result column="sid" property="strategyid" jdbcType="VARCHAR"/>
+        <result column="yearearning" property="yearearning" jdbcType="DOUBLE"/>
+        <result column="basicearning" property="basicearning" jdbcType="DOUBLE"/>
+        <result column="Alpha" property="Alpha" jdbcType="DOUBLE"/>
+        <result column="Beta" property="Beta" jdbcType="DOUBLE"/>
+        <result column="Sharpe" property="Sharpe" jdbcType="DOUBLE"/>
+        <result column="repository" property="repository" jdbcType="LONGVARCHAR"/>
+        <result column="log" property="log" jdbcType="LONGVARCHAR"/>
+        <result column="poolid" property="poolid" jdbcType="VARCHAR"/>
+        <result column="sname" property="strategyname" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="getVtrade" resultMap="virtualtrademap">
+        SELECT * FROM vtrade WHERE poolid = #{0,jdbcType=VARCHAR}
+    </select>
+
+    <update id="updatename" parameterType="String">
+        UPDATE stockpool SET poolname = #{2,jdbcType=VARCHAR}
+        WHERE uid = #{0,jdbcType=VARCHAR} AND poolid = #{1,jdbcType=VARCHAR}
+    </update>
+</mapper>

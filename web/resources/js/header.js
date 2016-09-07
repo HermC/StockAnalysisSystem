@@ -72,6 +72,8 @@ function login() {
     $("#register_form input").bind("focus", function() {
         $("#repeat_username_info").html("");
         $("#different_password_info").html("");
+        $("#register_failed").hide();
+        $("#register_success").hide();
     });
     $("#login_submit").on("click", function() {
         var form = document.login_form;
@@ -85,19 +87,29 @@ function login() {
         }
 
         if(password==undefined||password==null||password==""){
-            $("#error_password_info").html("密码不能为空")
+            $("#error_password_info").html("密码不能为空");
+            return;
         }
 
         $.ajax({
             type: "POST",
-            url: "http://localhost:8888/login.do",
+            url: "login.do",
             data: $("#login_form").serialize(),
             dataType: "json",
             beforeSend: function() {
                 $("#login_submit").attr("disabled", true);
             },
             success: function(data) {
-                var state = data.state;
+                console.log(data);
+                if(data.success==true){
+                    window.location.href = "index.do";
+                }else{
+                    if(data.state=="用户名不存在"){
+                        $("#error_user_info").html(data.state);
+                    }else{
+                        $("#error_password_info").html(data.state);
+                    }
+                }
             },
             error: function() {
 
@@ -110,12 +122,12 @@ function login() {
     $("#register_submit").on("click", function() {
         var form = document.register_form;
 
-        var username = form.username.value;
+        var nickname = form.nickname.value;
         var password = form.password.value;
         var confirm_password = form.confirm_password.value;
 
-        if(username==undefined||username==null||username==""){
-            $("#repeat_username_info").html("用户名不能为空");
+        if(nickname==undefined||nickname==null||nickname==""){
+            $("#repeat_username_info").html("昵称不能为空");
             return;
         }
 
@@ -131,20 +143,26 @@ function login() {
 
         $.ajax({
             type: "POST",
-            url: "http://localhost:8888/register.do",
+            url: "register.do",
             data: $("#register_form").serialize(),
             dataType: "json",
             beforeSend: function() {
-                $("#register_form").attr("disabled", true);
+                $("#register_submit").attr("disabled", true);
             },
             success: function(data) {
-                var stat = data.state;
+                if(data.success==true){
+                    var userid = data.userid;
+                    $("#register_userid").html(userid);
+                    $("#register_wrapper").hide();
+                    $("#register_success").show();
+                }
             },
             error: function() {
-
+                $("#register_failed").show();
+                $("#register_submit").attr("disabled", false);
             },
             complete: function() {
-                $("#register_form").attr("disabled", false);
+
             }
         });
     });

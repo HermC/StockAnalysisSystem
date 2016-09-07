@@ -7,18 +7,26 @@ import com.alibaba.fastjson.JSONObject;
 
 import java.io.*;
 import java.nio.Buffer;
+import java.util.ArrayList;
 
 /**
  * Created by Hermit on 16/7/26.
  */
 public class RookieModule {
 
+    private static final String HEADER = "" +
+            "import talib\n" +
+            "from rqalpha.api import history, plot, order_target_value, order_shares\n\n";
+    private static final String INIT = "" +
+            "def init(context):\n" +
+            "   ";
+
     private String code = "";
     private JSONObject graph = null;
     private JSONArray nodes = null;
     private JSONArray paths = null;
 
-    public RookieModule(String input) {
+    public RookieModule(String input, ArrayList<String> stocks) {
         try {
             graph = JSONObject.parseObject(input);
         } catch (Exception e) {
@@ -48,6 +56,26 @@ public class RookieModule {
             return;
         }
 
+        code += HEADER;
+
+        code += INIT;
+        code += "\tcontext.sl = [";
+
+        for(int i=0;i<stocks.size();i++){
+            code += "'";
+            String stock = stocks.get(i);
+            if(stock.length()>6){
+                code += stock.substring(2, stock.length());
+            }else{
+                code += stock;
+            }
+            if(i!=stocks.size()-1){
+                code += "',";
+            }else{
+                code += "']\n\n";
+            }
+        }
+
         code += "def ";
         code += start.getString("text");
         code += ":\n";
@@ -74,6 +102,14 @@ public class RookieModule {
         }
 
         rookieTranslater(1, next, start);
+    }
+
+    public String initStocks(ArrayList<String> stocks) {
+        String result = "";
+
+
+
+        return result;
     }
 
     private void aliningCode(int layer, String text) {
@@ -267,7 +303,10 @@ public class RookieModule {
 
         System.out.println(content);
 
-        RookieModule rookieModule = new RookieModule(content);
+        ArrayList<String> stock = new ArrayList<>();
+        stock.add("sh600000");
+
+        RookieModule rookieModule = new RookieModule(content, stock);
 
         System.out.println(rookieModule.getCode());
 

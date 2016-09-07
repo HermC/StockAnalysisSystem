@@ -9,9 +9,39 @@ public class StrategyPo {
 
     public String strategyid;
 
+    public String strategyname;
+
+    public String isJson;
+
     public String json;
 
     public String python;
+
+    public String updateAt;
+
+    public String getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(String updateAt) {
+        this.updateAt = updateAt;
+    }
+
+    public String getIsJson() {
+        return isJson;
+    }
+
+    public void setIsJson(String isJson) {
+        this.isJson = isJson;
+    }
+
+    public String getStrategyname() {
+        return strategyname;
+    }
+
+    public void setStrategyname(String strategyname) {
+        this.strategyname = strategyname;
+    }
 
     public String getPython() {
         return python;

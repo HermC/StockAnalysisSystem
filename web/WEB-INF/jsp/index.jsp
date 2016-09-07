@@ -56,7 +56,9 @@
 <body>
 <c:choose>
   <c:when test="${userInfo!=null}">
-    <jsp:include page="usernav.jsp" flush="true"/>
+    <jsp:include page="usernav.jsp" flush="true">
+      <jsp:param name="userInfo" value="${userInfo}"/>
+    </jsp:include>
     <div id="main-page">
       <div id="index_first_block" class="fullBlock">
         <div id="logo_and_bench">
@@ -283,9 +285,9 @@
               沪深300(hs300)
               <ul>
                 <li class="more_button">查看更多</li>
-                <li class="bench_link"><a href="bench.do?id=hs300" target="_blank">沪深300</a></li>
-                <li class="bench_link"><a href="bench.do?id=sh000001" target="_blank">上证</a></li>
-                <li class="bench_link"><a href="bench.do?id=sz399001" target="_blank">深证</a></li>
+                <li class="bench_link"><a href="bench.do?id=399300" target="_blank">沪深300</a></li>
+                <li class="bench_link"><a href="bench.do?id=000001" target="_blank">上证</a></li>
+                <li class="bench_link"><a href="bench.do?id=399001" target="_blank">深证</a></li>
               </ul>
             </div>
             <div class="num_wrapper">

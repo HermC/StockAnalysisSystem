@@ -1,5 +1,7 @@
 package web.pojo.after;
 
+import java.util.ArrayList;
+
 /**
  * Created by linyufan on 16/7/23.
  */
@@ -17,19 +19,25 @@ public class BackTestResultPo {
 
     public String resultid;
 
-    public Double earning;          //回测收益
+    public ArrayList<BackTestDailyResultPo> resultdatas;
 
-    public Double yearearning;      //回测年化收益（率)
 
-    public Double basicearning;     //基准收益（率）
+    public BackTestResultPo(String startdate,String enddate , String testdate ,String userid,String strategyid,String resultid){
+        this.startdate = startdate;
+        this.enddate = enddate;
+        this.testdate = testdate;
+        this.userid = userid;
+        this.strategyid = strategyid;
+        this.resultid = resultid;
+    }
 
-    public Double Alpha;            //阿尔法系数
+    public ArrayList<BackTestDailyResultPo> getResultdatas() {
+        return resultdatas;
+    }
 
-    public Double Beta;             //贝塔系数
-
-    public Double Sharpe;           //夏普系数
-
-    public Double MaxDrawdown;      //最大回撤率
+    public void setResultdatas(ArrayList<BackTestDailyResultPo> resultdatas) {
+        this.resultdatas = resultdatas;
+    }
 
     public String getStartdate() {
         return startdate;
@@ -79,59 +87,19 @@ public class BackTestResultPo {
         this.resultid = resultid;
     }
 
-    public Double getEarning() {
-        return earning;
-    }
+//    public Double earning;          //回测收益
+//
+//    public Double yearearning;      //回测年化收益（率)
+//
+//    public Double basicearning;     //基准收益（率）
+//
+//    public Double Alpha;            //阿尔法系数
+//
+//    public Double Beta;             //贝塔系数
+//
+//    public Double Sharpe;           //夏普系数
+//
+//    public Double MaxDrawdown;      //最大回撤率
+//
 
-    public void setEarning(Double earning) {
-        this.earning = earning;
-    }
-
-    public Double getYearearning() {
-        return yearearning;
-    }
-
-    public void setYearearning(Double yearearning) {
-        this.yearearning = yearearning;
-    }
-
-    public Double getBasicearning() {
-        return basicearning;
-    }
-
-    public void setBasicearning(Double basicearning) {
-        this.basicearning = basicearning;
-    }
-
-    public Double getAlpha() {
-        return Alpha;
-    }
-
-    public void setAlpha(Double alpha) {
-        Alpha = alpha;
-    }
-
-    public Double getBeta() {
-        return Beta;
-    }
-
-    public void setBeta(Double beta) {
-        Beta = beta;
-    }
-
-    public Double getSharpe() {
-        return Sharpe;
-    }
-
-    public void setSharpe(Double sharpe) {
-        Sharpe = sharpe;
-    }
-
-    public Double getMaxDrawdown() {
-        return MaxDrawdown;
-    }
-
-    public void setMaxDrawdown(Double maxDrawdown) {
-        MaxDrawdown = maxDrawdown;
-    }
 }

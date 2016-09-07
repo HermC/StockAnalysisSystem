@@ -15,10 +15,20 @@ public interface UsersMapper {
 
     public  ArrayList<UserPo>  login(String userID);
 
-    public boolean newUser();
+    public boolean newUser(UserPo userPo);
 
-    public boolean updateUser();
+    public boolean updateUserPassword(String id ,String value);
 
+    public boolean updateUserHead(String id ,String value);
 
+    public boolean updateUserSummary(String id ,String value);
+
+    public boolean updateUserName(String id ,String value);
+
+    public UserPo getUserByNameAndPassword(UserPo userPo);
+
+    public UserPo getUserByID(String id);
+
+    public ArrayList<UserPo> getAllUser();
 
 }

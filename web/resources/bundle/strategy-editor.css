@@ -1,0 +1,135 @@
+body {
+    background-color: white;
+}
+#main-page {
+    /*padding-top: 30px;*/
+    /*padding-bottom: 30px;*/
+    width: auto;
+    /*height: 100%;*/
+    min-height: 100vh;
+    background-color: white;
+    border-left: 1px solid #eeeeee;
+    position: relative;
+    color: #535353;
+    /*box-sizing: border-box;*/
+}
+
+#main-page h1 {
+    padding-left: 5px;
+    border-left: 3px solid #535353;
+    font-size: 24px;
+}
+
+.strategy-editor-container {
+    width: 100%;
+    height: 100vh;
+    padding: 20px 20px 20px 20px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+#strategy_code {
+    width: 100%;
+    height: 75%;
+    font-size: 18px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+#strategy_code_editor {
+    padding: 9px;
+    height: 100%;
+}
+
+.strategy-editor {
+    width: 100%;
+    height: 72vh;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    /*flex-flow: column;*/
+    flex-direction: column;
+}
+
+.row-item {
+    flex: 1;
+}
+
+#strategy_code_console {
+    margin-top: 5px;
+    padding: 5px;
+    width: 100%;
+    height: 25%;
+    color: rgb(255, 100, 100);
+    background-color: #141414;
+    outline: none;
+    font-size: 12px;
+    font-family: "Courier New";
+    box-sizing: border-box;
+}
+
+.CodeMirror {
+    flex: 1;
+    height: 100%;
+    font-size: 16px;
+}
+
+.jtk-demo-main {
+    width: 100%;
+    height: 100%;
+}
+
+.jtk-demo-main-wrapper {
+    width: 100%;
+    height: 75%;
+}
+
+.jtk-demo-canvas {
+    height: 100%;
+}
+
+.sidebar {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.sidebar ul li {
+    width: auto;
+}
+
+input[type="text"] {
+    padding: 5px;
+    /*height: 20px;*/
+    box-sizing: border-box;
+}
+
+.line {
+    width: 20px;
+    height: 1px;
+    border: 1px solid #535353;
+}
+
+.time-wrapper {
+    padding: 10px;
+}
+
+.strategy-running-result {
+    width: 100%;
+    height: 100px;
+    padding: 20px 20px 20px 20px;
+    background-color: white;
+}
+
+#choose_stocks_wrapper {
+    width: 50%;
+}
+
+.select2-container--default .select2-selection--multiple {
+    border-radius: 0;
+}
+
+#backtesting_graph {
+    height: 300px;
+}

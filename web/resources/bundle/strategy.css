@@ -1,0 +1,55 @@
+body {
+    background: #eeeeee;
+}
+
+#main-page {
+    /*padding-top: 30px;*/
+    /*padding-bottom: 30px;*/
+    width: auto;
+    height: 100%;
+    min-height: 100vh;
+    background-color: #eeeeee;
+    border-left: 1px solid #eeeeee;
+    position: relative;
+    color: #535353;
+    /*box-sizing: border-box;*/
+}
+
+.strategy-list-container {
+    margin: 0px auto auto auto;
+    padding: 40px 21px 30px 20px;
+    width: 80%;
+    /*height: 100px;*/
+    background-color: white;
+    position: relative;
+    top: 30px;
+}
+
+#main-page h1 {
+    padding-left: 5px;
+    border-left: 3px solid #535353;
+    font-size: 24px;
+}
+
+.u1of10 {
+    text-align: center;
+}
+
+.delete-strategy:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.strategy-header {
+    border-top: 1px solid #535353;
+    border-bottom: 1px solid #535353;
+}
+
+.strategy-list {
+    height: 200px;
+    overflow: auto;
+}
+
+.strategy-name {
+    cursor: pointer;
+}

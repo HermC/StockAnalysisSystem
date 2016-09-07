@@ -38,12 +38,49 @@ public class UsersImpl implements UsersService {
     }
 
     @Override
-    public AddState newUser(UserPo userPo) {
-        return null;
+    public String newUser(UserPo userPo) {
+        usersMapper.newUser(userPo);
+        UserPo result = usersMapper.getUserByNameAndPassword(userPo);
+
+        return result.getUserId();
+
     }
 
     @Override
-    public UpdateState updateUser(UserPo userPo) {
-        return null;
+    public UpdateState updateUserHead(String userID, String value) {
+        updateUserHead(userID, value);
+        return UpdateState.修改成功;
     }
+
+
+
+    @Override
+    public UpdateState updateUserPassword(String userID, String value) {
+        usersMapper.updateUserPassword(userID,value);
+        return UpdateState.修改成功;
+    }
+
+    @Override
+    public UpdateState updateUserName(String userID, String value) {
+        usersMapper.updateUserName(userID,value);
+        return UpdateState.修改成功;
+    }
+
+    @Override
+    public UpdateState updateUserSummary(String userID, String value) {
+        usersMapper.updateUserSummary(userID,value);
+        return UpdateState.修改成功;
+    }
+
+    @Override
+    public UserPo getUser(String userid) {
+
+        return usersMapper.getUserByID(userid);
+    }
+
+    @Override
+    public ArrayList<UserPo> getAllUser() {
+        return usersMapper.getAllUser();
+    }
+
 }

@@ -1,5 +1,7 @@
 package web.pojo.after;
 
+import web.pojo.before.User;
+
 /**
  * Created by linyufan on 16/7/22.
  */
@@ -10,6 +12,24 @@ public class UserPo {
     public String Head;
     public String Summary;
     public String UserName;
+    public String maxearn;
+
+    public String getMaxearn() {
+        return maxearn;
+    }
+
+    public void setMaxearn(String maxearn) {
+        this.maxearn = maxearn;
+    }
+
+    public UserPo() {
+
+    }
+
+    public UserPo(String userName, String password) {
+        this.UserName = userName;
+        this.Password = password;
+    }
 
     public String getUserId() {
         return UserId;

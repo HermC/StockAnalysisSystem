@@ -170,7 +170,60 @@ public class StockDataController {
 
         return map;
     }
-//
+
+    @RequestMapping(value = "stock_app.do")
+    public @ResponseBody Map<String, Object>
+    getAppStockData(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<>();
+        String stockId = request.getParameter("id");
+
+        //股票信息
+        StockInfo stockInfo = stockInfoService.getStockInfo(stockId);
+        map.put("stockInfo", stockInfo);
+
+        //预测数据
+        ArrayList<ForecastData> forecastData = forecastDataService.getForecastData(stockId);
+        ArrayList<ForecastData> bpForecastData = forecastDataService.getPyTradeForecast(stockId);
+        map.put("forecastInfo", forecastData);
+        map.put("bpForecast", bpForecastData);
+
+        //雷达图
+        Map<String,Double> stockGrade = new HashMap<>();
+        StockGradeVO stockGradeVO = gradeService.getCurrentInfo(stockId);
+        stockGrade.put("市净率",stockGradeVO.pbAssess);
+        stockGrade.put("市盈率",stockGradeVO.peAssess);
+        stockGrade.put("涨跌幅",stockGradeVO.updownAssess);
+        stockGrade.put("量比",stockGradeVO.volumeAssess);
+        stockGrade.put("委比",stockGradeVO.weibiAssess);
+        map.put("stockGrade",stockGrade);
+
+        //相关性分析
+        StockRelativeData stockRelativeData = relativeService.getRelativeData(stockId);
+        map.put("relative", stockRelativeData);
+
+        //新闻报告
+        List<News> newsArrayList = Realtime.getRealNews(stockId);
+        List<Report> reportArrayList = Realtime.getRealReport(stockId);
+        map.put("news", newsArrayList);
+        map.put("reports", reportArrayList);
+
+
+        //文本分析
+        StockInsTextVO stockInsTextVO = null;
+        try {
+            stockInsTextVO = instructionTextService.getStockAnalysis(stockId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        map.put("instruction", JSON.toJSON(stockInsTextVO));
+
+
+        System.out.println(JSON.toJSON(map));
+        return map;
+    }
+
+
+
 //    @RequestMapping(value = "stock_request.do")
 //    public @ResponseBody Map<String, Object>
 //    stockRequest(HttpServletRequest request, HttpServletResponse response) {

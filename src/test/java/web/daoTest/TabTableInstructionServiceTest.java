@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import web.pojo.enumPo.LoginState;
 import web.service.stock_presentation.TabTableInstructionService;
 
 import javax.annotation.Resource;
@@ -24,6 +25,7 @@ public class TabTableInstructionServiceTest {
     public void test() {
 //        ArrayList<TabTableInsVO> tabTableInsVOArrayList = tabTableInstructionService.getTablesInfo("sh600000", LocalDate.now().minusYears(1), LocalDate.now());
 
+        System.out.println(LoginState.用户名不存在);
 //        System.out.println(tabTableInsVOArrayList.get(0).bollgrade);
     }
 }

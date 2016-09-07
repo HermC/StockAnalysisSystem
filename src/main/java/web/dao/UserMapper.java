@@ -5,7 +5,7 @@ import web.pojo.before.User;
 
 @Repository
 public interface UserMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer id) ;
 
     int insert(User record);
 

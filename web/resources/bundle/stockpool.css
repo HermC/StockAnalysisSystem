@@ -1,0 +1,220 @@
+#main-page {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: auto;
+    height: auto;
+    min-height: 100vh;
+    background-color: #eeeeee;
+    border-left: 1px solid #eeeeee;
+    position: relative;
+}
+
+.stockpool-body {
+    margin: 0px auto auto auto;
+    padding: 40px 21px 30px 20px;
+    width: 80%;
+    background-color: white;
+    color: #535353;
+}
+
+#main-page h1 {
+    padding-left: 5px;
+    border-left: 3px solid #535353;
+    font-size: 24px;
+}
+
+.stockpool-body h2 {
+    font-size: 18px;
+    display: inline;
+}
+
+.delete-pool {
+    float: right;
+}
+
+.delete-pool:hover, .edit-stock:hover, .edit-strategy:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.delete-pool-confirm {
+    float: right;
+    cursor: pointer;
+}
+
+.confirm-yes:hover {
+    color: lightgreen;
+    cursor: pointer;
+}
+
+.confirm-no:hover {
+    color: red;
+}
+
+.stockpool-container {
+    width: 100%;
+}
+
+.stockpool-item {
+    margin-bottom: 20px;
+    padding: 10px 10px 10px 10px;
+    border: 1px solid #a9a9a9;
+    box-shadow: 1px 3px 3px #535353;
+}
+
+.table-wrapper {
+    max-height: 100px;
+    overflow: auto;
+}
+
+.stockpool-item table {
+    width: 100%;
+    color: black;
+}
+
+.table-head {
+    padding-right: 16px;
+    background-color: #535353;
+    color: white;
+}
+
+.stockpool-item tr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stockpool-item td {
+    flex: 1;
+    overflow: hidden;
+}
+
+.stockpool-item tr.even td {
+    background-color: #ededed;
+    overflow: hidden;
+}
+
+.stockpool-item tr.odd td{
+    background-color: white;
+}
+
+.stock-editor-outer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    /*padding-top: 70px;*/
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.stock-editor-wrapper {
+    width: 50%;
+    /*height: 100px;*/
+    padding: 20px 20px 20px 20px;
+    margin: 80px auto auto auto;
+    background-color: white;
+    font-size: 18px;
+    color: #535353;
+}
+
+.stock-editor-wrapper h2{
+    font-size: 20px;
+}
+
+input[type="text"], input[type="password"] {
+    border: solid 1px #e5e5e5;
+    margin: 0px 0px 0px 0;
+    padding: 6px 7px 7px 7px;
+    font-size: 15px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus{
+    background-color: ghostwhite;
+}
+
+.input-container {
+    position: relative;
+}
+
+.stock-search-info {
+    position: absolute;
+    top: 36px;
+    width: 75%;
+    /*height: 100px;*/
+    z-index: 101;
+    padding: 5px 0px 5px 0px;
+    background-color: whitesmoke;
+    /*box-sizing: border-box;*/
+}
+
+.stock-search-info .column {
+    padding: 5px 20px 5px 20px;
+}
+
+.stock-search-info .column:hover {
+    background-color: #aaaaaa;
+}
+
+.column-wrapper {
+    width: 100%;
+    height: 200px;
+    overflow: scroll;
+}
+
+#stock_in_pool {
+    /*height: 200px;*/
+}
+
+#new_strategy {
+    margin-top: 2px;
+    border-top: 1px solid #535353;
+    border-bottom: 1px solid #535353;
+}
+
+#my_strategy {
+    height: 100px;
+}
+
+#my_strategy .column:hover {
+    background-color: #eeeeee;
+}
+
+.add-strategy:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.delete-stock:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.delete-strategy:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.change-name:hover {
+    cursor: pointer;
+}
+
+input[type="text"].change-name-input {
+    width: auto;
+    height: 20px;
+    font-size: 18px;
+}
+
+.add-stockpool {
+    width: 350px;
+    height: 93px;
+    margin-top: 20px;
+    padding: 10px 0 10px 0;
+    border-top: 1px solid #535353;
+    border-bottom: 1px solid #535353;
+}
+
+.add-stockpool div {
+    /*width: 350px;*/
+}

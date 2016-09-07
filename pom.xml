@@ -273,6 +273,24 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/UserAgentUtils-1.2.4.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>StocksAnalysisSystem</groupId>
+            <artifactId>StocksAnalysisSystem</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>StocksAnalysisSystem</groupId>
+            <artifactId>StocksAnalysisSystem</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.python/jython-standalone -->
+        <dependency>
+            <groupId>org.python</groupId>
+            <artifactId>jython-standalone</artifactId>
+            <version>2.5.3</version>
+        </dependency>
+
 
     </dependencies>
 

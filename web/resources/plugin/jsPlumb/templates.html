@@ -1,0 +1,80 @@
+<html>
+<head>
+    <script type="jtk" id="tmplStart">
+        <div style="left:${left}px;top:${top}px;width:${w}px;height:${h}px;" class="flowchart-object flowchart-start">
+            <div style="position:relative">
+                <svg:svg width="${w}" height="${h}">
+                    <svg:ellipse cx="${w/2}" cy="${h/2}" rx="${w/2}" ry="${h/2}" class="outer"/>
+                    <svg:ellipse cx="${w/2}" cy="${h/2}" rx="${(w/2) - 10}" ry="${(h/2) - 10}" class="inner"/>
+                    <svg:text text-anchor="middle" x="${ w / 2 }" y="${ h / 2 }" dominant-baseline="central">${text}</svg:text>
+                </svg:svg>
+            </div>
+            <jtk-source port-type="start" filter=".outer" filter-negate="true"/>
+        </div>
+    </script>
+    <script type="jtk" id="tmplAction">
+        <div style="left:${left}px;top:${top}px;width:${w}px;height:${h}px;" class="flowchart-object flowchart-action">
+            <div style="position:relative">
+                <div class="node-edit node-action">
+                    <i class="fa fa-pencil-square-o"/>
+                </div>
+                <div class="node-delete node-action">
+                    <i class="fa fa-times"/>
+                </div>
+                <svg:svg width="${w}" height="${h}">
+                    <svg:rect x="0" y="0" width="${w}" height="${h}" class="outer drag-start"/>
+                    <svg:rect x="10" y="10" width="${w-20}" height="${h-20}" class="inner"/>
+                    <svg:text text-anchor="middle" x="${w/2}" y="${h/2}" dominant-baseline="central">${text}</svg:text>
+                </svg:svg>
+            </div>
+            <jtk-target port-type="target"/>
+            <jtk-source port-type="source" filter=".outer"/>
+        </div>
+    </script>
+    <script type="jtk" id="tmplQuestion">
+        <div style="left:${left}px;top:${top}px;width:${w}px;height:${h}px;" class="flowchart-object flowchart-question">
+            <div style="position:relative">
+                <div class="node-edit node-action">
+                    <i class="fa fa-pencil-square-o"/>
+                </div>
+                <div class="node-delete node-action">
+                    <i class="fa fa-times"/>
+                </div>
+                <svg:svg width="${w}" height="${h}">
+                    <svg:path d="M ${w/2} 0 L ${w} ${h/2} L ${w/2} ${h} L 0 ${h/2} Z" class="outer"/>
+                    <svg:path d="M ${w/2} 10 L ${w-10} ${h/2} L ${w/2} ${h-10} L 10 ${h/2} Z" class="inner"/>
+                    <svg:text text-anchor="middle" x="${w/2}" y="${h/2}" dominant-baseline="central">${text}</svg:text>
+                </svg:svg>
+            </div>
+            <jtk-source port-type="source" filter=".outer"/>
+            <jtk-target port-type="target"/>
+        </div>
+    </script>
+    <script type="jtk" id="tmplOutput">
+        <div style="left:${left}px;top:${top}px;width:${w}px;height:${h}px;" class="flowchart-object flowchart-output">
+            <div style="position:relative">
+                <div class="node-edit node-action">
+                    <i class="fa fa-pencil-square-o"/>
+                </div>
+                <div class="node-delete node-action">
+                    <i class="fa fa-times"/>
+                </div>
+                <svg:svg width="${w}" height="${h}">
+                    <svg:rect x="0" y="0" width="${w}" height="${h}"/>
+                    <svg:text text-anchor="middle" x="${w/2}" y="${h/2}" dominant-baseline="central">${text}</svg:text>
+                </svg:svg>
+            </div>
+            <jtk-target port-type="target"/>
+        </div>
+    </script>
+    <script type="jtk" class="dlg" id="dlgText" title="Enter Text">
+        <input type="text" size="50" jtk-focus jtk-att="text" value="${text}" jtk-commit="true"/>
+    </script>
+    <script type="jtk" class="dlg" id="dlgConfirm" title="Please Confirm">
+        ${msg}?
+    </script>
+    <script type="jtk" class="dlg" id="dlgMessage" title="Message" cancel="false">
+        ${msg}
+    </script>
+</head>
+</html>

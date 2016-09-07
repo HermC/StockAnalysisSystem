@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import web.Tools.Realtime;
 import web.Tools.TotalNews;
+import web.pojo.after.UserPo;
 import web.pojo.before.BenchCurrent;
 import web.pojo.before.Hotspot;
 import web.pojo.before.News;
@@ -17,6 +18,7 @@ import web.service.stock_presentation.SingleInfoService;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,6 +54,13 @@ public class IndexController {
 
     @RequestMapping(value = "index.do")
     public String toIndex(HttpServletRequest request, Model model) {
+
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+
+        if(userid!=null){
+            model.addAttribute("userInfo", userid);
+        }
 
         ArrayList<SingleInfo> stockList = singleInfoService.getSingleInfo();
         model.addAttribute("stockList", JSON.toJSON(stockList));

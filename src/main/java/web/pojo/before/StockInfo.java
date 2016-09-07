@@ -18,6 +18,21 @@ public class StockInfo {
     public String status;         //公司状态
     public String description;   //公司简介
 
+    public StockInfo(){
+
+    }
+
+    public StockInfo(String stockid,String name,String industry,Long industryid,String fullName,String listData,String status,String description){
+        this.stockid = stockid;
+        this.name = name;
+        this.industry = industry;
+        this.industryid = industryid;
+        this.fullName = fullName;
+        this.listDate = listData;
+        this.status = status;
+        this.description = description;
+    }
+
     public void setIndustryid(Long industryid) {
         this.industryid = industryid;
     }

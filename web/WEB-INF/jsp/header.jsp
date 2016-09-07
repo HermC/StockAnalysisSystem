@@ -51,14 +51,14 @@
                 <div class="login-title"><img src="resources/img/logo_s.png"/> Login</div>
                 <div class="input-item">
                     <div class="input-labels">
-                        <label>Username:</label>
+                        <label>账号:</label>
                         <label id="error_user_info" class="input-alert"></label>
                     </div>
                     <input type="text" name="username"/>
                 </div>
                 <div class="input-item">
                     <div class="input-labels">
-                        <label>Password:</label>
+                        <label>密码:</label>
                         <label id="error_password_info" class="input-alert"></label>
                     </div>
                     <input type="password" name="password"/>
@@ -70,27 +70,30 @@
             </form>
             <form id="register_form" name="register_form" style="display: none">
                 <div class="login-title"><img src="resources/img/logo_s.png"/> Register</div>
-                <div class="input-item">
-                    <div class="input-labels">
-                        <label>Username:</label>
-                        <label id="repeat_username_info" class="input-alert"></label>
+                <div id="register_wrapper" style="display: block">
+                    <div class="input-item">
+                        <div class="input-labels">
+                            <label>昵称:</label>
+                            <label id="repeat_username_info" class="input-alert"></label>
+                        </div>
+                        <input type="text" name="nickname"/>
                     </div>
-                    <input type="text" name="username"/>
-                </div>
-                <div class="input-item">
-                    <div class="input-labels">
-                        <label>Password:</label>
-                        <label id="different_password_info" class="input-alert"></label>
+                    <div class="input-item">
+                        <div class="input-labels">
+                            <label>密码:</label>
+                            <label id="different_password_info" class="input-alert"></label>
+                        </div>
+                        <input type="password" name="password"/>
                     </div>
-                    <input type="password" name="password"/>
-                </div>
-                <div class="input-item">
-                    <div class="input-labels">
-                        <label>Confirm Password:</label>
+                    <div class="input-item">
+                        <div class="input-labels">
+                            <label>密码确认:</label>
+                        </div>
+                        <input type="password" name="confirm_password"/>
                     </div>
-                    <input type="password" name="confirm_password"/>
                 </div>
-                <label id="register_success" style="display: none">注册成功!</label>
+                <label id="register_failed" class="input-alert" style="display: none">注册失败,请稍后再试</label>
+                <label id="register_success" style="display: none">注册成功! 您的账号是 <b id="register_userid"></b></label>
                 <div class="login-bottom">
                     <button id="register_back" class="login-bottom-item" type="button">Back</button>
                     <button id="register_submit" class="login-bottom-item" type="button">Register</button>

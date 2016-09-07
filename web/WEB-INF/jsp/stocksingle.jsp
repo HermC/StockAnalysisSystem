@@ -84,7 +84,7 @@
 <img id="stock_title_background" src="resources/img/background/stock_title_1.png">
 
 <c:choose>
-    <c:when test="${userInfo==null}">
+    <c:when test="${userInfo!=null}">
         <jsp:include page="usernav.jsp" flush="true">
             <jsp:param name="userInfo" value="${userInfo}"/>
         </jsp:include>
