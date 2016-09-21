@@ -5,8 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import web.pojo.after.UserPo;
 import web.pojo.before.Industry;
 import web.pojo.before.SingleInfo;
+import web.service.UserSystemBL.UsersService;
 import web.service.stock_presentation.IndustryService;
 import web.service.stock_presentation.SingleInfoService;
 import web.vo.before.StockGradeVO;
@@ -14,6 +16,7 @@ import web.vo.before.StockGradeVO;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,9 +32,20 @@ public class IndustryController {
     private IndustryService industryService;
     @Resource
     private SingleInfoService singleInfoService;
+    @Resource
+    private UsersService usersService;
 
     @RequestMapping("/industry.do")
     public String showIndustry(HttpServletRequest request, Model model){
+
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+
+        if(userid!=null){
+            UserPo userPo = usersService.getUser(userid);
+            model.addAttribute("userInfo", JSON.toJSON(userPo));
+        }
+
         ArrayList<Industry> industries = industryService.getIndustryAnalysis();
         ArrayList<ArrayList<StockGradeVO>> stocks = new ArrayList<>();
         ArrayList<SingleInfo> stockList = singleInfoService.getSingleInfo();

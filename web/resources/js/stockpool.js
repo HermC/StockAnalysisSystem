@@ -5,21 +5,28 @@
 //    {"stockpoolid": 2, "stockpoolname": "股票池2", "stocks": [{"stockid": "sh600000", "stockname": "浦发银行"}], "strategy": [{"strategyid": 2, "strategyname": "策略2", "starttime": "2016-08-21"}]}];
 var item_list = document.querySelectorAll(".stockpool-item");
 var delete_list = document.querySelectorAll(".delete-pool");
-var delete_confirm_list = document.querySelectorAll(".delete-pool-confirm");
+//var delete_confirm_list = document.querySelectorAll(".delete-pool-confirm");
 var edit_stock_list = document.querySelectorAll(".edit-stock");
 var edit_strategy_list = document.querySelectorAll(".edit-strategy");
 var my_strategy_list = document.querySelectorAll("#my_strategy .add-strategy");
+
+var tab_list = document.querySelectorAll(".selector-item");
 
 var pool_operated;
 
 function initElements() {
     item_list = document.querySelectorAll(".stockpool-item");
     delete_list = document.querySelectorAll(".delete-pool");
-    delete_confirm_list = document.querySelectorAll(".delete-pool-confirm");
+    //delete_confirm_list = document.querySelectorAll(".delete-pool-confirm");
     edit_stock_list = document.querySelectorAll(".edit-stock");
     edit_strategy_list = document.querySelectorAll(".edit-strategy");
     my_strategy_list = document.querySelectorAll("#my_strategy .add-strategy");
-    change_name_list = document.querySelectorAll(".change-name");
+    //change_name_list = document.querySelectorAll(".change-name");
+    tab_list = document.querySelectorAll(".selector-item");
+
+    if(item_list!=undefined||item_list!=null){
+        $(item_list[0]).show();
+    }
 }
 
 function initOuter() {
@@ -32,7 +39,24 @@ function initOuter() {
 }
 
 var delete_index = -1;
+var pre_shown = 0;
 function initDeletePoolListener() {
+    $(".selector-item").on("click", function() {
+        var index = -1;
+        for(var i=0;i<tab_list.length;i++){
+            if(this==tab_list[i]){
+                index = i;
+                break;
+            }
+        }
+        console.log(index);
+        console.log(item_list[pre_shown]);
+        $(item_list[pre_shown]).hide();
+        $(item_list[index]).show();
+        $(tab_list[pre_shown]).removeClass("selected");
+        $(tab_list[index]).addClass("selected");
+        pre_shown = index;
+    });
     $(".delete-pool").on("click", function() {
         var index = 0;
         for(var i=0;i<delete_list.length;i++){
@@ -42,18 +66,6 @@ function initDeletePoolListener() {
             }
         }
         console.log(index);
-        $(this).hide();
-        $(delete_confirm_list[index]).slideDown();
-    });
-    $(".delete-pool-confirm").on("click", ".confirm-yes", function() {
-        var index = 0;
-        for(var i=0;i<delete_confirm_list.length;i++){
-            if(this.parentNode==delete_confirm_list[i]){
-                index = i;
-                break;
-            }
-        }
-//        console.log("confirm-yes:"+index);
         delete_index = index;
         var stockpoolid = stock_pool_list[index].poolId;
         $.ajax({
@@ -64,26 +76,57 @@ function initDeletePoolListener() {
                 if(data["success"]==false){
                     alert("删除失败,请稍后再试");
                 }else{
-                    $(item_list[index]).remove();
-                    stock_pool_list.splice(delete_index, 1);
+                    //$(item_list[index]).remove();
+                    //stock_pool_list.splice(delete_index, 1);
+                    window.location.reload();
                 }
             },
             error: function() {
                 alert("删除失败,请稍后再试");
             }
         });
+        //$(this).hide();
+        //$(delete_confirm_list[index]).slideDown();
     });
-    $(".delete-pool-confirm").on("click", ".confirm-no", function() {
-        var index = 0;
-        for(var i=0;i<delete_confirm_list.length;i++){
-            if(this.parentNode==delete_confirm_list[i]){
-                index = i;
-                break;
-            }
-        }
-        $(this.parentNode).hide();
-        $(delete_list[index]).show();
-    });
+//    $(".delete-pool-confirm").on("click", ".confirm-yes", function() {
+//        var index = 0;
+//        for(var i=0;i<delete_confirm_list.length;i++){
+//            if(this.parentNode==delete_confirm_list[i]){
+//                index = i;
+//                break;
+//            }
+//        }
+////        console.log("confirm-yes:"+index);
+//        delete_index = index;
+//        var stockpoolid = stock_pool_list[index].poolId;
+//        $.ajax({
+//            type: "get",
+//            url: "user/stockpool/delete-stockpool.do?id="+stockpoolid,
+//            dataType: "json",
+//            success: function(data) {
+//                if(data["success"]==false){
+//                    alert("删除失败,请稍后再试");
+//                }else{
+//                    $(item_list[index]).remove();
+//                    stock_pool_list.splice(delete_index, 1);
+//                }
+//            },
+//            error: function() {
+//                alert("删除失败,请稍后再试");
+//            }
+//        });
+//    });
+//    $(".delete-pool-confirm").on("click", ".confirm-no", function() {
+//        var index = 0;
+//        for(var i=0;i<delete_confirm_list.length;i++){
+//            if(this.parentNode==delete_confirm_list[i]){
+//                index = i;
+//                break;
+//            }
+//        }
+//        $(this.parentNode).hide();
+//        $(delete_list[index]).show();
+//    });
 }
 
 function initEditStockListener() {
@@ -151,23 +194,44 @@ function initEditStrategyListener() {
     });
 }
 
-var change_name_list;
-function initChangeNameListener() {
-    $(".change-name").on("click", function() {
-        // var index = -1;
-        // for(var i=0;i<change_name_list.length;i++){
-        //
-        // }
-        $(this).hide();
-        $($(this.parentNode).find(".change-name-input")).show();
-        $($(this.parentNode).find(".change-name-input")).focus();
-    });
-    $(".change-name-input").on("blur", function() {
-        $(this).hide();
-        $($(this.parentNode).find(".change-name")).html($(this).val());
-        $($(this.parentNode).find(".change-name")).show();
-    })
-}
+//var change_name_list;
+//function initChangeNameListener() {
+//    $(".change-name").on("click", function() {
+//        // var index = -1;
+//        // for(var i=0;i<change_name_list.length;i++){
+//        //
+//        // }
+//        $(this).hide();
+//        $($(this.parentNode).find(".change-name-input")).show();
+//        $($(this.parentNode).find(".change-name-input")).focus();
+//    });
+//    $(".change-name-input").on("blur", function() {
+//        var index = -1;
+//        for(var i=0;i<change_name_list.length;i++){
+//            if(this==change_name_list[i]){
+//                index = i;
+//                break;
+//            }
+//        }
+//
+//        var id = stock_pool_list[index].poolId;
+//        var name = $(this).val();
+//
+//        $.ajax({
+//            type: "get",
+//            url: "user/stockpool/update-name.do?id="+id+"&name="+name,
+//            dataType: "json",
+//            success: function(data) {
+//                $(this).hide();
+//                $($(this.parentNode).find(".change-name")).html($(this).val());
+//                $($(this.parentNode).find(".change-name")).show();
+//            },
+//            error: function() {
+//                alert("修改失败,请稍后再试");
+//            }
+//        });
+//    })
+//}
 
 function initAddStockPoolListener() {
     $("#add_stock_pool").on("click", function() {
@@ -386,7 +450,7 @@ function deleteStockListener() {
         }
 
         var stockpoolid = stockpool.stockpoolid;
-        var stocks = stockpool.stocks;
+        var stocks = stockpool.stockinfolist;
         var stockid = stocks[index].stockid;
 
         stockpoolid = "";
@@ -436,6 +500,6 @@ window.onload = function() {
     initDeletePoolListener();
     initEditStockListener();
     initEditStrategyListener();
-    initChangeNameListener();
+    //initChangeNameListener();
     initAddStockPoolListener();
 };

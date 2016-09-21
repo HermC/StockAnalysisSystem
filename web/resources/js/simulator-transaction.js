@@ -21,8 +21,8 @@ function initButtonListener() {
         $(this).addClass("selected");
 
         var state = $(this).html();
-        var running = $(".is-running");
-        var stopped = $(".is-stopped");
+        var running = $(".is-running").parent();
+        var stopped = $(".is-stopped").parent();
         if(state=="全部"){
             $(running.parent()).show();
             $(stopped.parent()).show();
@@ -42,7 +42,22 @@ function initButtonListener() {
                 break;
             }
         }
-        console.log(index);
+        //console.log(index);
+        var simulator_id = simulator_list_data[index].tradeid;
+        $.ajax({
+            type: "get",
+            url: "user/simulator/delete-simulator.do?id="+simulator_id,
+            dataType: "json",
+            success: function(data) {
+                console.log(data);
+                if(data.success==true){
+                    window.location.reload();
+                }
+            },
+            error: function() {
+                alert("删除失败,请稍后再试");
+            }
+        });
     });
     $("#add_new_simulator_button").on("click", function() {
         $(".add-new-simulator-wrapper").slideDown();
@@ -102,16 +117,16 @@ function initButtonListener() {
 
 var simulator_list;
 function initSimulatorListener() {
-    $(".simulator-list").on("click", function() {
-        var index = -1;
-        for(var i=0;i<simulator_list.length;i++){
-            if(this==simulator_list[i]){
-                index = i;
-                break;
-            }
-        }
-        console.log(index);
-    });
+    //$(".simulator-list").on("click", function() {
+    //    var index = -1;
+    //    for(var i=0;i<simulator_list.length;i++){
+    //        if(this==simulator_list[i]){
+    //            index = i;
+    //            break;
+    //        }
+    //    }
+    //    console.log(index);
+    //});
 }
 
 function initDateListener() {

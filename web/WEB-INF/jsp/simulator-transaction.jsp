@@ -14,12 +14,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link type="text/css" rel="stylesheet" href="/resources/plugin/bootstrap-3.3.5/dist/css/bootstrap.min.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/plugin/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/css/reset.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/bundle/common.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/bundle/simulator-transaction.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/plugin/font-awesome-4.6.3/css/font-awesome.min.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/plugin/bootstrap-3.3.5/dist/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/plugin/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/css/reset.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/bundle/common.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/bundle/simulator-transaction.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/plugin/font-awesome-4.6.3/css/font-awesome.min.css"/>
 
     <script>
         var simulator_list_data = ${simulator_list};
@@ -43,12 +43,15 @@
     <title>模拟交易-Ascending</title>
 </head>
 <body>
+<img id="full_background" src="resources/img/background/welcome_back1.png"/>
 <jsp:include page="usernav.jsp" flush="true">
     <jsp:param name="userInfo" value="${userInfo}"/>
+    <jsp:param name="stockList" value="${stockList}"/>
+    <jsp:param name="navIndex" value="5"/>
 </jsp:include>
 <div id="main-page">
     <div class="simulator-list-container">
-        <h1>模拟交易</h1>
+        <h1><img src="resources/img/logo_s.png"/> 模拟交易</h1>
         <br>
         <button id="add_new_simulator_button" class="edit-button" type="button"><i class="fa fa-plus"></i> 新增模拟交易</button>
         <div class="add-new-simulator-wrapper" style="display: none">
@@ -113,37 +116,21 @@
             <c:forEach items="${simulator_list}" var="simulator" varStatus="s">
                 <div class="column">
                     <span class="column-item u1of20 delete-simulator"><i class="fa fa-close"></i></span>
-                    <a target="_blank" href="user/simulator-info.do?id=${simulator.tradeid}" class="column-item simulator-name">${simulator.tradename}</a>
-                    <c:if test="${simulator.state==1}">
-                        <span class="column-item is-running">进行中</span>
-                    </c:if>
-                    <c:if test="${simulator.state!=1}">
-                        <span class="column-item is-stopped">已结束</span>
-                    </c:if>
-                    <span class="column-item">${simulator.startdate}</span>
-                    <span class="column-item">结束时间</span>
-                    <span class="column-item">${simulator.earning}</span>
-                    <span class="column-item">${simulator.maxDrawdown}</span>
+                    <a target="_blank" href="user/simulator-info.do?id=${simulator.tradeid}" class="column-item column">
+                        <span class="column-item simulator-name">${simulator.tradename}</span>
+                        <c:if test='${simulator.state=="1"}'>
+                            <span class="column-item is-running">进行中</span>
+                        </c:if>
+                        <c:if test='${simulator.state!="1"}'>
+                            <span class="column-item is-stopped">已结束</span>
+                        </c:if>
+                        <span class="column-item">${simulator.startdate}</span>
+                        <span class="column-item">${simulator.enddate}</span>
+                        <span class="column-item">${simulator.earning}</span>
+                        <span class="column-item">${simulator.maxDrawdown}</span>
+                    </a>
                 </div>
             </c:forEach>
-            <%--<div class="column">--%>
-                <%--<span class="column-item u1of20 delete-simulator"><i class="fa fa-close"></i></span>--%>
-                <%--<a class="column-item">名称</a>--%>
-                <%--<span class="column-item">状态</span>--%>
-                <%--<span class="column-item">开始时间</span>--%>
-                <%--<span class="column-item">结束时间</span>--%>
-                <%--<span class="column-item">收益</span>--%>
-                <%--<span class="column-item">最大回撤</span>--%>
-            <%--</div>--%>
-            <%--<div class="column">--%>
-                <%--<span class="column-item u1of20 delete-simulator"><i class="fa fa-close"></i></span>--%>
-                <%--<a class="column-item">名称</a>--%>
-                <%--<span class="column-item">状态</span>--%>
-                <%--<span class="column-item">开始时间</span>--%>
-                <%--<span class="column-item">结束时间</span>--%>
-                <%--<span class="column-item">收益</span>--%>
-                <%--<span class="column-item">最大回撤</span>--%>
-            <%--</div>--%>
         </div>
     </div>
 </div>

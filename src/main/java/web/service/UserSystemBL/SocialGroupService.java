@@ -3,26 +3,33 @@ package web.service.UserSystemBL;
 import web.pojo.after.SocialgroupPo;
 import web.pojo.enumPo.DeleteState;
 
+import java.util.ArrayList;
+
 /**
  * Created by linyufan on 16/8/17.
  */
 public interface SocialGroupService {
 
     /**
-     * 创建社区
-     * @param socialgroupPo
+     * 创建社群
+     * @param sgname
+     * @param userids
      * @return
      */
-    public String createSocialGroup(SocialgroupPo socialgroupPo);
+    public String createsocialgroup(String sgname , ArrayList<String> userids);
 
     /**
-     * 删除一个社群
-     * //todo 记得处理一下用户和社群的关系
+     * 获取社群
      * @param sgid
      * @return
      */
-    public DeleteState deleteSocialGroup(String sgid);
+    public SocialgroupPo getsocialgroup(String sgid);
 
+    /**
+     * 获取社群
+     * @return
+     */
+    public ArrayList<SocialgroupPo> getAllsocialgroup();
 
 
 

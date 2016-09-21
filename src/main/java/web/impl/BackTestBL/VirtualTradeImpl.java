@@ -23,7 +23,7 @@ public class VirtualTradeImpl implements VirtualTradeService {
     @Resource
     public StrategyMapper strategyMapper;
     @Override
-    public String addtrade(String userid, String tradename, double startfund, String starttime,String strategyid,String poolid) {
+    public String addtrade(String userid, String tradename, int startfund, String starttime,String strategyid,String poolid) {
         StrategyPo strategyPo = strategyMapper.selectStrategy(userid,strategyid);
         virtualTradeMapper.addtrade(userid,tradename,startfund,starttime,strategyid,poolid,strategyPo.getStrategyname());
         String id = virtualTradeMapper.getidByName(userid,tradename);
@@ -40,6 +40,9 @@ public class VirtualTradeImpl implements VirtualTradeService {
     @Override
     public VirtualTradePo getTrade(String userid, String vid) {
         VirtualTradePo virtualTradePo = virtualTradeMapper.getTrade(userid,vid);
+        String listname = virtualTradePo.getTradeid();
+        listname = "sim_"+listname;
+        virtualTradePo.setDailyResultPos(virtualTradeMapper.getDailyResult(listname));
 
         return virtualTradePo;
     }
@@ -47,7 +50,11 @@ public class VirtualTradeImpl implements VirtualTradeService {
     @Override
     public ArrayList<VirtualTradePo> getAllTrade(String userid) {
         ArrayList<VirtualTradePo> temp = virtualTradeMapper.getAllTrade(userid);
-
+        for (int i=0;i<temp.size();i++){
+            String listname = temp.get(i).getTradeid();
+            listname = "sim_"+listname;
+            temp.get(i).setDailyResultPos(virtualTradeMapper.getDailyResult(listname));
+        }
         return temp;
     }
 

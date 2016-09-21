@@ -12,23 +12,62 @@ public class UserPo {
     public String Head;
     public String Summary;
     public String UserName;
-    public String maxearn;
 
-    public String getMaxearn() {
+    //社群排名用
+    public double maxearn=0;
+    public String sid;
+    public String sname;
+    public String poolid;
+
+    public String getSname() {
+        return sname;
+    }
+
+    public void setSname(String sname) {
+        this.sname = sname;
+    }
+
+
+    public double getMaxearn() {
         return maxearn;
     }
 
-    public void setMaxearn(String maxearn) {
+    public void setMaxearn(double maxearn) {
         this.maxearn = maxearn;
     }
 
-    public UserPo() {
+    public String getSid() {
+        return sid;
+    }
 
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
+
+    public String getPoolid() {
+        return poolid;
+    }
+
+    public void setPoolid(String poolid) {
+        this.poolid = poolid;
+    }
+
+    public UserPo(String userid,String username,double maxearn,String sid,String sname,String poolid) {
+        this.UserId = userid;
+        this.UserName = username;
+        this.maxearn = maxearn;
+        this.sid = sid;
+        this.sname = sname;
+        this.poolid = poolid;
     }
 
     public UserPo(String userName, String password) {
         this.UserName = userName;
         this.Password = password;
+    }
+
+    public UserPo(){
+
     }
 
     public String getUserId() {

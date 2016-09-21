@@ -53,6 +53,7 @@
         <result column="password" property="Password" jdbcType="LONGVARCHAR"/>
         <result column="nickname" property="UserName" jdbcType="LONGVARCHAR"/>
         <result column="intro" property="Summary" jdbcType="LONGVARCHAR"/>
+        <result column="portriat" property="Head" jdbcType="LONGVARCHAR"/>
     </resultMap>
     <select id="getUserByID" resultMap="Useridmap" parameterType="java.lang.String">
         SELECT * FROM user WHERE userid = #{0,jdbcType=VARCHAR}

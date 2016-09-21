@@ -14,18 +14,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link type="text/css" rel="stylesheet" href="/resources/plugin/bootstrap-3.3.5/dist/css/bootstrap.min.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/plugin/select2-4.0.3/dist/css/select2.min.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/plugin/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/plugin/font-awesome-4.6.3/css/font-awesome.min.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/plugin/codemirror/lib/codemirror.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/plugin/codemirror/theme/twilight.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/plugin/jsPlumb/css/jsPlumbToolkit-defaults.css">
-    <link type="text/css" rel="stylesheet" href="/resources/plugin/jsPlumb/css/jsPlumbToolkit-demo.css">
-    <link type="text/css" rel="stylesheet" href="/resources/plugin/jsPlumb/css/app.css">
-    <link type="text/css" rel="stylesheet" href="/resources/bundle/reset.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/bundle/common.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/bundle/strategy-editor.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/plugin/bootstrap-3.3.5/dist/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/plugin/select2-4.0.3/dist/css/select2.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/plugin/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/plugin/font-awesome-4.6.3/css/font-awesome.min.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/plugin/codemirror/lib/codemirror.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/plugin/codemirror/theme/twilight.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/plugin/jsPlumb/css/jsPlumbToolkit-defaults.css">
+    <link type="text/css" rel="stylesheet" href="resources/plugin/jsPlumb/css/jsPlumbToolkit-demo.css">
+    <link type="text/css" rel="stylesheet" href="resources/plugin/jsPlumb/css/app.css">
+    <link type="text/css" rel="stylesheet" href="resources/bundle/reset.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/bundle/common.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/bundle/strategy-editor.css"/>
     <script type="text/x-jtk-templates" src="resources/plugin/jsPlumb/templates.html"></script>
 
     <script>
@@ -55,6 +55,7 @@
     <script type="text/javascript" rel="script" src="resources/js/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" rel="script" src="resources/js/amstockchart/amcharts.js"></script>
     <script type="text/javascript" rel="script" src="resources/js/amstockchart/serial.js"></script>
+    <script type="text/javascript" rel="script" src="resources/js/amstockchart/themes/dark.js"></script>
     <script type="text/javascript" rel="script" src="resources/plugin/bootstrap-3.3.5/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" rel="script" src="resources/plugin/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" rel="script" src="resources/plugin/select2-4.0.3/dist/js/select2.full.min.js"></script>
@@ -70,15 +71,30 @@
     <title>策略编辑-Ascending</title>
 </head>
 <body>
+<img id="full_background" src="resources/img/background/background2.png"/>
 <jsp:include page="usernav.jsp" flush="true">
     <jsp:param name="userInfo" value="${userInfo}"/>
+    <jsp:param name="stockList" value="${stockList}"/>
+    <jsp:param name="navIndex" value="4"/>
 </jsp:include>
 <div id="main-page">
+    <div class="progress-container" style="display: none">
+        <div class="progress-wrapper">
+            <span>运行中,请稍候</span>
+            <div class="progress progress-striped active">
+                <div class="progress-bar progress-bar-success" role="progressbar"
+                     aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                     style="width: 100%;">
+                    <%--<span class="sr-only">40% 完成</span>--%>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="strategy-editor-container" style="display: block">
-        <span id="strategy_back"><i class="fa fa-arrow-left"></i> 返回列表</span>
+        <a href="user/strategy-list.do" target="_self" id="strategy_back"><i class="fa fa-arrow-left"></i> 返回列表</a>
         <br>
         <br>
-        <h1>策略编辑</h1>
+        <h1><img src="resources/img/logo_s.png"/> 策略编辑</h1>
         <br>
         <c:if test="${isNew!=true}">
             &nbsp;&nbsp;<span>策略名称</span>&nbsp;<input id="strategy_name" type="text" value="${strategy.strategyname}"/>
@@ -98,8 +114,8 @@
                 <label class="line"></label>
                 <input id="end_time" size="16" type="text" readonly class="form_datetime">
                 &nbsp;
-                <span>起始金额</span>
-                <input id="start_amount" type="text">
+                <span style="display: none">起始金额</span>
+                <input id="start_amount" type="text" value="10000"/>
                 <button id="start_simulator" class="edit-button" type="button"><i class="fa fa-play"></i> 开始模拟</button>
             </div>
         </div>
@@ -112,10 +128,9 @@
                 <div id="choose_stocks_wrapper" class="column">
                     <span class="column-item u1of4">添加股票运行:</span>
                     <select id="choose_stocks" class="js-example-basic-multiple column-item" multiple="multiple">
-                        <option>1</option>
-                        <option>4</option>
-                        <option>3</option>
-                        <option>2</option>
+                        <c:forEach items="${stockList}" var="stock" varStatus="s">
+                            <option value="${stock.id}">${stock.id}———${stock.name}</option>
+                        </c:forEach>
                     </select>
                 </div>
                 <br>
@@ -149,14 +164,13 @@
         </div>
         <br>
         <br>
-    </div>
-    <br>
-    <br>
-    <br>
-    <div class="strategy-running-result">
-        <h1>策略结果</h1>
-        <br>
-        <jsp:include page="strategy-result.jsp"></jsp:include>
+        <div class="strategy-running-result">
+            <h1><img src="resources/img/logo_s.png"/> 策略结果</h1>
+            <br>
+            <div class="strategy-running-wrappper">
+                <jsp:include page="strategy-result.jsp"></jsp:include>
+            </div>
+        </div>
     </div>
 </div>
 </body>

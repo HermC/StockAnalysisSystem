@@ -5,11 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import web.pojo.after.BackTestResultPo;
 import web.pojo.after.StrategyPo;
 import web.pojo.after.UserPo;
 import web.pojo.before.SingleInfo;
 import web.pojo.enumPo.DeleteState;
 import web.pojo.enumPo.UpdateState;
+import web.service.BackTestBL.BackTestService;
 import web.service.BackTestBL.StrategyService;
 import web.service.UserSystemBL.UsersService;
 import web.service.stock_presentation.SingleInfoService;
@@ -35,23 +37,25 @@ public class StrategyController {
     private UsersService usersService;
     @Resource
     private SingleInfoService singleInfoService;
+    @Resource
+    private BackTestService backTestService;
 
     @RequestMapping(value = "user/strategy-list.do")
     public String toStrategyList(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         String userid = (String) session.getAttribute("userid");
 
-        userid = "2";
-
         if(userid==null){
-            return "welcome";
+            userid = "2";
         }
 
         ArrayList<StrategyPo> strategyPos = strategyService.getAllStategy(userid);
+        ArrayList<SingleInfo> singleInfos = singleInfoService.getSingleInfo();
         UserPo userPo = usersService.getUser(userid);
 
         model.addAttribute("userInfo", JSON.toJSON(userPo));
         model.addAttribute("strategy_list", JSON.toJSON(strategyPos));
+        model.addAttribute("stockList", JSON.toJSON(singleInfos));
 
         return "strategy-list";
     }
@@ -61,10 +65,8 @@ public class StrategyController {
         HttpSession session = request.getSession();
         String userid = (String) session.getAttribute("userid");
 
-        userid = "2";
-
         if(userid==null){
-            return "welcome";
+            userid = "2";
         }
 
         UserPo userPo = usersService.getUser(userid);
@@ -104,7 +106,9 @@ public class StrategyController {
         HttpSession session = request.getSession();
         String userid = (String) session.getAttribute("2");
 
-        userid = "2";
+        if(userid==null){
+            userid = "2";
+        }
 
         String strategy_name = request.getParameter("strategy_name");
         String strategy_code = request.getParameter("strategy_code");
@@ -125,7 +129,9 @@ public class StrategyController {
         HttpSession session = request.getSession();
         String userid = (String) session.getAttribute("userid");
 
-        userid = "2";
+        if(userid==null){
+            userid = "2";
+        }
 
         String strategyid = request.getParameter("strategy_id");
 
@@ -155,7 +161,9 @@ public class StrategyController {
 
         String isCode = request.getParameter("isCode");
 
-        userid = "2";
+        if(userid==null){
+            userid = "2";
+        }
 
         if(strategy_id==null){
             map.put("strategy_id", "id01");
@@ -187,10 +195,24 @@ public class StrategyController {
         HttpSession session = request.getSession();
         String userid = (String) session.getAttribute("userid");
 
-        userid = "2";
+        if(userid==null){
+            userid = "2";
+        }
 
         String strategy_id = request.getParameter("strategy_id");
-        
+        String start_date = request.getParameter("start_date");
+        String end_date = request.getParameter("end_date");
+        String amount = request.getParameter("amount");
+        System.out.println(end_date);
+
+        BackTestResultPo backTestResultPo = null;
+        if(amount==null){
+            backTestResultPo = backTestService.runPythonBackTest(strategy_id, userid, start_date, end_date);
+        }else{
+            backTestResultPo = backTestService.runPythonBackTest(strategy_id, userid, start_date, end_date, (int) Double.parseDouble(amount));
+        }
+
+        map.put("backTestResult", JSON.toJSON(backTestResultPo));
 
         return map;
     }
@@ -203,10 +225,35 @@ public class StrategyController {
         HttpSession session = request.getSession();
         String userid = (String) session.getAttribute("userid");
 
-        userid = "2";
+        if(userid==null){
+            userid = "2";
+        }
 
         String strategy_id = request.getParameter("strategy_id");
         String stocks = request.getParameter("stocks");
+        String start_date = request.getParameter("start_date");
+        String end_date = request.getParameter("end_date");
+        String amount = request.getParameter("amount");
+
+        System.out.println(stocks);
+
+        String[] stocks_split = stocks.split(",");
+
+        ArrayList<String> list = new ArrayList<>();
+        for(int i=0;i<stocks_split.length;i++){
+            list.add(stocks_split[i]);
+        }
+
+        BackTestResultPo backTestResultPo;
+
+        if(amount==null){
+            backTestResultPo = backTestService.runJsonBackTest(strategy_id, userid, start_date, end_date, list);
+        }else{
+            backTestResultPo = backTestService.runJsonBackTest(strategy_id, userid, start_date, end_date, list, (int) Double.parseDouble(amount));
+        }
+
+
+        map.put("backTestResult", backTestResultPo);
 
         return map;
     }

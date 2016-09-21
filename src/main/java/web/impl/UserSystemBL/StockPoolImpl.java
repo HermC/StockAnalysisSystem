@@ -40,7 +40,7 @@ public class StockPoolImpl implements StockPoolService {
     public DeleteState deletePool(String userid, String poolid) {
         stockPoolMapper.deletePool(userid,poolid);
         String listname = "stockpool_"+poolid;
-        stockPoolMapper.droptable(poolid);
+        stockPoolMapper.droptable(listname);
         return DeleteState.删除成功;
     }
 

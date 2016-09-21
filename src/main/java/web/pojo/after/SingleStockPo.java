@@ -11,6 +11,16 @@ public class SingleStockPo {
 
     public double close;        //昨日收盘价
 
+    public double deviation_per;    //涨跌幅
+
+    public double getDeviation_per() {
+        return deviation_per;
+    }
+
+    public void setDeviation_per(double deviation_per) {
+        this.deviation_per = deviation_per;
+    }
+
     public String getStockid() {
         return stockid;
     }

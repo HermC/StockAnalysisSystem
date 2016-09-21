@@ -3,6 +3,7 @@
  */
 var codeEditor = document.getElementById("strategy_code_editor");
 var CodeMirrorEditor;
+var chartData;
 
 //var strategy_id;
 
@@ -40,6 +41,8 @@ window.onload = function() {
             showFlowChart(isNew);
         }
     }
+
+    //initChart();
 };
 
 function sleep(numberMillis) {
@@ -92,7 +95,7 @@ function initButtonListener() {
             return;
         }
         saveCodeORFlow();
-        runningCode();
+        runningCode(start, end, amount);
     });
 }
 
@@ -105,11 +108,16 @@ function initInputListener() {
 function saveCodeORFlow() {
     var data = "";
     if(isCode){
-        data += "strategy_name="+$("#strategy_name").val()+"&strategy_code="+CodeMirrorEditor.getValue()+"&isCode=true";
+        var strategy_string = CodeMirrorEditor.getValue();
+        strategy_string = strategy_string.replace(/\+/g, "%2B");
+        data += "strategy_name="+$("#strategy_name").val()+"&strategy_code="+strategy_string+"&isCode=true";
     }else{
-        data += "strategy_name="+$("#strategy_name").val()+"&strategy_flow="+JSON.stringify(toolkit.exportData())+"&isCode=false";
+        var strategy_flow = JSON.stringify(toolkit.exportData());
+        console.log(strategy_flow);
+        strategy_flow = strategy_flow.replace(/\+/g, "%2B");
+        data += "strategy_name="+$("#strategy_name").val()+"&strategy_flow="+strategy_flow+"&isCode=false";
     }
-    console.log(data);
+    //console.log(data);
     if(isNew){
         $.ajax({
             type: "post",
@@ -143,22 +151,98 @@ function saveCodeORFlow() {
     }
 }
 
-function runningCode() {
+function runningCode(start, end, amount) {
+    console.log(end);
+    $(".progress-container").show();
     if(isCode){
         $.ajax({
             type: "get",
-            url: "user/strategy/running-python-strategy.do?strategy_id="+strategy_id,
+            url: "user/strategy/running-python-strategy.do?strategy_id="+strategy_id+"&start_date="+start+"&end_date="+end+"&amount="+amount,
+            cache: false,
             dataType: "json",
             success: function(data) {
-                console.log(data);
+                //$(".strategy-running-wrappper").html($(data));
+                //initChart();
+                chartData = data.backTestResult.resultdatas;
+                initChart();
+                initStrategyBar(chartData[chartData.length-1]);
+                initStrategyRunning(chartData);
             },
             error: function() {
                 console.log("running error");
+                $("#strategy_code_console").val("running error");
+            },
+            complete: function() {
+                $(".progress-container").hide();
             }
         });
     }else{
         var stocks = $("#choose_stocks").val()+"";
+        //console.log(stocks);
+        $.ajax({
+            type: "get",
+            url: "user/strategy/running-json-strategy.do?strategy_id="+strategy_id+"&start_date="+start+"&end_date="+end+"&amount="+amount+"&stocks="+stocks,
+            cache: false,
+            dataType: "json",
+            success: function(data) {
+                chartData = data.backTestResult.resultdatas;
+                initChart();
+                initStrategyBar(chartData[chartData.length-1]);
+                initStrategyRunning(chartData);
+            },
+            error: function() {
+                console.log("running error");
+                $("#strategy_code_console").val("running error");
+            },
+            complete: function() {
+                $(".progress-container").hide();
+            }
+        });
     }
+}
+
+function initStrategyRunning(data) {
+    var array = new Array();
+    var i;
+    for(i=0;i<data.length;i++){
+        var str = data[i].trades;
+        if(str.length>2){
+            //var first = str.indexOf();
+            var jstr = str.substring(8, str.length-3);
+            jstr = jstr.replace(/Timestamp/, "");
+            array.push(eval("("+jstr+")"));
+        }
+    }
+    //console.log(array);
+    $("#running_output").html("");
+    for(i=0;i<array.length;i++){
+        var item = array[i];
+        var date = item.date;
+        var price = new Number(item.price);
+        date = date.substring(0, date.length-1);
+        $("#running_output").append("" +
+            "<div class='column'>" +
+            "   <span class='column-item'>"+date+"</span>" +
+            "   <span class='column-item'>"+item.order_book_id+"</span>" +
+            "   <span class='column-item'>"+price.toFixed(2)+"</span>" +
+            "   <span class='column-item'>"+item.amount+"</span>" +
+            "</div>");
+    }
+}
+
+function initStrategyBar(data) {
+    $("#total_returns").html(data.total_returns);
+    $("#annual_returns").html(data.annualized_returns);
+    $("#alpha").html(data.alpha);
+    $("#beta").html(data.beta);
+    $("#sharpe").html(data.sharp);
+    $("#sortino").html(data.sortino);
+    $("#ratio").html(data.information_rate);
+    $("#benchmark_total").html(data.benchmark_total_returns);
+    $("#benchmark_annual").html(data.benchmark_annualized_returns);
+    $("#volatility").html(data.volatility);
+    $("#max_drawdown").html(data.max_drawdown);
+    $("#tracking_error").html(data.tracking_error);
 }
 
 function initDateTools() {
@@ -179,7 +263,7 @@ function initDateTools() {
     $("#end_time").datetimepicker().on("changeDate", function(ev) {
         console.log(ev);
         $("#start_time").datetimepicker("setEndDate", ev.date);
-        $("#start_time").datetimepicker("update", ev.date);
+        //$("#start_time").datetimepicker("update", ev.date);
     });
 }
 
@@ -191,7 +275,6 @@ function showCodeEditor(isNew) {
         $("#change_model").hide();
         text = strategy.python;
     }
-    console.log(text);
     if(CodeMirrorEditor!=undefined||CodeMirrorEditor!=null){
         return;
     }
@@ -221,6 +304,72 @@ function getNowFormatDate() {
         + seperator2 + date.getSeconds();
     return currentdate;
 }
+
+var chart;
+function initChart() {
+    AmCharts.theme = AmCharts.themes.dark;
+    chart = new AmCharts.AmSerialChart();
+    chart.addClassNames = true;
+    chart.categoryField = "date";
+    chart.dataProvider = chartData;
+
+    var yAxis = new AmCharts.ValueAxis();
+    chart.addValueAxis(yAxis);
+
+    var categoryAxis = chart.categoryAxis;
+    categoryAxis.minPeriod = "DD"; // our data is daily, so we set minPeriod to DD
+    categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
+    categoryAxis.autoGridCount = false;
+    categoryAxis.gridCount = 50;
+    categoryAxis.position = "bottom";
+    categoryAxis.gridAlpha = 0.1;
+    categoryAxis.dateFormats = [{
+        period: 'DD',
+        format: 'DD'
+    }, {
+        period: 'WW',
+        format: 'MMM DD'
+    }, {
+        period: 'MM',
+        format: 'MMM'
+    }, {
+        period: 'YYYY',
+        format: 'YYYY'
+    }];
+
+    var strategy_graph = new AmCharts.AmGraph();
+    strategy_graph.type = "line";
+    strategy_graph.title = "Total Return";
+    strategy_graph.valueField = "total_returns";
+    strategy_graph.valueAxis = yAxis;
+    strategy_graph.balloonText = "Returns: <b>[[value]]</b>";
+    chart.addGraph(strategy_graph);
+
+    var bench_graph = new AmCharts.AmGraph();
+    bench_graph.type = "line";
+    bench_graph.title = "Total Return";
+    bench_graph.valueField = "benchmark_total_returns";
+    bench_graph.valueAxis = yAxis;
+    bench_graph.balloonText = "Bench Returns: <b>[[value]]</b>";
+    chart.addGraph(bench_graph);
+
+    var cursor = new AmCharts.ChartCursor();
+    cursor.valueBalloonsEnabled = true;
+//        cursor.fullWidth = false;
+    cursor.cursorAlpha = 0.6;
+
+    chart.chartCursor = cursor;
+
+    var scrollbarSettings = new AmCharts.ChartScrollbar();
+//        scrollbarSettings.usePeriod = "10mm"; // this will improve performance
+    scrollbarSettings.updateOnReleaseOnly = false;
+//        scrollbarSettings.categoryAxis = categoryAxis;
+    scrollbarSettings.color = "#a0aab3";
+
+    chart.chartScrollbar = scrollbarSettings;
+
+    chart.write("backtesting_graph");
+};
 
 /**
  *
@@ -365,21 +514,22 @@ function showFlowChart(isNew) {
                         events: {
                             tap: function (params) {
                                 toolkit.toggleSelection(params.node);
-                            },
-                            click: function (params) {
-                                var info = renderer.getObjectInfo(params.node);
-                                jsPlumbToolkit.Dialogs.show({
-                                    id: "dlgText",
-                                    data: info.obj.data,
-                                    title: "Edit " + info.obj.data.type + " name",
-                                    onOK: function (data) {
-                                        if (data.text && data.text.length > 2) {
-                                            // if name is at least 2 chars long, update the underlying data and update the UI.
-                                            toolkit.updateNode(info.obj, data);
-                                        }
-                                    }
-                                });
                             }
+                            //,
+                            //dbclick: function (params) {
+                            //    var info = renderer.getObjectInfo(params.node);
+                            //    jsPlumbToolkit.Dialogs.show({
+                            //        id: "dlgText",
+                            //        data: info.obj.data,
+                            //        title: "Edit " + info.obj.data.type + " name",
+                            //        onOK: function (data) {
+                            //            if (data.text && data.text.length > 2) {
+                            //                // if name is at least 2 chars long, update the underlying data and update the UI.
+                            //                toolkit.updateNode(info.obj, data);
+                            //            }
+                            //        }
+                            //    });
+                            //}
                         }
                     },
                     "question": {
@@ -427,7 +577,7 @@ function showFlowChart(isNew) {
                         overlays:[
                             [
                                 "Label", {
-                                label: "${label}",
+                                label: "",
                                 events:{
                                     click:function(params) {
                                         _editLabel(params.edge);
@@ -517,6 +667,7 @@ function showFlowChart(isNew) {
         });
 
         jsPlumb.on(canvasElement, "tap", ".node-delete, .node-delete i", function () {
+            console.log("fjsodfjosd");
             var info = renderer.getObjectInfo(this);
             jsPlumbToolkit.Dialogs.show({
                 id: "dlgConfirm",
@@ -644,8 +795,11 @@ var code = "" +
     "\t# 如果短均线从上往下跌破长均线，也就是在目前的bar短线平均值低于长线平均值，而上一个bar的短线平均值高于长线平均值\n" +
     "\tif short_avg[-1]-long_avg[-1]<0 and short_avg[-2]-long_avg[-2]>0 and curPosition>0:\n" +
     "\t\t#进行清仓\n" +
-    "\torder_target_value(context.s1,0)\n\n" +
+    "\t\torder_target_value(context.s1,0)\n\n" +
     "\t# 如果短均线从下往上突破长均线，为入场信号\n" +
     "\tif short_avg[-1]-long_avg[-1]>0 and short_avg[-2]-long_avg[-2]<0:\n" +
     "\t\t#满仓入股\n" +
     "\t\torder_shares(context.s1,shares)\n";
+
+
+"('Trade({'order_id': 'cf742a2475394589b04a5131b6b20dd3', 'price': 6.0173923, 'tax': 0, 'commission': 79.910969743999999, 'amount': 16600, 'date': Timestamp('2012-05-03 15:00:00'), 'order_book_id': '000001.XSHE'})')"

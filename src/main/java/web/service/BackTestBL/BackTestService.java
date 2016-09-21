@@ -3,6 +3,8 @@ package web.service.BackTestBL;
 import web.pojo.after.BackTestResultPo;
 import web.pojo.enumPo.AddState;
 
+import java.util.ArrayList;
+
 /**
  * Created by linyufan on 16/7/23.
  */
@@ -25,10 +27,16 @@ public interface BackTestService {
      * @param userid
      * @param startdate
      * @param enddate
-     * @param isJson
      * @return
      */
-    public BackTestResultPo runBackTest(String strategyid,String userid,String startdate,String enddate,String isJson);
+    public BackTestResultPo runJsonBackTest(String strategyid, String userid, String startdate, String enddate, ArrayList<String> stocklist);
+
+    public BackTestResultPo runJsonBackTest(String strategyid, String userid, String startdate, String enddate, ArrayList<String> stocklist,int initmoney);
+
+
+    public BackTestResultPo runPythonBackTest(String strategyid, String userid, String startdate, String enddate);
+
+    public BackTestResultPo runPythonBackTest(String strategyid, String userid, String startdate, String enddate,int initmoney);
 
 //    /**
 //     * 编译

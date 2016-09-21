@@ -21,13 +21,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import web.Tools.ImageCut;
+import web.pojo.after.SocialgroupPo;
 import web.pojo.after.UserPo;
+import web.pojo.before.SingleInfo;
 import web.pojo.before.User;
 import web.pojo.enumPo.LoginState;
 import web.pojo.enumPo.UpdateState;
 import web.service.UserService;
 import web.service.UserSystemBL.SocialGroupService;
 import web.service.UserSystemBL.UsersService;
+import web.service.stock_presentation.SingleInfoService;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -45,6 +48,8 @@ public class UserController {
     private UsersService usersService;
     @Resource
     private SocialGroupService socialGroupService;
+    @Resource
+    private SingleInfoService singleInfoService;
 
     @RequestMapping(value = "user.do")
     public String user(HttpServletRequest request, Model model) {
@@ -60,10 +65,13 @@ public class UserController {
 
         UserPo userPo = usersService.getUser(userid);
         ArrayList<UserPo> userPos = usersService.getAllUser();
+        ArrayList<SocialgroupPo> socialgroupPos = socialGroupService.getAllsocialgroup();
+        ArrayList<SingleInfo> singleInfos = singleInfoService.getSingleInfo();
 
         model.addAttribute("userInfo", JSON.toJSON(userPo));
         model.addAttribute("userList", JSON.toJSON(userPos));
-
+        model.addAttribute("associationList", JSON.toJSON(socialgroupPos));
+        model.addAttribute("stockList", JSON.toJSON(singleInfos));
 //        System.out.println(JSON.toJSON(userPos));
 
         return "userinfo";

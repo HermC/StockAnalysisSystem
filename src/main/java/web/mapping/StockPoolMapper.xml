@@ -57,7 +57,8 @@
     <resultMap id="stockinfomap" type="web.pojo.after.SingleStockPo">
         <id column="stockid" property="stockid" jdbcType="VARCHAR"/>
         <result column="name" property="stockname" jdbcType="VARCHAR"/>
-        <result column="close" property="close" jdbcType="VARCHAR"/>
+        <result column="close" property="close" jdbcType="DOUBLE"/>
+        <result column="deviation_per" property="deviation_per" jdbcType="DOUBLE"/>
     </resultMap>
     <select id="getStockinfo" resultMap="stockinfomap">
        SELECT sw_stock_info.stockid ,sw_stock_info.name,stock_2016.close  ,max(stock_2016.date)FROM sw_stock_info , stock_2016

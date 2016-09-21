@@ -3,8 +3,8 @@
 <mapper namespace="web.dao.BackTestBL.VirtualTradeMapper">
 
     <insert id="addtrade">
-        INSERT INTO vtrade (userid,vname,starttime,startfund,sid,poolid,sname)
-        VALUES (#{0,jdbcType=VARCHAR},#{1,jdbcType=VARCHAR},#{3,jdbcType=VARCHAR},#{2,jdbcType=DOUBLE},#{4,jdbcType=VARCHAR},#{5,jdbcType=VARCHAR},#{6,jdbcType=VARCHAR})
+        INSERT INTO vtrade (userid,vname,starttime,startfund,rightfund,sid,poolid,sname)
+        VALUES (#{0,jdbcType=VARCHAR},#{1,jdbcType=VARCHAR},#{3,jdbcType=VARCHAR},#{2,jdbcType=DOUBLE},#{2,jdbcType=DOUBLE},#{4,jdbcType=VARCHAR},#{5,jdbcType=VARCHAR},#{6,jdbcType=VARCHAR})
     </insert>
 
     <select id="getidByName" parameterType="String" resultType="String">
@@ -22,6 +22,10 @@
 
     <select id="getAllTrade" resultMap="web.dao.UserSystem.StockPoolMapper.virtualtrademap">
         SELECT * FROM vtrade WHERE userid = #{0,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getDailyResult" resultType="web.pojo.after.BackTestDailyResultPo">
+          SELECT * FROM ${listname}
     </select>
     
     <update id="insertStoptime" parameterType="String">

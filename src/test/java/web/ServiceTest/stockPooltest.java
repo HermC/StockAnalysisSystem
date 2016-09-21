@@ -25,9 +25,10 @@ public class stockPooltest {
     @Test
     public void test1(){
         ArrayList<String> stocklist = new ArrayList<>();
-        stocklist.add("sh600001");
+        stocklist.add("sh600000");
+        stocklist.add("sh600004");
 
-        System.out.println(stockPoolService.addPool("2", stocklist,"wodeshujuku"));
+        System.out.println(stockPoolService.addPool("2", stocklist,"testdelete"));
 
     }
 
@@ -50,5 +51,10 @@ public class stockPooltest {
     @Test
     public void test4(){
         stockPoolService.updatename("2","23","yzy");
+    }
+
+    @Test
+    public void test5(){
+        stockPoolService.deletePool("2","32");
     }
 }

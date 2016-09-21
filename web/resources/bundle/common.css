@@ -19,7 +19,17 @@ h1,h2,h3,h4,h5,h6{
     font-weight: lighter;
 }
 a {
+    color: #bac7d4;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration:none;
     cursor: pointer;
+    color:#ffde00;
+}
+a:focus{
+    text-decoration: none;
+    color:#ffde00;
 }
 #header{
     width:100%;
@@ -90,13 +100,6 @@ a {
     position: absolute;
     right:0;
     top:0;
-}
-a{
-    color:#fff;
-    text-decoration: none;
-}
-a:hover{
-    color:#ffde00;
 }
 .header-wrapper ul .menu-item{
     display: inline-block;
@@ -209,7 +212,7 @@ a:hover{
 .main-content{
     margin:0 auto 0 auto;
     padding-top:100px;
-    width:1020px;
+    width:960px;
     min-height:100vh;
     position: relative;
     /*height:200vh;*/
@@ -366,11 +369,11 @@ a:hover{
 
 
 #main-nav {
-    width: 200px;
+    width: 280px;
     height: 100%;
     position: fixed;
     z-index: 10;
-    background-color: white;
+    background-color: rgba(0,0,0,0.5);
 }
 
 /*#main-nav div {*/
@@ -384,15 +387,25 @@ a:hover{
 .main-nav-item {
     display: flex;
     align-items: center;
-    height: 60px;
+    height: 45px;
 
-    font-size: 20px;
-    color: #535353;
+    font-size: 16px;
+    color: #bac7d4;
+
+    text-decoration: none;
 }
 
 .main-nav-item:hover {
-    background-color: #8cb0d4;
-    color: white;
+    /*background-color: #8cb0d4;*/
+    /*color: white;*/
+    border-right: 4px solid #ffde00;
+    text-decoration: none;
+
+}
+
+.main-nav-item-selected {
+    border-right: 4px solid #ffde00;
+    background-color: rgba(0,0,0,0.5);
 
     text-decoration: none;
 }
@@ -404,8 +417,8 @@ a:hover{
     flex-grow: 0;
     flex-wrap: wrap;
     flex-direction: column;
-    margin: auto 30px auto 30px;
-    background-color: #535353;
+    margin: auto 30px auto 70px;
+    background: none;
 
     -webkit-transition: 1s;
 }
@@ -420,17 +433,18 @@ a:hover{
 .user-info {
     /*background-color: #1b6d85;*/
     width: 100%;
-    height: 180px;
-    padding-top: 20px;
+    height: 210px;
+    padding-top: 50px;
     position: relative;
+    box-sizing: border-box;
 }
 
 .user-info a {
-    color: #535353;
+    color: #bac7d4;
 }
 
 .user-info a:hover {
-    color: #989898;
+    color: #ffde00;
 }
 
 .user-img-container {
@@ -454,7 +468,9 @@ a:hover{
 
 #main-page {
     /*padding-left: 0px;*/
-    margin: 0px auto 0px 200px;
+    width: auto;
+    margin: 0px auto 0px 280px;
+    overflow-x: hidden;
 }
 
 .rotation{
@@ -559,17 +575,19 @@ a:hover{
 .edit-button {
     padding: 6px 12px 6px 12px;
     font-size: 15px;
-    border: 1px solid;
+    border: 1px solid #bac7d4;
     background: none;
-    color: #535353;
+    color: #bac7d4;
     height: 35px;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .edit-button:hover {
     transition: 0.4s;
-    background-color: #535353;
-    color: white;
+    /*background-color: #535353;*/
+    border: 1px solid #ffde00;
+    color: #ffde00;
 }
 
 .edit-button:disabled {
@@ -602,20 +620,20 @@ a:hover{
 }
 
 #strategy_back:hover {
-    color: black;
+    color: #ffde00;
     cursor: pointer;
 }
 
 select {
     /*width: auto;*/
-    border: solid 1px #aaaaaa;
+    border: solid 1px #bac7d4;
     padding: 6px 20px 6px 5px;
 
     border-radius: 0;
 
-    /*background-color: white;*/
-    background: url("../img/arrow.png") no-repeat scroll right center transparent;
-    background-origin: padding-box;
+    /*background: url("../img/arrow.png") no-repeat scroll right center transparent;*/
+    /*background-origin: padding-box;*/
+    background: none;
 
     box-shadow: 0px 0px 0px #535353;
 
@@ -626,7 +644,7 @@ select {
 
 select:focus {
     outline: none;
-    /*background: #efefef;*/
+    background: rgba(0,0,0,0.7);
 }
 
 select::-ms-expand {
@@ -635,4 +653,59 @@ select::-ms-expand {
 
 .display-none {
     display: none;
+}
+
+#nav_search_input{
+    /*margin-top:12px;*/
+    margin-left:-10px;
+    margin-right:0;
+    /*padding-left:40px;*/
+    width:60%;
+    height:30px;
+    color:#aaa;
+    font-size:14px;
+    background:none;
+    border:none;
+    /*border-bottom: 1px #bac7d4 solid;*/
+}
+
+.nav-input-wrapper{
+    margin-top:12px;
+    /*margin-left: 50px;*/
+    /*width:50%;*/
+    padding: 5px 20px 5px 60px;
+    background: rgba(0,0,0,0.5);
+    position: relative;
+}
+
+#nav_search_result {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    height: 290px;
+    padding: 5px 0 15px 0;
+    background-color: rgba(0,0,0,0.55);
+    z-index: 200;
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+.nav-search-item {
+    padding-top: 5px;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+.row-item {
+    flex: 1;
+    align-items: center;
 }

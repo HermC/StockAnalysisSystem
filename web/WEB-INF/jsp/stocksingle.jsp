@@ -87,6 +87,8 @@
     <c:when test="${userInfo!=null}">
         <jsp:include page="usernav.jsp" flush="true">
             <jsp:param name="userInfo" value="${userInfo}"/>
+            <jsp:param name="stockList" value="${stockList}"/>
+            <jsp:param name="navIndex" value="0"/>
         </jsp:include>
         <div id="main-page">
             <div class="main-content">

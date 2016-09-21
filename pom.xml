@@ -290,6 +290,11 @@
             <artifactId>jython-standalone</artifactId>
             <version>2.5.3</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.testng</groupId>-->
+            <!--<artifactId>testng</artifactId>-->
+            <!--<version>4.0.2</version>-->
+        <!--</dependency>-->
 
 
     </dependencies>

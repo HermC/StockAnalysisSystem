@@ -12,6 +12,7 @@ import web.pojo.before.BenchCurrent;
 import web.pojo.before.Hotspot;
 import web.pojo.before.News;
 import web.pojo.before.SingleInfo;
+import web.service.UserSystemBL.UsersService;
 import web.service.stock_presentation.RecommendService;
 import web.service.stock_presentation.SingleInfoService;
 
@@ -33,6 +34,8 @@ public class IndexController {
     private SingleInfoService singleInfoService;
     @Resource
     private RecommendService recommendService;
+    @Resource
+    private UsersService usersService;
 
     @RequestMapping(value = "/index/active.do")
     public @ResponseBody
@@ -59,7 +62,9 @@ public class IndexController {
         String userid = (String) session.getAttribute("userid");
 
         if(userid!=null){
-            model.addAttribute("userInfo", userid);
+//            model.addAttribute("userInfo", userid);
+            UserPo userPo = usersService.getUser(userid);
+            model.addAttribute("userInfo", JSON.toJSON(userPo));
         }
 
         ArrayList<SingleInfo> stockList = singleInfoService.getSingleInfo();

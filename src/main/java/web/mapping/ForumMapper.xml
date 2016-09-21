@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="web.dao.UserSystem.ForumMapper" >
+
+    <insert id="addtopic" >
+        INSERT into topic(uid,title,content,strategyid,release_date)
+        VALUES (#{0,jdbcType=VARCHAR},#{1,jdbcType=LONGVARCHAR},#{2,jdbcType=LONGVARCHAR},#{3,jdbcType=VARCHAR},#{6,jdbcType=LONGVARCHAR})
+    </insert>
+
+    <select id="getIdByInfo" resultType="String">
+        SELECT tid FROM topic WHERE uid = #{uid} AND title = #{title}
+        AND strategyid = #{strategyid} AND content = #{content}
+    </select>
+
+    <insert id="replytopic" parameterType="String">
+        INSERT INTO reply(uid,tid,content,release_date)
+        VALUES(#{0,jdbcType=VARCHAR},#{1,jdbcType=VARCHAR},#{2,jdbcType=LONGVARCHAR},#{3,jdbcType=LONGVARCHAR})
+    </insert>
+
+    <insert id="replyreply" parameterType="String">
+        INSERT INTO reply(uid,tid,oid,content,release_date)
+        VALUES (#{0,jdbcType=VARCHAR},#{1,jdbcType=VARCHAR},#{2,jdbcType=VARCHAR},#{3,jdbcType=LONGVARCHAR},#{4,jdbcType=LONGVARCHAR})
+    </insert>
+
+    <resultMap id="alltopicmap" type="web.pojo.after.TopicPo">
+        <id column="tid" property="topicid" jdbcType="BIGINT" javaType="String"/>
+        <result column="uid" property="userid" jdbcType="VARCHAR"/>
+        <result column="nickname" property="username" jdbcType="LONGVARCHAR"/>
+        <result column="portriat" property="userportrait" jdbcType="LONGVARCHAR"/>
+        <result column="title" property="title" jdbcType="LONGVARCHAR"/>
+        <result column="content" property="content" jdbcType="LONGVARCHAR"/>
+        <result column="strategyid" property="strategyid" jdbcType="VARCHAR"/>
+        <result column="reply_count" property="reply_count" jdbcType="BIGINT"/>
+        <result column="click_count" property="click_count" jdbcType="BIGINT"/>
+        <result column="release_date" property="release_date" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <select id="getAllTopic" resultMap="alltopicmap">
+        SELECT topic.tid ,topic.uid ,user.nickname ,user.portriat ,topic.title ,topic.content ,topic.strategyid ,
+        topic.reply_count ,topic.click_count ,topic.release_date FROM topic, user WHERE user.userid = topic.uid
+    </select>
+
+    <update id="updatereplycount" parameterType="String">
+        update topic set reply_count = reply_count + 1 WHERE tid = #{tid}
+    </update>
+
+    <update id="updateclickcount" parameterType="String">
+         update topic set  click_count = click_count + 1 WHERE tid = #{tid}
+    </update>
+
+    <select id="getSearch" resultMap="alltopicmap">
+        SELECT topic.tid ,topic.uid ,user.nickname ,user.portriat ,topic.title ,topic.content ,topic.strategyid,
+        topic.reply_count ,topic.click_count ,topic.release_date FROM topic, user WHERE( user.userid = topic.uid) AND
+        (topic.title LIKE #{0,jdbcType=VARCHAR})
+    </select>
+
+    <select id="getTopic" resultMap="alltopicmap">
+         SELECT topic.tid ,topic.uid ,user.nickname ,user.portriat ,topic.title ,topic.content ,topic.strategyid,
+        topic.reply_count ,topic.click_count ,topic.release_date FROM topic, user WHERE( user.userid = topic.uid) AND
+        (topic.tid = #{0,jdbcType=VARCHAR})
+    </select>
+
+    <resultMap id="replymap" type="web.pojo.after.ReplyPo">
+        <id column="rid" property="replyid" jdbcType="BIGINT" javaType="String"/>
+        <result column="tid" property="topicid" jdbcType="VARCHAR"/>
+        <result column="uid" property="userid" jdbcType="VARCHAR"/>
+        <result column="nickname" property="username" jdbcType="LONGVARCHAR"/>
+        <result column="portriat" property="userportriat" jdbcType="LONGVARCHAR"/>
+        <result column="oid" property="orderid" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="LONGVARCHAR"/>
+        <result column="release_date" property="release_date" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <select id="getTopicReply" resultMap="replymap">
+         SELECT reply.rid,reply.tid ,reply.uid ,user.nickname ,user.portriat  ,reply.oid,reply.content ,reply.release_date
+         FROM reply, user WHERE( user.userid = reply.uid) AND
+        (reply.tid = #{0,jdbcType=VARCHAR})
+    </select>
+
+    <select id="getReplyReply" resultType="String">
+        SELECT uid FROM reply WHERE rid = #{0,jdbcType=VARCHAR}
+    </select>
+</mapper>
+

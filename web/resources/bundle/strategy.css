@@ -1,34 +1,38 @@
-body {
-    background: #eeeeee;
-}
 
 #main-page {
     /*padding-top: 30px;*/
     /*padding-bottom: 30px;*/
     width: auto;
-    height: 100%;
-    min-height: 100vh;
-    background-color: #eeeeee;
-    border-left: 1px solid #eeeeee;
+    height: 100vh;
+    /*min-height: 100vh;*/
+    padding: 30px;
+    /*background-color: #eeeeee;*/
+    /*border-left: 1px solid #eeeeee;*/
     position: relative;
-    color: #535353;
-    /*box-sizing: border-box;*/
+    color: #bac7d4;
+    box-sizing: border-box;
 }
 
 .strategy-list-container {
     margin: 0px auto auto auto;
-    padding: 40px 21px 30px 20px;
-    width: 80%;
-    /*height: 100px;*/
-    background-color: white;
+    padding: 20px;
+    /*width: 80%;*/
+    height: 86vh;
+    background-color: rgba(180, 180, 180, 0.2);
     position: relative;
-    top: 30px;
+    /*top: 30px;*/
 }
 
 #main-page h1 {
     padding-left: 5px;
-    border-left: 3px solid #535353;
+    /*border-left: 3px solid #535353;*/
+    color: #ffde00;
     font-size: 24px;
+    display: inline;
+}
+
+#add_new_strategy {
+    float: right;
 }
 
 .u1of10 {
@@ -36,20 +40,26 @@ body {
 }
 
 .delete-strategy:hover {
-    color: black;
+    color: #ffde00;
     cursor: pointer;
 }
 
 .strategy-header {
-    border-top: 1px solid #535353;
-    border-bottom: 1px solid #535353;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top: 1px solid #ffde00;
+    border-bottom: 1px solid #ffde00;
+    color: #ffde00;
 }
 
 .strategy-list {
-    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 70vh;
     overflow: auto;
 }
 
-.strategy-name {
+.strategy-info:hover {
+    color: #ffde00;
     cursor: pointer;
 }

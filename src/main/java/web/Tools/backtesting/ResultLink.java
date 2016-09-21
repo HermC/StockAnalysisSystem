@@ -42,20 +42,24 @@ public class ResultLink {
 //        }
 //    }
 
-    public void saveToDB() {
-        String path = ClassLoader.getSystemResource("").getPath();
+    public String saveToDB() {
+        int value = 1;
+        String out = "";
+        String path = System.getProperty("user.home");
         String cmd = "";
         String system = System.getProperties().getProperty("os.name").toLowerCase();
 
         if (system.contains("windows")) {
-            path = path.substring(1);
+            path += "\\";
+//            path = path.substring(1);
             cmd += "cmd.exe /c start ";
         }
         else if (system.contains("mac")) {
+            path += "/";
 //            cmd += "/bin/sh -c ";
         }
         else if(system.contains(("linux"))) {
-
+            path += "/";
         }
         String pyPath = path + "result_db.py";
         String pklPath = path + resultName + ".pkl";
@@ -63,12 +67,14 @@ public class ResultLink {
         System.out.println(cmd);
         Runtime run = Runtime.getRuntime();
         try {
+
             Process process = run.exec(cmd);
-            process.waitFor();
-//            BufferedInputStream in = new BufferedInputStream(process.getInputStream());
-//            BufferedReader inBr = new BufferedReader(new InputStreamReader(in));
-//            String lineStr;
-//            while ((lineStr = inBr.readLine()) != null)
+            value = process.waitFor();
+            BufferedInputStream in = new BufferedInputStream(process.getInputStream());
+            BufferedReader inBr = new BufferedReader(new InputStreamReader(in));
+            String lineStr;
+            while ((lineStr = inBr.readLine()) != null)
+                out += lineStr;
 //                //获得命令执行后在控制台的输出信息
 //                System.out.println(lineStr);// 打印输出信息
 //            //检查命令是否执行失败。
@@ -82,6 +88,7 @@ public class ResultLink {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return String.valueOf(value) + out;
     }
 
     public static void main(String[] args) {

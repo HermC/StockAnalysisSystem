@@ -21,7 +21,7 @@ public interface VirtualTradeService {
      * @param starttime 开始时间
      * @return
      */
-    public String addtrade(String userid , String tradename , double startfund , String starttime,String strategyid,String poolid);
+    public String addtrade(String userid , String tradename , int startfund , String starttime,String strategyid,String poolid);
 
     /**
      * 删除交易

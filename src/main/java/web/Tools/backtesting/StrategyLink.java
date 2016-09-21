@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.lang.ClassLoader;
 
 /**
  * Created by NJU on 2016/9/4.
@@ -60,11 +61,16 @@ public class StrategyLink {
             String sql = "select `py_text` from `strategy` where `sid`= " + String.valueOf(sid);    //要执行的SQL
             ResultSet rs = stmt.executeQuery(sql);//创建数据对象
 
-            String path = ClassLoader.getSystemResource("").getPath();
+//            System.out.println(ClassLoader);
+            String path = System.getProperty("user.home") ;
             String system = System.getProperties().getProperty("os.name").toLowerCase();
 //        System.out.println(system);
             if (system.contains("windows")) {
-                path = path.substring(1);
+                path += "\\";
+//                path = path.substring(1);
+            }
+            else {
+                path += "/";
             }
 
             path += "strategy_" + String.valueOf(sid) + ".py";

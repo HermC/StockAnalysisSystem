@@ -1,36 +1,39 @@
 #main-page {
-    /*padding-top: 30px;*/
+    padding: 30px;
     /*padding-bottom: 30px;*/
     width: auto;
     height: auto;
     min-height: 100vh;
-    background-color: #eeeeee;
-    border-left: 1px solid #eeeeee;
+    background: none;
     position: relative;
-    color: #535353;
+    color: #bac7d4;
     /*box-sizing: border-box;*/
 }
 
 a {
-    color: #535353;
+    color: #bac7d4;
+}
+
+a:hover {
+    color: #ffde00;
 }
 
 #main-page h1 {
     padding-left: 5px;
-    border-left: 3px solid #535353;
     font-size: 24px;
+    color: #ffde00;
 }
 
 .simulator-info-container {
     width: 100%;
     min-height: 100vh;
     padding: 20px;
-    background-color: white;
     box-sizing: border-box;
+    background-color: rgba(150, 150, 150, 0.2);
 }
 
 #back_to_list:hover {
-    color: black;
+    color: #ffde00;
     cursor: pointer;
 }
 
@@ -66,4 +69,24 @@ a {
     /*height: 100px;*/
     padding: 10px;
     box-sizing: border-box;
+}
+
+#dailyResultGraph {
+    height: 300px;
+}
+
+#main-page h3 {
+    color: #ffde00;
+}
+
+#trade_result_wrapper {
+    max-height: 200px;
+    overflow: auto;
+}
+
+.table-header {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top: 1px solid #ffde00;
+    border-bottom: 1px solid #ffde00;
 }

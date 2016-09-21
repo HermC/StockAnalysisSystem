@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import web.pojo.after.UserPo;
 import web.pojo.before.SingleInfo;
+import web.service.UserSystemBL.UsersService;
 import web.service.stock_presentation.GradeService;
 import web.service.stock_presentation.RecommendService;
 import web.service.stock_presentation.SingleInfoService;
@@ -14,6 +16,7 @@ import web.vo.before.StockGradeVO;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,9 +33,20 @@ public class RecommandController {
     RecommendService recommendService;
     @Resource
     private SingleInfoService singleInfoService;
+    @Resource
+    private UsersService usersService;
 
     @RequestMapping(value = "recommand.do")
     public String toRecommand(HttpServletRequest request,Model model){
+
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+
+        if(userid!=null){
+            UserPo userPo = usersService.getUser(userid);
+            model.addAttribute("userInfo", JSON.toJSON(userPo));
+        }
+
         ArrayList<StockGradeVO> stockGradeVOs = gradeService.getGradeList();
         ArrayList<SingleInfo> stopRecommand = recommendService.getStopRecommend();
         ArrayList<SingleInfo> kdjRecommand = recommendService.getKDJRecommend();

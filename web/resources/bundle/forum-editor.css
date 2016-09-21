@@ -1,0 +1,52 @@
+#main-page {
+    padding: 30px;
+    width: auto;
+    height: 92vh;
+    background-color: rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.forum-editor-container {
+    height: 82vh;
+    margin: 0px auto auto auto;
+    padding: 40px 21px 30px 20px;
+    background-color: rgba(150, 150, 150, 0.2);
+    color: #bac7d4;
+}
+
+#main-page h1 {
+    padding-left: 5px;
+    /*border-left: 3px solid #535353;*/
+    color: #ffde00;
+    font-size: 24px;
+}
+
+#main-page input[type="text"], #main-page input[type="password"] {
+    border: 1px solid #bac7d4;
+    margin: 0px 0px 0px 0;
+    padding: 6px 7px 7px 7px;
+    background-color: rgba(0,0,0,0.3);
+    font-size: 15px;
+    color: #bac7d4;
+}
+
+#main-page input[type="text"]:focus, #main-page input[type="password"]:focus{
+    background-color: rgba(0,0,0,0.7);
+}
+
+.theme-wrapper span{
+    width: 70px;
+    font-size: 20px;
+}
+
+#trumbowyg-editor {
+    height: 45vh;
+}
+
+#upload {
+    width: 120px;
+}
+
+.trumbowyg-editor:focus {
+    background-color: rgba(0,0,0,0.5);
+}

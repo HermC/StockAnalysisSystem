@@ -13,8 +13,10 @@ public class BacktestingLink {
     private Connection conn;
     private int sid;
     private int userid;
+    private String startTime;
+    private String endTime;
 
-    public BacktestingLink(int sid, int userid) {
+    public BacktestingLink(int sid, int userid, String start, String end) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("成功加载MySQL驱动！");
@@ -29,6 +31,8 @@ public class BacktestingLink {
             this.sid = sid;
             this.conn = conn;
             this.userid = userid;
+            this.startTime = start;
+            this.endTime = end;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -65,7 +69,8 @@ public class BacktestingLink {
     public String getStartTime() {
         String time = "";
         try {
-            String sql = "select `start` from `backtesting` where `sid`= " + String.valueOf(sid);    //要执行的SQL
+            String sql = "select `start` from `backtesting` where `sid`= " + String.valueOf(sid) + " and `userid`" +
+                    " = " + String.valueOf(userid) + " and `start` = '" + startTime + "' and `end` = '" + endTime + "'";
             ResultSet rs = stmt.executeQuery(sql);//创建数据对象
             rs.next();
             time = (rs.getString(1));
@@ -73,13 +78,15 @@ public class BacktestingLink {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        this.startTime = time;
         return time;
     }
 
     public String getEndTime() {
         String time = "";
         try {
-            String sql = "select `end` from `backtesting` where `sid`= " + String.valueOf(sid);    //要执行的SQL
+            String sql = "select `end` from `backtesting` where `sid`= " + String.valueOf(sid) + " and `userid`" +
+                    " = " + String.valueOf(userid) + " and `start` = '" + startTime + "' and `end` = '" + endTime + "'";
             ResultSet rs = stmt.executeQuery(sql);//创建数据对象
             rs.next();
             time = (rs.getString(1));
@@ -87,13 +94,15 @@ public class BacktestingLink {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        this.endTime = time;
         return time;
     }
 
     public String getResultName() {
         String result = "";
         try {
-            String sql = "select `resultid` from `backtesting` where `sid`= " + String.valueOf(sid);    //要执行的SQL
+            String sql = "select `resultid` from `backtesting` where `sid`= " + String.valueOf(sid) + " and `userid`" +
+                    " = " + String.valueOf(userid) + " and `start` = '" + startTime + "' and `end` = '" + endTime + "'";    //要执行的SQL
             ResultSet rs = stmt.executeQuery(sql);//创建数据对象
             rs.next();
             result = "result_" + (rs.getString(1));
@@ -103,6 +112,29 @@ public class BacktestingLink {
         }
         return result;
     }
+
+    public void updateStartTime(String startTime) {
+        try {
+            String sql = "update backtesting set `start` = '" + startTime + "' where `sid`= " + String.valueOf(sid) + " and `userid`" +
+                    " = " + String.valueOf(userid) + " and `start` = '" + this.startTime + "' and `end` = '" + this.endTime + "'";
+            int count = stmt.executeUpdate(sql);//创建数据对象
+            System.out.println("update " + String.valueOf(count));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateEndTime(String endTime) {
+        try {
+            String sql = "update backtesting set `end` = '" + endTime + "' where `sid`= " + String.valueOf(sid) + " and `userid`" +
+                    " = " + String.valueOf(userid) + " and `start` = '" + this.startTime + "' and `end` = '" + this.endTime + "'";    //要执行的SQL
+            int count = stmt.executeUpdate(sql);//创建数据对象
+            System.out.println("update " + String.valueOf(count));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
 

@@ -1,6 +1,8 @@
 package web.dao.BackTestBL;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import web.pojo.after.BackTestDailyResultPo;
 import web.pojo.after.VirtualTradePo;
 
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ public interface VirtualTradeMapper {
 
     //4
     public ArrayList<VirtualTradePo> getAllTrade(String userid);
+
+    public ArrayList<BackTestDailyResultPo> getDailyResult(@Param("listname") String listname);
 
     //5
     public void insertStoptime(String userid,String vid,String time);

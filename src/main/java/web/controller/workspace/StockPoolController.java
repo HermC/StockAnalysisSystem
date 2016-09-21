@@ -42,10 +42,8 @@ public class StockPoolController {
         HttpSession session = request.getSession();
         String userid = (String) session.getAttribute("userid");
 
-        userid = "2";
-
         if(userid==null){
-            return "welcome";
+            userid = "2";
         }
 
         ArrayList<StockPool> stockPools = stockPoolService.getAllPool(userid);
@@ -67,7 +65,9 @@ public class StockPoolController {
         HttpSession session = request.getSession();
         String userid = (String) session.getAttribute("userid");
 
-        userid = "2";
+        if(userid==null){
+            userid = "2";
+        }
 
         String stockPoolName = request.getParameter("name");
         ArrayList<String> stockList = new ArrayList<String>();
@@ -95,7 +95,9 @@ public class StockPoolController {
         HttpSession session = request.getSession();
         String userid = (String) session.getAttribute("userid");
 
-        userid = "2";
+        if(userid==null){
+            userid = "2";
+        }
 
         String stockPoolID = request.getParameter("id");
 
@@ -118,7 +120,9 @@ public class StockPoolController {
         HttpSession session = request.getSession();
         String userid = (String) session.getAttribute("userid");
 
-        userid = "2";
+        if(userid==null){
+            userid = "2";
+        }
 
         String stockPoolID = request.getParameter("id");
         String stockid = request.getParameter("stockid");
@@ -145,7 +149,9 @@ public class StockPoolController {
         HttpSession session = request.getSession();
         String userid = (String) session.getAttribute("userid");
 
-        userid = "2";
+        if(userid==null){
+            userid = "2";
+        }
 
         String stockPoolID = request.getParameter("id");
         String stockid = request.getParameter("stockid");
@@ -157,6 +163,32 @@ public class StockPoolController {
         DeleteState deleteState = stockPoolService.deleteFromPool(userid, stockPoolID, stockids);
 
         if(deleteState==DeleteState.删除成功){
+            map.put("success", true);
+        }else{
+            map.put("success", false);
+        }
+
+        return map;
+    }
+
+    @RequestMapping(value = "user/stockpool/update-name.do")
+    public @ResponseBody Map<String, Object>
+    updateName(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<>();
+
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+
+        if(userid==null){
+            userid = "2";
+        }
+
+        String name = request.getParameter("name");
+        String id = request.getParameter("id");
+
+        UpdateState updateState = stockPoolService.updatename(userid, id, name);
+
+        if(updateState!=UpdateState.修改成功){
             map.put("success", true);
         }else{
             map.put("success", false);

@@ -39,6 +39,6 @@ public class BackTestTest {
 
     @Test
     public void test3(){
-        System.out.println(backTestMapper.getResultid("3","8"));
+        System.out.println(backTestMapper.getResultid("3","8","123","123"));
     }
 }

@@ -19,7 +19,10 @@ def save(name, path):
                 "positions text, `sharpe` float, sortino float,total_commission float," \
                 "total_returns float, total_tax float, tracking_error float, trades text, " \
                 "volatility float, `index` bigint auto_increment, primary key(`index`))"
-    cursor.execute(create_cmd % name)
+    try:
+        cursor.execute(create_cmd % name)
+    except:
+        print "already exists"
 
     insert_cmd = "insert into " + name + " (" \
                 '`date`, alpha, annualized_returns, benchmark_annualized_returns, benchmark_daily_returns, ' \

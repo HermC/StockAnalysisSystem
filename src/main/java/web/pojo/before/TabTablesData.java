@@ -8,6 +8,8 @@ import java.time.LocalDate;
 public class TabTablesData {
     public String date;
 
+    public String dateNum;
+
     public Double open;
 
     public Double close;
@@ -86,6 +88,7 @@ public class TabTablesData {
     }
 
     public void setDate(String date) {
+        this.dateNum = date.substring(2);
         LocalDate temp = LocalDate.parse(date);
         this.date = temp.getMonth().toString()+" "+temp.getDayOfMonth()+","+temp.getYear();
     }

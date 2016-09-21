@@ -1,5 +1,7 @@
 package web.pojo.after;
 
+import java.util.ArrayList;
+
 /**
  * Created by linyufan on 16/9/2.
  */
@@ -44,6 +46,16 @@ public class VirtualTradePo {
     public Double Sharpe;           //夏普系数
 
     public Double MaxDrawdown;      //最大回撤率
+
+    public ArrayList<BackTestDailyResultPo> dailyResultPos;     //每日结果
+
+    public ArrayList<BackTestDailyResultPo> getDailyResultPos() {
+        return dailyResultPos;
+    }
+
+    public void setDailyResultPos(ArrayList<BackTestDailyResultPo> dailyResultPos) {
+        this.dailyResultPos = dailyResultPos;
+    }
 
     public String getStartdate() {
         return startdate;

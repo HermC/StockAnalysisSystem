@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @RunWith(SpringJUnit4ClassRunner.class)     //表示继承了SpringJUnit4ClassRunner类
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class StockInfoMapperTest {
-    private static Logger logger = Logger.getLogger(StockDataMapperTest.class);
+//    private static Logger logger = Logger.getLogger(StockDataMapperTest.class);
 
     @Autowired
     private StockInfoMapper stockInfoMapper;
@@ -34,7 +34,7 @@ public class StockInfoMapperTest {
     public void test() {
             StockInfo stockInfo = stockInfoMapper.getStockInfo("sh600000");
 
-            logger.info(JSON.toJSONString(stockInfo));
+//            logger.info(JSON.toJSONString(stockInfo));
 
 
         ArrayList<StockSeason> stockSeasons = stockInfoService.getStockSeason("sh600000");

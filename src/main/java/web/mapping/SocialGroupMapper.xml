@@ -2,5 +2,50 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="web.dao.UserSystem.SocialGroupMapper" >
 
+    <insert id="createsocialgroup" parameterType="String">
+        INSERT INTO socialgroup(`groupname`)
+        VALUES (#{0,jdbcType=VARCHAR})
+    </insert>
 
+    <select id="getsocialgroupid" resultType="String">
+        SELECT groupid FROM socialgroup
+        WHERE groupname = #{0,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="adduserintogroup" parameterType="String">
+        INSERT INTO socialgroup_user (groupid,userid)
+        VALUES (#{0,jdbcType=VARCHAR},#{1,jdbcType=VARCHAR})
+    </insert>
+
+    <resultMap id="SocialGroup" type="web.pojo.after.SocialgroupPo">
+        <id column="groupid" property="sgid"  jdbcType="BIGINT" javaType="String"/>
+        <result column="groupname" property="sgname" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="getAllsocialgroup" resultMap="SocialGroup">
+        SELECT * FROM socialgroup
+    </select>
+
+    <resultMap id="users" type="web.pojo.after.UserPo">
+        <id column="userid" property="UserId" jdbcType="VARCHAR"/>
+        <result column="nickname" property="UserName" jdbcType="VARCHAR"/>
+        <result column="max(vtrade.earn)" property="maxearn" jdbcType="DOUBLE"/>
+        <result column="sid" property="sid" jdbcType="VARCHAR"/>
+        <result column="sname" property="sname" jdbcType="VARCHAR"/>
+        <result column="poolid" property="poolid" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="getAllUserInGroup" resultMap="users">
+        SELECT socialgroup_user.userid, user.nickname ,max(vtrade.earn),vtrade.sid,vtrade.sname,vtrade.poolid
+        FROM socialgroup_user,user,vtrade WHERE (socialgroup_user.userid = user.userid)
+        AND (user.userid = vtrade.userid) AND (socialgroup_user.groupid = #{0,jdbcType=VARCHAR})
+    </select>
+
+    <resultMap id="userss" type="web.pojo.after.UserPo">
+        <id column="userid" property="UserId" jdbcType="VARCHAR"/>
+        <result column="nickname" property="UserName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="getAllUserid" resultMap="userss">
+        SELECT socialgroup_user.userid ,user.nickname FROM socialgroup_user , user
+        WHERE (socialgroup_user.groupid = #{0,jdbcType=VARCHAR})
+         AND (socialgroup_user.userid = user.userid)
+    </select>
 </mapper>

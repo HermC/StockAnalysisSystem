@@ -38,11 +38,11 @@ public class UsersTest {
     public void test2(){
         UserPo userPo = new UserPo();
 //        userPo.setUserId("2");
-        userPo.setUserName("zcj");
-        userPo.setPassword("zcj");
-        userPo.setSummary("zcj");
-//        LoginState loginState = usersService.login("1","huangyong");
-        System.out.println(usersService.newUser(userPo));
+//        userPo.setUserName("zcj");
+//        userPo.setPassword("zcj");
+//        userPo.setSummary("zcj");
+////        LoginState loginState = usersService.login("1","huangyong");
+//        System.out.println(usersService.newUser(userPo));
     }
     @Test
     public void test3(){

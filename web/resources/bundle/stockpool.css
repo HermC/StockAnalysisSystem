@@ -1,25 +1,23 @@
 #main-page {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding: 30px;
     width: auto;
-    height: auto;
-    min-height: 100vh;
-    background-color: #eeeeee;
-    border-left: 1px solid #eeeeee;
+    height: 92vh;
+    background-color: rgba(0,0,0,0.3);
     position: relative;
 }
 
 .stockpool-body {
+    height: 82vh;
     margin: 0px auto auto auto;
     padding: 40px 21px 30px 20px;
-    width: 80%;
-    background-color: white;
-    color: #535353;
+    background-color: rgba(150, 150, 150, 0.2);
+    color: #bac7d4;
 }
 
 #main-page h1 {
     padding-left: 5px;
-    border-left: 3px solid #535353;
+    /*border-left: 3px solid #535353;*/
+    color: #ffde00;
     font-size: 24px;
 }
 
@@ -28,8 +26,13 @@
     display: inline;
 }
 
+hr {
+    color: #bac7d4;
+    border: 1px solid #bac7d4;
+}
+
 .delete-pool {
-    float: right;
+    /*float: right;*/
 }
 
 .delete-pool:hover, .edit-stock:hover, .edit-strategy:hover {
@@ -53,14 +56,15 @@
 
 .stockpool-container {
     width: 100%;
+    border-top: 2px solid #ffde00;
 }
 
-.stockpool-item {
-    margin-bottom: 20px;
-    padding: 10px 10px 10px 10px;
-    border: 1px solid #a9a9a9;
-    box-shadow: 1px 3px 3px #535353;
-}
+/*.stockpool-item {*/
+    /*margin-bottom: 20px;*/
+    /*padding: 10px 10px 10px 10px;*/
+    /*border: 1px solid #bac7d4;*/
+    /*!*box-shadow: 1px 3px 3px #535353;*!*/
+/*}*/
 
 .table-wrapper {
     max-height: 100px;
@@ -69,13 +73,13 @@
 
 .stockpool-item table {
     width: 100%;
-    color: black;
+    color: #bac7d4;
 }
 
 .table-head {
     padding-right: 16px;
-    background-color: #535353;
-    color: white;
+    background: none;
+    color: #bac7d4;
 }
 
 .stockpool-item tr {
@@ -90,12 +94,12 @@
 }
 
 .stockpool-item tr.even td {
-    background-color: #ededed;
+    background: none;
     overflow: hidden;
 }
 
 .stockpool-item tr.odd td{
-    background-color: white;
+    background-color: rgba(0,0,0,0.4);
 }
 
 .stock-editor-outer {
@@ -106,7 +110,7 @@
     height: 100%;
     z-index: 100;
     /*padding-top: 70px;*/
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .stock-editor-wrapper {
@@ -114,24 +118,26 @@
     /*height: 100px;*/
     padding: 20px 20px 20px 20px;
     margin: 80px auto auto auto;
-    background-color: white;
+    background-color: rgba(0,0,0,0.7);
     font-size: 18px;
-    color: #535353;
+    color: #bac7d4;
 }
 
 .stock-editor-wrapper h2{
     font-size: 20px;
 }
 
-input[type="text"], input[type="password"] {
-    border: solid 1px #e5e5e5;
+#main-page input[type="text"], #main-page input[type="password"] {
+    border: solid 1px #bac7d4;
     margin: 0px 0px 0px 0;
     padding: 6px 7px 7px 7px;
+    background: none;
     font-size: 15px;
+    color: #bac7d4;
 }
 
-input[type="text"]:focus, input[type="password"]:focus{
-    background-color: ghostwhite;
+#main-page input[type="text"]:focus, #main-page input[type="password"]:focus{
+    background-color: rgba(0,0,0,0.3);
 }
 
 .input-container {
@@ -145,7 +151,7 @@ input[type="text"]:focus, input[type="password"]:focus{
     /*height: 100px;*/
     z-index: 101;
     padding: 5px 0px 5px 0px;
-    background-color: whitesmoke;
+    background-color: rgba(0,0,0,0.7);
     /*box-sizing: border-box;*/
 }
 
@@ -154,7 +160,8 @@ input[type="text"]:focus, input[type="password"]:focus{
 }
 
 .stock-search-info .column:hover {
-    background-color: #aaaaaa;
+    color: #ffde00;
+    cursor: pointer;
 }
 
 .column-wrapper {
@@ -187,7 +194,7 @@ input[type="text"]:focus, input[type="password"]:focus{
 }
 
 .delete-stock:hover {
-    color: black;
+    color: #ffde00;
     cursor: pointer;
 }
 
@@ -211,10 +218,45 @@ input[type="text"].change-name-input {
     height: 93px;
     margin-top: 20px;
     padding: 10px 0 10px 0;
-    border-top: 1px solid #535353;
-    border-bottom: 1px solid #535353;
+    border-top: 1px solid #bac7d4;
+    border-bottom: 1px solid #bac7d4;
 }
 
 .add-stockpool div {
     /*width: 350px;*/
+}
+
+.stockpool-item h2 strong {
+    color: #ffde00;
+}
+
+.selector-wrapper {
+    /*width: 180px;*/
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+    /*border-bottom: 1px solid #ffde00;*/
+}
+
+.selector-item {
+    padding: 2px 6px;
+    /*flex: 1;*/
+    width: 100px;
+    /*text-align: center;*/
+    cursor: pointer;
+    color: #ffde00;
+    box-sizing: border-box;
+}
+
+.selected {
+    color: white;
+    background-color: #ffde00;
+    box-sizing: border-box;
+}
+
+.table-header {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top: 1px solid #ffde00;
+    border-bottom: 1px solid #ffde00;
+    color: #ffde00;
 }

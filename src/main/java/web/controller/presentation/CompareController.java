@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import web.pojo.after.UserPo;
 import web.pojo.before.SingleInfo;
+import web.service.UserSystemBL.UsersService;
 import web.service.stock_presentation.SingleInfoService;
 import web.service.stock_presentation.StockComparisionService;
 import web.vo.before.StockComparison;
@@ -14,6 +16,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,11 +32,21 @@ public class CompareController {
     private SingleInfoService singleInfoService;
     @Resource
     private StockComparisionService stockComparisionService;
+    @Resource
+    private UsersService usersService;
 
     @RequestMapping(value = "compare.do")
     public String toCompare(HttpServletRequest request, Model model) {
         ArrayList<SingleInfo> stockList = singleInfoService.getSingleInfo();
         model.addAttribute("stockList", JSON.toJSON(stockList));
+
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+
+        if(userid!=null){
+            UserPo userPo = usersService.getUser(userid);
+            model.addAttribute("userInfo", JSON.toJSON(userPo));
+        }
 
         Cookie[] cookies = request.getCookies();
         if(cookies==null){

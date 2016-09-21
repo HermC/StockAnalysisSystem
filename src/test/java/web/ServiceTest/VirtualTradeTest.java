@@ -26,7 +26,7 @@ public class VirtualTradeTest {
 
     @Test
     public void test1(){
-        System.out.println(virtualTradeService.addtrade("2","qwerty",100,"2017","11","23"));
+        System.out.println(virtualTradeService.addtrade("1","qwerty",1000,"2017","11","23"));
     }
 
     @Test

@@ -17,6 +17,7 @@
     </select>
 
     <select id="getResultid" resultType="String">
-        SELECT resultid FROM backtesting WHERE userid = #{0,jdbcType=BIGINT} AND sid = #{1,jdbcType=BIGINT}
+        SELECT resultid FROM backtesting WHERE userid = #{0,jdbcType=BIGINT} AND sid = #{1,jdbcType=BIGINT} AND start = #{2,jdbcType=LONGVARCHAR}
+        AND end = #{3,jdbcType=LONGVARCHAR}
     </select>
 </mapper>

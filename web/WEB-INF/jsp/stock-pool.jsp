@@ -14,10 +14,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link type="text/css" rel="stylesheet" href="/resources/bundle/reset.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/bundle/common.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/bundle/stockpool.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/plugin/font-awesome-4.6.3/css/font-awesome.min.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/bundle/reset.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/bundle/common.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/bundle/stockpool.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/plugin/font-awesome-4.6.3/css/font-awesome.min.css"/>
 
     <script>
         var stock_pool_list = ${stock_pool_list};
@@ -41,13 +41,16 @@
     <title>股票池-Ascending</title>
 </head>
 <body>
+<img id="full_background" src="resources/img/background/index_2.png"/>
 <jsp:include page="usernav.jsp" flush="true">
     <jsp:param name="userInfo" value="${userInfo}"/>
+    <jsp:param name="stockList" value="${stockList}"/>
+    <jsp:param name="navIndex" value="3"/>
 </jsp:include>
 <div id="main-page">
     <div id="stock_editor" class="stock-editor-outer" style="display: none">
         <div class="stock-editor-wrapper">
-            <h1>编辑池中股票</h1>
+            <h1><img src="resources/img/logo_s.png"/> 编辑池中股票</h1>
             <br>
             <h2><strong>#1</strong> 股票池1</h2>
             <hr>
@@ -115,11 +118,11 @@
         </div>
     </div>
     <div class="stockpool-body">
-        <h1>股票池</h1>
+        <h1><img src="resources/img/logo_s.png"/> 股票池</h1>
 
         <br>
 
-        <button id="add_stock_pool" class="edit-button" type="button"><i class="fa fa-plus"></i> 添加新的股票池</button>
+        <button id="add_stock_pool" class="edit-button" type="button">添加新的股票池 <i class="fa fa-plus"></i></button>
         <div class="add-stockpool" style="display: none">
             <div class="column">
                 <label class="column-item">股票池名称</label>
@@ -134,378 +137,222 @@
         <br>
         <br>
 
+        <div class="selector-wrapper">
+            <%--<span class="selector-item selected">股票池1(id1) <i class="fa fa-close delete-pool"></i></span>--%>
+            <%--<span class="selector-item">股票池2(id2) <i class="fa fa-close delete-pool"></i></span>--%>
+            <%--<span class="selector-item">股票池2(id2) <i class="fa fa-close delete-pool"></i></span>--%>
+            <c:forEach items="${stock_pool_list}" var="stockpool" varStatus="s">
+                <c:if test="${s.index==0}">
+                    <span class="selector-item selected">${stockpool.poolName}(${stockpool.poolId}) <i class="fa fa-close delete-pool"></i></span>
+                </c:if>
+                <c:if test="${s.index!=0}">
+                    <span class="selector-item">${stockpool.poolName}(${stockpool.poolId}) <i class="fa fa-close delete-pool"></i></span>
+                </c:if>
+            </c:forEach>
+        </div>
         <div class="stockpool-container">
-            <c:if test="${stock_pool_list!=null}">
-                <c:forEach items="${stock_pool_list}" var="stock_pool" varStatus="s">
-                    <div class="stockpool-item">
-                        <h2><strong>#${stock_pool.poolId}</strong>&nbsp;&nbsp;<span class="change-name">${stock_pool.poolName}</span><input class="change-name-input" type="text" value="${stock_pool.poolName}" style="display: none"/></h2> <i class="fa fa-close delete-pool"></i>
-                        <div class="delete-pool-confirm" style="display: none">是否删除该股票池? <span class="confirm-yes">是</span> <span class="confirm-no">否</span></div>
-                        <hr>
-                        <div class="stockpool-stocks">
-                            <h3><strong>池中股票</strong> <i class="fa fa-pencil edit-stock"></i></h3>
-                            <table>
-                                <tr class="table-head">
-                                    <td>股票ID</td>
-                                    <td>股票名称</td>
-                                    <td>昨日收盘</td>
-                                </tr>
-                            </table>
-                            <div class="table-wrapper stock-table">
-                                <table>
-                                    <c:forEach items="${stock_pool.stockinfolist}" var="stock" varStatus="s">
-                                        <c:if test="${s.count%2==0}">
-                                            <tr class="even">
-                                                <td>${stock.stockid}</td>
-                                                <td>${stock.stockname}</td>
-                                                <td>${stock.close}</td>
-                                            </tr>
-                                        </c:if>
-                                        <c:if test="${s.count%2==1}">
-                                            <tr class="odd">
-                                                <td>${stock.stockid}</td>
-                                                <td>${stock.stockname}</td>
-                                                <td>${stock.close}</td>
-                                            </tr>
-                                        </c:if>
-                                    </c:forEach>
-                                </table>
-                            </div>
-                            <br>
-                            <div class="stockpool-strategy">
-                                <h3><strong>运行策略</strong></h3>
-                                <table>
-                                    <tr class="table-head">
-                                        <td>策略ID</td>
-                                        <td>策略名称</td>
-                                        <td>策略收益</td>
-                                        <td>开始时间</td>
-                                    </tr>
-                                </table>
-                                <div class="table-wrapper">
-                                    <table>
-                                        <c:forEach items="${stock_pool.vtradelist}" var="vtrade" varStatus="s">
-                                            <c:if test="${s.count%2==0}">
-                                                <tr class="even">
-                                                    <td>${vtrade.tradeid}</td>
-                                                    <td>${vtrade.tradename}</td>
-                                                    <td>${vtrade.earning}</td>
-                                                    <td>${vtrade.startdate}</td>
-                                                </tr>
-                                            </c:if>
-                                            <c:if test="${s.count%2==1}">
-                                                <tr class="odd">
-                                                    <td>${vtrade.tradeid}</td>
-                                                    <td>${vtrade.tradename}</td>
-                                                    <td>${vtrade.earning}</td>
-                                                    <td>${vtrade.startdate}</td>
-                                                </tr>
-                                            </c:if>
-                                        </c:forEach>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+            <c:forEach items="${stock_pool_list}" var="stockpool" varStatus="s">
+                <div class="stockpool-item" style="display: none">
+                    <br>
+                    <h2><strong>池中股票</strong> <i class="fa fa-pencil edit-stock"></i></h2>
+                    <div class="column table-header">
+                        <span class="column-item">股票ID</span>
+                        <span class="column-item">股票名称</span>
+                        <span class="column-item">昨日收盘</span>
                     </div>
-                </c:forEach>
-            </c:if>
+                    <div class="stockpool-stocks column-wrapper">
+                        <%--<div class="column">--%>
+                        <c:forEach items="${stockpool.stockinfolist}" var="stock" varStatus="s">
+                            <c:if test="${s.index%2==0}">
+                                <div class="column odd">
+                                    <span class="column-item">${stock.stockid}</span>
+                                    <span class="column-item">${stock.stockname}</span>
+                                    <span class="column-item">${stock.close}</span>
+                                </div>
+                            </c:if>
+                            <c:if test="${s.index%2!=0}">
+                                <div class="column even">
+                                    <span class="column-item">${stock.stockid}</span>
+                                    <span class="column-item">${stock.stockname}</span>
+                                    <span class="column-item">${stock.close}</span>
+                                </div>
+                            </c:if>
+                        </c:forEach>
+                    </div>
+
+                    <br>
+                    <h2><strong>运行策略</strong></h2>
+                    <div class="column table-header">
+                        <span class="column-item">策略ID</span>
+                        <span class="column-item">策略名称</span>
+                        <span class="column-item">策略收益</span>
+                        <span class="column-item">开始时间</span>
+                    </div>
+                    <div class="stockpool-strategy column-wrapper">
+                        <c:forEach items="${stockpool.vtradelist}" var="vtradelist" varStatus="s">
+                            <c:if test="${s.index%2==0}">
+                                <div class="column odd">
+                                    <span class="column-item">${vtradelist.tradeid}</span>
+                                    <span class="column-item">${vtradelist.tradename}</span>
+                                    <span class="column-item">${vtradelist.earning}</span>
+                                    <span class="column-item">${vtradelist.startdate}</span>
+                                </div>
+                            </c:if>
+                            <c:if test="${s.index%2!=0}">
+                                <div class="column even">
+                                    <span class="column-item">${vtradelist.tradeid}</span>
+                                    <span class="column-item">${vtradelist.tradename}</span>
+                                    <span class="column-item">${vtradelist.earning}</span>
+                                    <span class="column-item">${vtradelist.startdate}</span>
+                                </div>
+                            </c:if>
+                        </c:forEach>
+                    </div>
+                </div>
+            </c:forEach>
+
             <%--<div class="stockpool-item">--%>
-                <%--<h2><strong>#1</strong>&nbsp;&nbsp;<span class="change-name">股票池1</span><input class="change-name-input" type="text" value="股票池1" style="display: none"/> </h2> <i class="fa fa-close delete-pool"></i>--%>
-                <%--<div class="delete-pool-confirm" style="display: none">是否删除该股票池? <span class="confirm-yes">是</span> <span class="confirm-no">否</span></div>--%>
-                <%--<hr>--%>
-                <%--<div class="stockpool-stocks">--%>
-                    <%--<h3><strong>池中股票</strong> <i class="fa fa-pencil edit-stock"></i></h3>--%>
-                    <%--<table>--%>
-                        <%--<tr class="table-head">--%>
-                            <%--<td>股票ID</td>--%>
-                            <%--<td>股票名称</td>--%>
-                            <%--<td>昨日收盘</td>--%>
-                        <%--</tr>--%>
-                    <%--</table>--%>
-                    <%--<div class="table-wrapper stock-table">--%>
-                        <%--<table>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>1283021321</td>--%>
-                                <%--<td>股票名称12</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>股票ID</td>--%>
-                                <%--<td>股票名称</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>股票ID</td>--%>
-                                <%--<td>股票名称</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>股票ID</td>--%>
-                                <%--<td>股票名称</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>股票ID</td>--%>
-                                <%--<td>股票名称</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>股票ID</td>--%>
-                                <%--<td>股票名称</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>股票ID</td>--%>
-                                <%--<td>股票名称</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>股票ID</td>--%>
-                                <%--<td>股票名称</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>股票ID</td>--%>
-                                <%--<td>股票名称</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>股票ID</td>--%>
-                                <%--<td>股票名称</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                        <%--</table>--%>
+                <%--<br>--%>
+                <%--<h2><strong>池中股票</strong> <i class="fa fa-pencil edit-stock"></i></h2>--%>
+                <%--<div class="column table-header">--%>
+                    <%--<span class="column-item">股票ID</span>--%>
+                    <%--<span class="column-item">股票名称</span>--%>
+                    <%--<span class="column-item">昨日收盘</span>--%>
+                <%--</div>--%>
+                <%--<div class="stockpool-stocks column-wrapper">--%>
+                    <%--<div class="column">--%>
+
                     <%--</div>--%>
                 <%--</div>--%>
 
                 <%--<br>--%>
+                <%--<h2><strong>池中股票</strong> <i class="fa fa-pencil edit-stock"></i></h2>--%>
+                <%--<div class="column table-header">--%>
+                    <%--<span class="column-item">策略ID</span>--%>
+                    <%--<span class="column-item">策略名城</span>--%>
+                    <%--<span class="column-item">策略收益</span>--%>
+                    <%--<span class="column-item">开始时间</span>--%>
+                <%--</div>--%>
+                <%--<div class="stockpool-strategy column-wrapper">--%>
+                    <%--<div class="column">--%>
 
-                <%--<div class="stockpool-strategy">--%>
-                    <%--<h3><strong>运行策略</strong></h3>--%>
-                        <%--&lt;%&ndash;<i class="fa fa-pencil edit-strategy"></i></h3>&ndash;%&gt;--%>
-                    <%--<table>--%>
-                        <%--<tr class="table-head">--%>
-                            <%--<td>策略ID</td>--%>
-                            <%--<td>策略名称</td>--%>
-                            <%--<td>策略收益</td>--%>
-                            <%--<td>开始时间</td>--%>
-                        <%--</tr>--%>
-                    <%--</table>--%>
-                    <%--<div class="table-wrapper">--%>
-                        <%--<table>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                        <%--</table>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+            <%--<div class="stockpool-item" style="display: none">--%>
+                <%--<br>--%>
+                <%--<h2><strong>运行策略</strong></h2>--%>
+                <%--<div class="column table-header">--%>
+                    <%--<span class="column-item">股票ID</span>--%>
+                    <%--<span class="column-item">股票名称</span>--%>
+                    <%--<span class="column-item">昨日收盘</span>--%>
+                <%--</div>--%>
+                <%--<div class="stockpool-stocks column-wrapper">--%>
+                    <%--<div class="column">--%>
+
+                    <%--</div>--%>
+                <%--</div>--%>
+
+                <%--<br>--%>
+                <%--<h2><strong>池中股票</strong> <i class="fa fa-pencil edit-stock"></i></h2>--%>
+                <%--<div class="column table-header">--%>
+                    <%--<span class="column-item">策略ID</span>--%>
+                    <%--<span class="column-item">策略名城</span>--%>
+                    <%--<span class="column-item">策略收益</span>--%>
+                    <%--<span class="column-item">开始时间</span>--%>
+                <%--</div>--%>
+                <%--<div class="stockpool-strategy column-wrapper">--%>
+                    <%--<div class="column">--%>
+
                     <%--</div>--%>
                 <%--</div>--%>
             <%--</div>--%>
         </div>
+
         <%--<div class="stockpool-container">--%>
-            <%--<div class="stockpool-item">--%>
-                <%--<h2><strong>#1</strong>&nbsp;&nbsp;股票池1</h2> <i class="fa fa-close delete-pool"></i>--%>
-                <%--<div class="delete-pool-confirm" style="display: none">是否删除该股票池? <span class="confirm-yes">是</span> <span class="confirm-no">否</span></div>--%>
-                <%--<hr>--%>
-                <%--<div class="stockpool-stocks">--%>
-                    <%--<h3><strong>池中股票</strong> <i class="fa fa-pencil edit-stock"></i></h3>--%>
-                    <%--<table>--%>
-                        <%--<tr class="table-head">--%>
-                            <%--<td>股票ID</td>--%>
-                            <%--<td>股票名称</td>--%>
-                            <%--<td>昨日收盘</td>--%>
-                        <%--</tr>--%>
-                    <%--</table>--%>
-                    <%--<div class="table-wrapper stock-table">--%>
-                        <%--<table>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>1283021321</td>--%>
-                                <%--<td>股票名称12</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>股票ID</td>--%>
-                                <%--<td>股票名称</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>股票ID</td>--%>
-                                <%--<td>股票名称</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>股票ID</td>--%>
-                                <%--<td>股票名称</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>股票ID</td>--%>
-                                <%--<td>股票名称</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>股票ID</td>--%>
-                                <%--<td>股票名称</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>股票ID</td>--%>
-                                <%--<td>股票名称</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>股票ID</td>--%>
-                                <%--<td>股票名称</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>股票ID</td>--%>
-                                <%--<td>股票名称</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>股票ID</td>--%>
-                                <%--<td>股票名称</td>--%>
-                                <%--<td>昨日收盘</td>--%>
-                            <%--</tr>--%>
-                        <%--</table>--%>
+            <%--<c:if test="${stock_pool_list!=null}">--%>
+                <%--<c:forEach items="${stock_pool_list}" var="stock_pool" varStatus="s">--%>
+                    <%--<div class="stockpool-item">--%>
+                        <%--<h2><strong>#${stock_pool.poolId}</strong>&nbsp;&nbsp;<span class="change-name">${stock_pool.poolName}</span><input class="change-name-input" type="text" value="${stock_pool.poolName}" style="display: none"/></h2> <i class="fa fa-close delete-pool"></i>--%>
+                        <%--<div class="delete-pool-confirm" style="display: none">是否删除该股票池? <span class="confirm-yes">是</span> <span class="confirm-no">否</span></div>--%>
+                        <%--<hr>--%>
+                        <%--<div class="stockpool-stocks">--%>
+                            <%--<h3><strong>池中股票</strong> <i class="fa fa-pencil edit-stock"></i></h3>--%>
+                            <%--<table>--%>
+                                <%--<tr class="table-head">--%>
+                                    <%--<td>股票ID</td>--%>
+                                    <%--<td>股票名称</td>--%>
+                                    <%--<td>昨日收盘</td>--%>
+                                <%--</tr>--%>
+                            <%--</table>--%>
+                            <%--<div class="table-wrapper stock-table">--%>
+                                <%--<table>--%>
+                                    <%--<c:if test="${stock_pool.stockinfolist==null}">--%>
+                                        <%--<tr class="odd">--%>
+                                            <%--暂无股票--%>
+                                        <%--</tr>--%>
+                                    <%--</c:if>--%>
+                                    <%--<c:forEach items="${stock_pool.stockinfolist}" var="stock" varStatus="s">--%>
+                                        <%--<c:if test="${s.count%2==0}">--%>
+                                            <%--<tr class="even">--%>
+                                                <%--<td>${stock.stockid}</td>--%>
+                                                <%--<td>${stock.stockname}</td>--%>
+                                                <%--<td>${stock.close}</td>--%>
+                                            <%--</tr>--%>
+                                        <%--</c:if>--%>
+                                        <%--<c:if test="${s.count%2==1}">--%>
+                                            <%--<tr class="odd">--%>
+                                                <%--<td>${stock.stockid}</td>--%>
+                                                <%--<td>${stock.stockname}</td>--%>
+                                                <%--<td>${stock.close}</td>--%>
+                                            <%--</tr>--%>
+                                        <%--</c:if>--%>
+                                    <%--</c:forEach>--%>
+                                <%--</table>--%>
+                            <%--</div>--%>
+                            <%--<br>--%>
+                            <%--<div class="stockpool-strategy">--%>
+                                <%--<h3><strong>运行策略</strong></h3>--%>
+                                <%--<table>--%>
+                                    <%--<tr class="table-head">--%>
+                                        <%--<td>策略ID</td>--%>
+                                        <%--<td>策略名称</td>--%>
+                                        <%--<td>策略收益</td>--%>
+                                        <%--<td>开始时间</td>--%>
+                                    <%--</tr>--%>
+                                <%--</table>--%>
+                                <%--<div class="table-wrapper">--%>
+                                    <%--<table>--%>
+                                        <%--<c:if test="${stock_pool.vtradelist==null}">--%>
+                                            <%--<tr class="odd">--%>
+                                                <%--暂无股票--%>
+                                            <%--</tr>--%>
+                                        <%--</c:if>--%>
+                                        <%--<c:forEach items="${stock_pool.vtradelist}" var="vtrade" varStatus="s">--%>
+                                            <%--<c:if test="${s.count%2==0}">--%>
+                                                <%--<tr class="even">--%>
+                                                    <%--<td>${vtrade.tradeid}</td>--%>
+                                                    <%--<td>${vtrade.tradename}</td>--%>
+                                                    <%--<td>${vtrade.earning}</td>--%>
+                                                    <%--<td>${vtrade.startdate}</td>--%>
+                                                <%--</tr>--%>
+                                            <%--</c:if>--%>
+                                            <%--<c:if test="${s.count%2==1}">--%>
+                                                <%--<tr class="odd">--%>
+                                                    <%--<td>${vtrade.tradeid}</td>--%>
+                                                    <%--<td>${vtrade.tradename}</td>--%>
+                                                    <%--<td>${vtrade.earning}</td>--%>
+                                                    <%--<td>${vtrade.startdate}</td>--%>
+                                                <%--</tr>--%>
+                                            <%--</c:if>--%>
+                                        <%--</c:forEach>--%>
+                                    <%--</table>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
                     <%--</div>--%>
-                <%--</div>--%>
-
-                <%--<br>--%>
-
-                <%--<div class="stockpool-strategy">--%>
-                    <%--<h3><strong>运行策略</strong></h3>--%>
-                        <%--&lt;%&ndash;<i class="fa fa-pencil edit-strategy"></i></h3>&ndash;%&gt;--%>
-                    <%--<table>--%>
-                        <%--<tr class="table-head">--%>
-                            <%--<td>策略ID</td>--%>
-                            <%--<td>策略名称</td>--%>
-                            <%--<td>策略收益</td>--%>
-                            <%--<td>开始时间</td>--%>
-                        <%--</tr>--%>
-                    <%--</table>--%>
-                    <%--<div class="table-wrapper">--%>
-                        <%--<table>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="odd">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="even">--%>
-                                <%--<td>策略ID</td>--%>
-                                <%--<td>策略名称</td>--%>
-                                <%--<td>策略收益</td>--%>
-                                <%--<td>开始时间</td>--%>
-                            <%--</tr>--%>
-                        <%--</table>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
+                <%--</c:forEach>--%>
+            <%--</c:if>--%>
         <%--</div>--%>
     </div>
 </div>

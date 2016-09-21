@@ -19,5 +19,7 @@ public interface BackTestMapper {
 
     public ArrayList<BackTestDailyResultPo> getResult(@Param("listname") String resultid);
 
-    public String getResultid(String userid,String strategyid);
+    public String getResultid(String userid,String strategyid,String startdate, String enddate);
+
+
 }

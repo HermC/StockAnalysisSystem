@@ -21,6 +21,10 @@ public class BackTestResultPo {
 
     public ArrayList<BackTestDailyResultPo> resultdatas;
 
+    public int iserror=0;
+
+    public String error_message;
+
 
     public BackTestResultPo(String startdate,String enddate , String testdate ,String userid,String strategyid,String resultid){
         this.startdate = startdate;
@@ -30,6 +34,12 @@ public class BackTestResultPo {
         this.strategyid = strategyid;
         this.resultid = resultid;
     }
+
+    public BackTestResultPo(int iserror,String error_message){
+        this.iserror = iserror;
+        this.error_message = error_message;
+    }
+
 
     public ArrayList<BackTestDailyResultPo> getResultdatas() {
         return resultdatas;

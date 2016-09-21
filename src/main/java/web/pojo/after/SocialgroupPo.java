@@ -15,10 +15,21 @@ public class SocialgroupPo {
 
     public String head;
 
+    public double maxearn_average;
+
     //以下用户均有唯一标识
     public String creater;
-    public ArrayList<String> managers;
-    public ArrayList<String> members;
+
+    //    public ArrayList<String> managers;
+    public ArrayList<UserPo> members;
+
+    public double getMaxearn_average() {
+        return maxearn_average;
+    }
+
+    public void setMaxearn_average(double maxearn_average) {
+        this.maxearn_average = maxearn_average;
+    }
 
     public String getSgid() {
         return sgid;
@@ -60,19 +71,12 @@ public class SocialgroupPo {
         this.creater = creater;
     }
 
-    public ArrayList<String> getManagers() {
-        return managers;
-    }
 
-    public void setManagers(ArrayList<String> managers) {
-        this.managers = managers;
-    }
-
-    public ArrayList<String> getMembers() {
+    public ArrayList<UserPo> getMembers() {
         return members;
     }
 
-    public void setMembers(ArrayList<String> members) {
+    public void setMembers(ArrayList<UserPo> members) {
         this.members = members;
     }
 }

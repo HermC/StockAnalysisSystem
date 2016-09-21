@@ -13,7 +13,7 @@ function initButtonListener() {
                 break;
             }
         }
-        //console.log(index);
+        console.log(index);
         var strategy_id = strategy_list_data[index].strategyid;
         $.ajax({
             type: "get",
@@ -32,7 +32,7 @@ function initButtonListener() {
             }
         });
     });
-    $(".strategy-item .strategy-name").bind("click", function(e) {
+    $(".strategy-item .strategy-info").bind("click", function(e) {
         var index = -1;
         for(var i=0;i<strategy_list.length;i++){
             if(this==strategy_list[i]){
@@ -49,7 +49,7 @@ function initButtonListener() {
 
 window.onload = function() {
     delete_strategy_list = document.querySelectorAll(".delete-strategy");
-    strategy_list = document.querySelectorAll(".strategy-item .strategy-name");
+    strategy_list = document.querySelectorAll(".strategy-item .strategy-info");
 
     initButtonListener();
 };

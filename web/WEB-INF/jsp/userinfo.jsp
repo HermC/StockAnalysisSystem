@@ -15,8 +15,8 @@
 
     <title>用户-Ascending</title>
 
-    <link type="text/css" rel="stylesheet" href="/resources/plugin/bootstrap-3.3.5/dist/css/bootstrap.min.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/plugin/select2-4.0.3/dist/css/select2.min.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/plugin/bootstrap-3.3.5/dist/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/plugin/select2-4.0.3/dist/css/select2.css"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bundle/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bundle/common.css" />">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bundle/userinfo.css"/>">
@@ -49,8 +49,11 @@
     <script>if (window.module) module = window.module;</script>
 </head>
 <body>
+<img id="full_background" src="resources/img/background/index_1.png"/>
 <jsp:include page="usernav.jsp" flush="true">
     <jsp:param name="userInfo" value="${userInfo}"/>
+    <jsp:param name="stockList" value="${stockList}"/>
+    <jsp:param name="navIndex" value="-1"/>
 </jsp:include>
 <div id="main-page">
     <div class="association-outer" style="display: none">
@@ -93,7 +96,7 @@
             <img id="user_info_img" src="resources/img/user/default.jpg"/>
         </div>
         <div class="user-id-container">
-            <span class="user-nickname">finominon</span> <i id="user_info_edit" class="fa fa-pencil"></i> <a href="logout.do" title="登出" class="fa fa-power-off"></a>
+            &nbsp;&nbsp;<span class="user-nickname">${userInfo.UserName}</span> <i id="user_info_edit" class="fa fa-pencil"></i> <a href="logout.do" title="登出" class="fa fa-power-off"></a>
         </div>
 
         <div class="edit-container" style="display: none">
@@ -198,23 +201,23 @@
                         <td>社群名称</td>
                         <td>社群收益</td>
                     </tr>
-                    <c:forEach items="${assocationList}" var="assocation" varStatus="s">
+                    <c:forEach items="${associationList}" var="association" varStatus="s">
                         <tr class="table-item">
-                            <td>${assocation}</td>
-                            <td>${assocation}</td>
-                            <td>${assocation}</td>
+                            <td>${association.sgid}</td>
+                            <td>${association.sgname}</td>
+                            <td>${association.maxearn_average}</td>
                         </tr>
                     </c:forEach>
-                    <tr class="table-item">
-                        <td>1</td>
-                        <td>Hello</td>
-                        <td>12%</td>
-                    </tr>
-                    <tr class="table-item">
-                        <td>2</td>
-                        <td>World</td>
-                        <td>16%</td>
-                    </tr>
+                    <%--<tr class="table-item">--%>
+                        <%--<td>1</td>--%>
+                        <%--<td>Hello</td>--%>
+                        <%--<td>12%</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr class="table-item">--%>
+                        <%--<td>2</td>--%>
+                        <%--<td>World</td>--%>
+                        <%--<td>16%</td>--%>
+                    <%--</tr>--%>
                 </table>
             </div>
         </div>
