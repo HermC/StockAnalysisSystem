@@ -412,7 +412,7 @@ a:focus{
 
 .main-nav-point {
     width: 20px;
-    height: 20px;
+    /*height: 20px;*/
     display: flex;
     flex-grow: 0;
     flex-wrap: wrap;

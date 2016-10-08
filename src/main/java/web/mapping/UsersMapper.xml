@@ -24,7 +24,8 @@
     </update>
 
     <update id="updateUserHead" parameterType="java.lang.String">
-
+        UPDATE user SET portriat = #{1,jdbcType=VARCHAR}
+        WHERE userid = #{0,jdbcType=VARCHAR}
     </update>
 
     <update id="updateUserSummary" parameterType="java.lang.String">

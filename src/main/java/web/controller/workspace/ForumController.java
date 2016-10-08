@@ -101,6 +101,26 @@ public class ForumController {
         return "forum-card";
     }
 
+    @RequestMapping(value = "user/forum_card_desktop.do")
+    public @ResponseBody Map<String, Object>
+    toForumCardDesktop(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<>();
+
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+
+        if(userid==null){
+            userid = "2";
+        }
+
+        String topic_id = request.getParameter("topic_id");
+        TopicPo topicPo = forumService.getTopic(topic_id);
+
+        map.put("topicInfo", JSON.toJSON(topicPo));
+
+        return map;
+    }
+
     @RequestMapping(value = "user/forum/search.do")
     public String search(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
@@ -125,6 +145,33 @@ public class ForumController {
         model.addAttribute("topicList", JSON.toJSON(topicPos));
 
         return "forum-list";
+    }
+
+    @RequestMapping(value = "user/forum/search_desktop.do")
+    public @ResponseBody Map<String, Object>
+    searchDesktop(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<>();
+
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+
+        if(userid==null){
+            userid = "2";
+        }
+
+        String keyword = request.getParameter("keyword");
+
+        ArrayList<TopicPo> topicPos = null;
+        if(keyword==null){
+            topicPos = forumService.getAllTopic();
+        }else{
+            topicPos = forumService.getSearch(keyword);
+        }
+
+        System.out.println(JSON.toJSON(topicPos));
+        map.put("topicList", JSON.toJSON(topicPos));
+
+        return map;
     }
 
     @RequestMapping(value = "user/forum/update-click.do")

@@ -15,12 +15,13 @@
 <script>
     var stockList = ${stockList};
     var navIndex = ${param.navIndex};
+    var userInfo = ${userInfo};
 </script>
 <div id="main-nav">
     <div class="user-info">
         <a target="_self" href="user.do">
             <div class="user-img-container">
-                <img id="user-img" src="resources/img/user/default.jpg"/>
+                <img id="user-img" class="user-head-img" src="resources/img/user/default.jpg"/>
             </div>
             <div id="user-name" class="user-nickname">${userInfo.UserName}</div>
         </a>
@@ -65,11 +66,11 @@
         </a>
         <br>
         <a class="main-nav-item" href="user/association.do" target="_self">
-            <img src="resources/img/icon/icon_trade.png" class="main-nav-point"/>
+            <img src="resources/img/icon/icon_social.png" class="main-nav-point"/>
             <p class="main-nav-target">社群</p>
         </a>
         <a class="main-nav-item" href="user/forum-list.do" target="_self">
-            <img src="resources/img/icon/icon_trade.png" class="main-nav-point"/>
+            <img src="resources/img/icon/icon_talk.png" class="main-nav-point"/>
             <p class="main-nav-target">论坛</p>
         </a>
     </div>
@@ -87,7 +88,6 @@
         $("#nav_search_input").bind("input propertychange",function(){
             $("#nav_search_result").show();
             var searchContent = $(this).val();
-            console.log(searchContent);
             searchNav(searchContent);
         });
 
@@ -105,6 +105,14 @@
                 }
             }
             $("#nav_search_result").html(searchResult);
+        }
+
+        function changeImg(url) {
+            $(".user-head-img").attr("src", url);
+        }
+
+        if(userInfo.Head!=null){
+            changeImg(userInfo.Head);
         }
     </script>
 </div>

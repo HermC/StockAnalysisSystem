@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import web.Tools.Realtime;
 import web.Tools.TotalNews;
+import web.pojo.after.StockPool;
+import web.pojo.after.StrategyPo;
 import web.pojo.after.UserPo;
+import web.pojo.after.VirtualTradePo;
 import web.pojo.before.Hotspot;
 import web.pojo.before.News;
 import web.pojo.before.SingleInfo;
@@ -59,6 +62,27 @@ public class LoginController {
         map.put("state", state);
 
         System.out.println(username+"  "+password);
+
+        return map;
+    }
+
+    @RequestMapping(value = "login_app.do")
+    public @ResponseBody Map<String, Object> AppLogin(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+//        String userid = (String) session.getAttribute("userid");
+        String username = request.getParameter("userId");
+        String pw = request.getParameter("pw");
+
+        System.out.println(username +"  "+ pw);
+        System.out.println("in app login");
+        Map<String, Object> map = new HashMap<>();
+
+        LoginState state = usersService.login(username, pw);
+        if(state==LoginState.登陆成功){
+            map.put("success","true");
+        }else{
+            map.put("success","false");
+        }
 
         return map;
     }

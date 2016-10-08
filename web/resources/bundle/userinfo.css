@@ -21,7 +21,7 @@ label {
 }
 
 .user-body {
-    height: 92vh;
+    min-height: 92vh;
     margin: 0px auto auto auto;
     padding: 20px 0px 20px 0px;
     background-color: rgba(150, 150, 150, 0.3);

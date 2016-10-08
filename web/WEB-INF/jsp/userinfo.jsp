@@ -93,7 +93,7 @@
     </div>
     <div class="user-body">
         <div class="user-img-container">
-            <img id="user_info_img" src="resources/img/user/default.jpg"/>
+            <img id="user_info_img" class="user-head-img" src="resources/img/user/default.jpg"/>
         </div>
         <div class="user-id-container">
             &nbsp;&nbsp;<span class="user-nickname">${userInfo.UserName}</span> <i id="user_info_edit" class="fa fa-pencil"></i> <a href="logout.do" title="登出" class="fa fa-power-off"></a>

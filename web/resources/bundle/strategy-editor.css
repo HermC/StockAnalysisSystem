@@ -108,7 +108,7 @@ a {
     box-sizing: border-box;
 }
 
-#main-page [type="text"]:focus {
+#main-page input[type="text"]:focus {
     padding: 5px;
     /*height: 20px;*/
     box-sizing: border-box;

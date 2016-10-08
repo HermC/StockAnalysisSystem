@@ -1,6 +1,7 @@
 package web.controller.workspace;
 
 import com.alibaba.fastjson.JSON;
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,6 +61,25 @@ public class StrategyController {
         return "strategy-list";
     }
 
+    @RequestMapping(value = "user/strategy_list_desktop.do")
+    public @ResponseBody Map<String, Object>
+    toStrategyListDesktop(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<>();
+
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+
+        if(userid==null){
+            userid = "2";
+        }
+
+        ArrayList<StrategyPo> strategyPos = strategyService.getAllStategy(userid);
+
+        map.put("strategy_list", JSON.toJSON(strategyPos));
+
+        return map;
+    }
+
     @RequestMapping(value = "user/strategy-editor.do")
     public String toStrategyEditor(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
@@ -96,6 +116,41 @@ public class StrategyController {
 
 
         return "strategy-editor";
+    }
+
+    @RequestMapping(value = "user/strategy_editor_desktop.do")
+    public @ResponseBody Map<String, Object>
+    toStrategyEditorDesktop(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<>();
+
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+
+        if(userid==null){
+            userid = "2";
+        }
+
+        String isNew = request.getParameter("isNew");
+
+        if(isNew==null){
+            map.put("isNew", false);
+            String strategid = request.getParameter("strategy_id");
+            StrategyPo strategyPo = strategyService.selectStrategy(userid, strategid);
+            map.put("strategy", JSON.toJSON(strategyPo));
+
+            System.out.println(JSON.toJSON(strategyPo));
+        }else{
+            if(isNew.equals("true")){
+                map.put("isNew", true);
+            }else{
+                map.put("isNew", false);
+                String strategid = request.getParameter("strategy_id");
+                StrategyPo strategyPo = strategyService.selectStrategy(userid, strategid);
+                map.put("strategy", JSON.toJSON(strategyPo));
+            }
+        }
+
+        return map;
     }
 
     @RequestMapping(value = "user/strategy/add-new-strategy.do")

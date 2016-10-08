@@ -1,6 +1,7 @@
 package web.controller.workspace;
 
 import com.alibaba.fastjson.JSON;
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Controller;
@@ -69,6 +70,61 @@ public class SimulatorController {
         return "simulator-transaction";
     }
 
+    @RequestMapping(value = "user/simulator_list_desktop.do")
+    public @ResponseBody Map<String, Object>
+    toSimulatorListDesktop(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<>();
+
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+
+        if(userid==null){
+            userid = "2";
+        }
+
+        ArrayList<VirtualTradePo> virtualTradePos = virtualTradeService.getAllTrade(userid);
+        ArrayList<StrategyPo> strategyPos = strategyService.getAllStategy(userid);
+        ArrayList<StockPool> stockPools = stockPoolService.getAllPool(userid);
+
+        map.put("simulator_list", JSON.toJSON(virtualTradePos));
+        map.put("strategy_list", JSON.toJSON(strategyPos));
+        map.put("stockpool_list", JSON.toJSON(stockPools));
+
+        return map;
+    }
+
+    @RequestMapping(value = "user_app/simulator-list.do")
+    public @ResponseBody Map<String, Object> toAppSimulatorList(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+
+        Map<String, Object> map = new HashMap<>();
+
+        if(userid==null){
+            userid = "2";
+//            return "welcome";
+        }
+
+        ArrayList<VirtualTradePo> virtualTradePos = virtualTradeService.getAllTrade(userid);
+        ArrayList<StrategyPo> strategyPos = strategyService.getAllStategy(userid);
+        ArrayList<StockPool> stockPools = stockPoolService.getAllPool(userid);
+        ArrayList<SingleInfo> singleInfos = singleInfoService.getSingleInfo();
+        UserPo userPo = usersService.getUser(userid);
+
+        map.put("simulator_list", JSON.toJSON(virtualTradePos));
+//        map.put("strategy_list", JSON.toJSON(strategyPos));
+//        map.put("stockpool_list", JSON.toJSON(stockPools));
+//        map.put("stockList", JSON.toJSON(singleInfos));
+        map.put("userInfo", JSON.toJSON(userPo));
+
+
+        System.out.println("get simulator request");
+        System.out.println(JSON.toJSON(virtualTradePos.get(0).dailyResultPos));
+        System.out.println(JSON.toJSON(virtualTradePos.get(0).state));
+
+        return map;
+    }
+
     @RequestMapping(value = "user/simulator-info.do")
     public String toSimulatorInfo(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
@@ -77,6 +133,7 @@ public class SimulatorController {
 
         if(userid==null){
             userid = "2";
+            System.out.println("userid is null");
 //            return "welcome";
         }
 
@@ -91,6 +148,27 @@ public class SimulatorController {
         model.addAttribute("stockList", JSON.toJSON(singleInfos));
 
         return "simulator-info";
+    }
+
+    @RequestMapping(value = "user/simulator_info_desktop.do")
+    public @ResponseBody Map<String, Object>
+    toSimulatorInfoDesktop(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<>();
+
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+
+        if(userid==null){
+            userid = "2";
+        }
+
+        String id = request.getParameter("id");
+
+        VirtualTradePo virtualTradePo = virtualTradeService.getTrade(userid, id);
+
+        map.put("simulator", JSON.toJSON(virtualTradePo));
+
+        return map;
     }
 
     @RequestMapping(value = "user/simulator/add-new-simulator.do")

@@ -25,6 +25,7 @@
 
     <link rel="stylesheet" type="text/css" href="resources/bundle/reset.css">
     <link rel="stylesheet" type="text/css" href="resources/bundle/welcome.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/welcome.css">
     <link rel="stylesheet" type="text/css" href="resources/bundle/animate.css">
 
     <!-- Insert this line above script imports  -->
@@ -114,7 +115,60 @@
     </div>
 </div>
 
-<!--<div id="team" style="display: none">-->
+<div id="newIdentities_wrapper">
+    <div class="newIdentities">
+        <div class="newIdentity_one">
+            <img class="screenshot" src="resources/img/screenshot_1.png">
+            <p>流程图 or 在线编辑</p>
+            <p>轻松写出交易策略</p>
+        </div>
+        <div class="newIdentity_one">
+            <img class="screenshot" src="resources/img/screenshot_2.png">
+            <p>股票池</p>
+            <p>方便查看关心股票</p>
+        </div>
+        <div class="newIdentity_one">
+            <img class="screenshot" src="resources/img/screenshot_3.png">
+            <p>社群系统</p>
+            <p>策略模拟排名，谁是炒股小能手</p>
+        </div>
+        <div class="newIdentity_one">
+            <img class="screenshot" src="resources/img/screenshot_4.png">
+            <p>论坛系统</p>
+            <p>交流促使共同成长</p>
+        </div>
+
+    </div>
+</div>
+
+<div id="multiple_terminal_wrapper" >
+    <div id="multiple_terminal">
+        <h1>多终端运行</h1>
+        <div class="terminals">
+            <a class="terminal_one" target="_blank" href="index.do">
+                <img class="terminal_icon" src="resources/img/terminal_web.png">
+                <h5>Web</h5>
+            </a>
+            <a class="terminal_one" target="_blank" href="index.do">
+                <img class="terminal_icon" src="resources/img/terminal_mac.png">
+                <h5>Mac</h5>
+            </a>
+            <a class="terminal_one" target="_blank" href="index.do">
+                <img class="terminal_icon" src="resources/img/terminal_win.png">
+                <h5>Windows</h5>
+            </a>
+            <a class="terminal_one" target="_blank" href="index.do">
+                <img class="terminal_icon" src="resources/img/terminal_ios.png">
+                <h5>iOS</h5>
+            </a>
+            <a class="terminal_one" target="_blank" href="index.do">
+                <img class="terminal_icon" src="resources/img/terminal_android.png">
+                <h5>Android</h5>
+            </a>
+        </div>
+    </div>
+</div>
+
 <div id="team">
     <div id="#team_name_wrapper">
         <div id="team_name"><img src="resources/img/dracarys.png"/></div>

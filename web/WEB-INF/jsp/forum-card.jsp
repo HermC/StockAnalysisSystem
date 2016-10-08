@@ -56,7 +56,7 @@
         </div>
     </div>
     <div class="forum-card-container">
-        <h1><img src="resources/img/logo_s.png"/> ${topicInfo.topicid}</h1>
+        <h1><img src="resources/img/logo_s.png"/> ${topicInfo.title}</h1>
         <br>
         <div class="card-wrapper">
             ${topicInfo.content}
@@ -79,41 +79,12 @@
                     </div>
                     <div class="media-body">
                         ${reply.content}
-                        <%--<p>这sdjflsdjfljasfasdjfofsdflajsfosdosfddddfsfadfsfkddddddddddsfasfsafddddddddddd</p>--%>
                     </div>
                     <div class="media-reply">
                         <a class="reply-button">回复</a>
                     </div>
                 </div>
             </c:forEach>
-            <%--<div class="reply-item">--%>
-                <%--<div class="media-figure row">--%>
-                    <%--<img class="row-item" src="resources/img/user/default.jpg"/>--%>
-                    <%--<div class="row-item">--%>
-                        <%--<span>id</span>&nbsp;&nbsp;<span>回复</span>&nbsp;&nbsp;<span>id2</span>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-                <%--<div class="media-body">--%>
-                    <%--<p>这sdjflsdjfljasfasdjfofsdflajsfosdosfddddfsfadfsfkddddddddddsfasfsafddddddddddd</p>--%>
-                <%--</div>--%>
-                <%--<div class="media-reply">--%>
-                    <%--<a class="reply-button">回复</a>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="reply-item">--%>
-                <%--<div class="media-figure row">--%>
-                    <%--<img class="row-item" src="resources/img/user/default.jpg"/>--%>
-                    <%--<div class="row-item">--%>
-                        <%--<span>id</span>&nbsp;&nbsp;<span>回复</span>&nbsp;&nbsp;<span>id2</span>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-                <%--<div class="media-body">--%>
-                    <%--<p>这sdjflsdjfljasfasdjfofsdflajsfosdosfddddfsfadfsfkddddddddddsfasfsafddddddddddd</p>--%>
-                <%--</div>--%>
-                <%--<div class="media-reply">--%>
-                    <%--<a class="reply-button">回复</a>--%>
-                <%--</div>--%>
-            <%--</div>--%>
         </div>
     </div>
 </div>

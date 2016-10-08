@@ -48,7 +48,7 @@ public class UsersImpl implements UsersService {
 
     @Override
     public UpdateState updateUserHead(String userID, String value) {
-        updateUserHead(userID, value);
+        usersMapper.updateUserHead(userID, value);
         return UpdateState.修改成功;
     }
 

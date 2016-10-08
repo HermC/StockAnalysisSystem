@@ -40,10 +40,10 @@ public class AssociationController {
         HttpSession session = request.getSession();
         String userid = (String) session.getAttribute("userid");
 
-        userid = "2";
 
         if(userid==null){
-            return "welcome";
+            userid = "2";
+//            return "welcome";
         }
 
         UserPo userPo = usersService.getUser(userid);
@@ -59,6 +59,27 @@ public class AssociationController {
         return "association-list";
     }
 
+    @RequestMapping(value = "user/association_desktop.do")
+    public @ResponseBody Map<String, Object>
+    toAssociationDesktop(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<>();
+
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+
+        if(userid==null){
+            userid = "2";
+        }
+
+        ArrayList<SocialgroupPo> socialgroupPos = socialGroupService.getAllsocialgroup();
+        ArrayList<UserPo> userPos = usersService.getAllUser();
+
+        map.put("associationList", JSON.toJSON(socialgroupPos));
+        map.put("userList", JSON.toJSON(userPos));
+
+        return map;
+    }
+
     @RequestMapping(value = "user/add-association.do")
     public @ResponseBody Map<String, Object>
     addAssociation(HttpServletRequest request, HttpServletResponse response) {
@@ -71,14 +92,21 @@ public class AssociationController {
 
         String name = request.getParameter("name");
         String users = request.getParameter("members");
-        String[] splits = users.split(",");
 
         ArrayList<String> usersList = new ArrayList<>();
 
-        usersList.add(userid);
+        if(users==null){
+            usersList.add(userid);
 
-        for(int i=0;i<splits.length;i++){
-            usersList.add(splits[i]);
+        }else{
+            usersList.add(userid);
+
+            String[] splits = users.split(",");
+            for(int i=0;i<splits.length;i++){
+                if(!splits[i].equals(userid)){
+                    usersList.add(splits[i]);
+                }
+            }
         }
 
         String associationid = socialGroupService.createsocialgroup(name, usersList);

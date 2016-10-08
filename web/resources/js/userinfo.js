@@ -43,6 +43,7 @@ function initListener() {
                 $("#realW").val(imgWH[0]);
                 $("#realH").val(imgWH[1]);
                 var option = {
+                    type: "post",
                     url: "user/cutimg.do",
                     cache: false,
                     dataType: 'json',
@@ -76,7 +77,12 @@ function initListener() {
             url: "user/changeimg.do",
             dataType: "json",
             success: function(data) {
-
+                if(data.success==true){
+                    changeImg(data.url);
+                }else{
+                    $("#file_state").addClass("change-failed");
+                    $("#file_state").html("更改失败");
+                }
             },
             error: function() {
                 $("#file_state").addClass("change-failed");
@@ -246,4 +252,6 @@ window.onload = function() {
 
     initListener();
     initAssociation();
+
+    changeImg(userInfo.Head);
 };

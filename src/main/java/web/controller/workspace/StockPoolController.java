@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import web.pojo.after.StockPool;
 import web.pojo.after.UserPo;
+import web.pojo.after.VirtualTradePo;
 import web.pojo.before.SingleInfo;
 import web.pojo.enumPo.AddState;
 import web.pojo.enumPo.DeleteState;
 import web.pojo.enumPo.UpdateState;
+import web.service.BackTestBL.VirtualTradeService;
 import web.service.UserService;
 import web.service.UserSystemBL.StockPoolService;
 import web.service.UserSystemBL.UsersService;
@@ -36,6 +38,8 @@ public class StockPoolController {
     UsersService usersService;
     @Resource
     SingleInfoService singleInfoService;
+//    @Resource
+//    VirtualTradeService virtualTradeService;
 
     @RequestMapping(value = "user/stockpool.do")
     public String toStockPool(HttpServletRequest request, Model model) {
@@ -55,6 +59,48 @@ public class StockPoolController {
         model.addAttribute("stockList", JSON.toJSON(singleInfos));
 
         return "stock-pool";
+    }
+
+    @RequestMapping(value = "user/stockpool_desktop.do")
+    public @ResponseBody Map<String, Object> toStockPoolDesktop(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<>();
+
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+
+        if (userid == null) {
+            userid = "2";
+        }
+
+        ArrayList<StockPool> stockPools = stockPoolService.getAllPool(userid);
+
+        map.put("stock_pool_list", JSON.toJSON(stockPools));
+
+        return map;
+    }
+
+    @RequestMapping(value = "user_app/stockpool.do")
+    public @ResponseBody Map<String, Object> toAppStockPool(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+
+        Map<String, Object> map = new HashMap<>();
+
+
+        if(userid==null){
+            userid = "2";
+            System.out.println("user id is null");
+        }
+
+        ArrayList<StockPool> stockPools = stockPoolService.getAllPool(userid);
+//        ArrayList<VirtualTradePo> virtualTradePos = virtualTradeService.getAllTrade(userid);
+
+        map.put("stockPools",stockPools);
+//        ArrayList<SingleInfo> singleInfos = singleInfoService.getSingleInfo();
+//        model.addAttribute("stockList", JSON.toJSON(singleInfos));
+
+        System.out.println("get stock pool request");
+        return map;
     }
 
     @RequestMapping(value = "user/stockpool/add-new-stockpool.do")

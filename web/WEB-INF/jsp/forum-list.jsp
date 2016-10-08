@@ -7,7 +7,6 @@
     <c:if test="${topicList!=null}">
         topicList = ${topicList};
     </c:if>
-//    console.log(topicList+"jfisod");
 </script>
 
 <div id="forum_list">
@@ -25,18 +24,6 @@
             </div>
         </div>
     </c:forEach>
-    <%--<div class="forum-list-item column">--%>
-        <%--<img class="user-head" src="resources/img/user/default.jpg"/>--%>
-        <%--<div class="user-name column-item u1of4">--%>
-            <%--&nbsp;&nbsp;<span>用户</span>&nbsp;&nbsp;<span>(#id1)</span>--%>
-        <%--</div>--%>
-        <%--<span class="column-item forum-theme">这是一个主题</span>--%>
-        <%--<div class="user-click">--%>
-            <%--<span>回复:</span>&nbsp;&nbsp;<span class="reply">10</span>--%>
-            <%--&nbsp;&nbsp;--%>
-            <%--<span>点击:</span>&nbsp;&nbsp;<span class="click">10</span>--%>
-        <%--</div>--%>
-    <%--</div>--%>
 </div>
 
 <script>
@@ -51,19 +38,8 @@
         }
 
         console.log(topicList[index]);
-
-
-
-//        console.log(index);
-//        var click = Number($(click_list[index]).html());
-//        click++;
-//        $(click_list[index]).html(click);
-//
-//        window.open("user/forum-card.do");
-//
         var topic_id = topicList[index].topicid;
 
-//        window.open("user/forum-card.do?topic_id="+topic_id);
         $.ajax({
             type: "get",
             url: "user/forum/update-click.do?topic_id="+topic_id,

@@ -23,7 +23,7 @@ function initListener() {
         var members = $("#new_association_memebers").val()+"";
         //console.log(members);
 
-        var data = "name="+name+"&memebers="+members;
+        var data = "name="+name+"&members="+members;
         $.ajax({
             type: "post",
             url: "user/add-association.do",

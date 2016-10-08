@@ -39,7 +39,6 @@
             <c:if test="${strategy!=null}">
                 strategy = ${strategy};
             </c:if>
-            console.log(strategy);
             if(strategy.isJson=="1"){
                 isCode = false;
             }else{

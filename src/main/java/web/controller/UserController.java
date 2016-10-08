@@ -4,11 +4,14 @@ package web.controller;
  * Created by yqq on 2016.5.2.
  */
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.alibaba.fastjson.JSON;
+import org.apache.commons.collections.iterators.ObjectArrayIterator;
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.fileupload.FileUpload;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -109,6 +112,13 @@ public class UserController {
     @RequestMapping(value = "user/cutimg.do", method = RequestMethod.POST)
     public @ResponseBody Map<String, Object>
     cutImg(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+
+        if(userid==null){
+            userid = "2";
+        }
+
         response.addHeader("Access-Control-Allow-Origin", "*");
 
         int x = Integer.parseInt(request.getParameter("x"));
@@ -136,6 +146,7 @@ public class UserController {
             }
 
 //            System.out.println(dirPath.getCanonicalPath());
+            realFileName = userid+".jpg";
             File uploadFile = new File(dirPath, realFileName);
             System.out.println(uploadFile.getCanonicalPath());
             if(!uploadFile.exists()){
@@ -157,6 +168,79 @@ public class UserController {
         Map<String, Object> map = new HashMap<>();
 
         map.put("url", url);
+
+        return map;
+    }
+
+    @RequestMapping(value = "user/changeimg.do")
+    public @ResponseBody Map<String, Object>
+    changeImg(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<>();
+
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+
+        if(userid==null){
+            userid = "2";
+        }
+
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+                + request.getContextPath() + "/resources/img/user/" + userid + ".jpg";
+
+        UpdateState state = usersService.updateUserHead(userid, url);
+
+        if(state==UpdateState.修改失败){
+            map.put("success", false);
+        }else{
+            map.put("success", true);
+            map.put("url", url);
+        }
+
+        return map;
+    }
+
+    @RequestMapping(value = "user/nav.do")
+    public @ResponseBody Map<String, Object>
+    getAllStocks(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<>();
+        ArrayList<SingleInfo> singleInfos = singleInfoService.getSingleInfo();
+
+        map.put("stockList", JSON.toJSON(singleInfos));
+
+        return map;
+    }
+
+    @RequestMapping(value = "user_desktop.do")
+    public @ResponseBody Map<String, Object>
+    getDesktopUser(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<>();
+
+//        Cookie[] cookies = request.getCookies();
+//        if(cookies==null){
+//            map.put("success", false);
+//            return map;
+//        }
+//
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+
+        userid = "2";
+//        for(int i=0;i<cookies.length;i++){
+//            if(cookies[i].getName().equals("userid")){
+//                userid = cookies[i].getValue();
+//                break;
+//            }
+//        }
+//
+//        if(userid==null){
+//            map.put("success", false);
+//            return map;
+//        }
+
+        UserPo userPo = usersService.getUser(userid);
+
+        map.put("success", true);
+        map.put("userInfo", JSON.toJSON(userPo));
 
         return map;
     }
